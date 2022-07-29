@@ -1,15 +1,17 @@
 package com.amazingavocado.holymolymvp.dto;
 
 import lombok.Data;
-
-import javax.validation.constraints.Pattern;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
+@Getter
+@Setter
 public class UserDto {
 
-    private int age;
+    private String age;
 
-    private int gender;
+    private String gender;
 
-    private int region;
+    private String region;
 }

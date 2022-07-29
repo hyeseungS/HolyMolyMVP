@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://.netlify.app/">
+    <meta property="og:title" content="HolyMoly Feed">
+    <meta property="og:description" content="피드 페이지입니다.">
+    <!--    <meta property="og:image" content="title_thumbnail2.png">-->
+
+    <title>HolyMoly Feed</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap"
+          rel="stylesheet">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!--    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-134617183-1"></script>-->
+    <!--    <script>-->
+    <!--        window.dataLayer = window.dataLayer || [];-->
+
+    <!--        function gtag() {-->
+    <!--            dataLayer.push(arguments);-->
+    <!--        }-->
+    <!--        gtag('js', new Date());-->
+
+    <!--        gtag('config', 'UA-134617183-1');-->
+    <!--    </script>-->
+
+</head>
+
+<body class="container">
+<div class="head text-left"><span style="color: #4DA360">강남구</span><span> 꽃집 검색 결과입니다.</span></div>
+<!-- 필터링 버튼 -->
+<div style="display: flex; flex-flow: row wrap; justify-content: flex-end; margin-bottom: 20px">
+    <button type="button" class="button-filter" data-toggle="modal" data-target="#popup_filter">
+        컬러
+        <svg style="margin-left: 10px; line-height: 50px" width="16" height="16" viewBox="0 0 16 16" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 6L8 10L12 6" stroke="#8A8A8A" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+    <button type="button" class="button-filter" data-toggle="modal" data-target="#popup_filter">
+        가격
+        <svg style="margin-left: 10px;" width="16" height="16" viewBox="0 0 16 16" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 6L8 10L12 6" stroke="#8A8A8A" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+    <button type="button" class="button-filter" data-toggle="modal" data-target="#popup_filter">
+        선물상황
+        <svg style="margin-left: 10px" width="16" height="16" viewBox="0 0 16 16" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 6L8 10L12 6" stroke="#8A8A8A" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+</div>
+<div></div>
+<!-- 피드 목록 -->
+<div style="display: flex; flex-flow: row wrap; justify-content: center;">
+    <div class="feed-list-container">
+        <a class="feed-container link" th:each="item : ${itemList}"
+           th:href="@{/item/{itemId}(itemId=${item.id})}">
+            <img class="feed-image" src="/images/flower_img.jpg"/>
+            <div class="feed-shop" th:text="${item.shop.shopName}"></div>
+            <div class="feed-item" th:text="${item.itemName}"></div>
+            <div class="feed-price">
+                <span data-th-text="${#numbers.formatInteger(item.itemStartPrice, 3, 'COMMA') + '원'}"></span>
+                <span> &backsim; </span>
+                <span data-th-text="${#numbers.formatInteger(item.itemEndPrice, 3, 'COMMA') + '원'}"></span>
+            </div>
+        </a>
+    </div>
+</div>
+
+<!-- 필터링 -->
+<div class="modal fade" id="popup_filter">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body" style="margin: 36px 20px;">
+                <!-- Color -->
+                <button type="button" class="close" data-dismiss="modal"><img src="/images/ico-cancel.svg"/></button>
+                <div style="font-size: 22px; font-weight: bold; margin-bottom: 36px">필터검색</div>
+                <div class="color-filter">
+                    <div style="font-size: 15px; font-weight: bold; margin-bottom: 16px">컬러</div>
+                    <div class="filter-group">
+                        <label>
+                            <input class="hidden filter" type="radio" name="color" value="red"
+                                   th:attr="checked=${color} == 'red'">
+                            <div class="filter-div">
+                                <svg style="margin-right: 10px" width="15" height="15" viewBox="0 0 15 15" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="7.5" cy="7.5" r="7.5" fill="#CF0623"/>
+                                </svg>
+                                <div style="display: inline-block;">빨강계열</div>
+                            </div>
+                        </label>
+                        <label>
+                            <input class="hidden filter" type="radio" name="color" value="orange"
+                                   th:attr="checked=${color} == 'orange'"/>
+                            <div class="filter-div">
+                                <svg style="margin-right: 10px" width="15" height="15" viewBox="0 0 15 15" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="7.5" cy="7.5" r="7.5" fill="#FF9217"/>
+                                </svg>
+                                <div style="display: inline-block">주황계열</div>
+                            </div>
+                        </label>
+                        <label>
+                            <input class="hidden filter" type="radio" name="color" value="yellow"
+                                   th:attr="checked=${color} == 'yellow'"/>
+                            <div class="filter-div">
+                                <svg style="margin-right: 10px" width="15" height="15" viewBox="0 0 15 15" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="7.5" cy="7.5" r="7.5" fill="#FFC900"/>
+                                </svg>
+                                <div style="display: inline-block">노랑계열</div>
+                            </div>
+                        </label>
+                        <label>
+                            <input class="hidden filter" type="radio" name="color" value="blue"
+                                   th:attr="checked=${color} == 'blue'"/>
+                            <div class="filter-div">
+                                <svg style="margin-right: 10px" width="15" height="15" viewBox="0 0 15 15" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="7.5" cy="7.5" r="7.5" fill="#0058D9"/>
+                                </svg>
+                                <div style="display: inline-block">파랑계열</div>
+                            </div>
+                        </label>
+                        <label>
+                            <input class="hidden filter" type="radio" name="color" value="purple"
+                                   th:attr="checked=${color} == 'purple'"/>
+                            <div class="filter-div">
+                                <svg style="margin-right: 10px" width="15" height="15" viewBox="0 0 15 15" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="7.5" cy="7.5" r="7.5" fill="#BE5CE0"/>
+                                </svg>
+                                <div style="display: inline-block">보라계열</div>
+                            </div>
+                        </label>
+                        <label>
+                            <input class="hidden filter" type="radio" name="color" value="pink"
+                                   th:attr="checked=${color} == 'pink'"/>
+                            <div class="filter-div">
+                                <svg style="margin-right: 10px" width="15" height="15" viewBox="0 0 15 15" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="7.5" cy="7.5" r="7.5" fill="#E36FA2"/>
+                                </svg>
+                                <div style="display: inline-block">분홍계열</div>
+                            </div>
+                        </label>
+                        <label>
+                            <input class="hidden filter" type="radio" name="color" value="white"
+                                   th:attr="checked=${color} == 'white'"/>
+                            <div class="filter-div">
+                                <svg style="margin-right: 10px" width="15" height="15" viewBox="0 0 15 15" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="7.5" cy="7.5" r="7" fill="white" stroke="#E2E2E2"/>
+                                </svg>
+                                <div style="display: inline-block">흰색계열</div>
+                            </div>
+                        </label>
+                        <label>
+                            <input class="hidden filter" type="radio" name="color" value="mix"
+                                   th:attr="checked=${color} == 'mix'"/>
+                            <div class="filter-div">
+                                <svg style="margin-right: 10px" width="15" height="15" viewBox="0 0 15 15" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="7.5" cy="7.5" r="7.5" fill="url(#paint0_linear_1630_4963)"/>
+                                    <defs>
+                                        <linearGradient id="paint0_linear_1630_4963" x1="7.5" y1="0" x2="7.5" y2="15"
+                                                        gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#FDE57B"/>
+                                            <stop offset="0.583333" stop-color="#FE7C59"/>
+                                            <stop offset="1" stop-color="#FF0030"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                                <div style="display: inline-block">혼합계열</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="situation-filter">
+                    <div style="font-size: 15px; font-weight: bold; margin-bottom: 16px">선물 상황</div>
+                    <div class="filter-group">
+                        <label>
+                            <input class="hidden filter" type="radio" name="situation" value="date"
+                                   th:attr="checked=${situation} == 'date'"/>
+                            <div class="filter-div">데이트</div>
+                        </label>
+                        <label>
+                            <input class="hidden filter" type="radio" name="situation" value="performance"
+                                   th:attr="checked=${situation} == 'performance'"/>
+                            <div class="filter-div">공연</div>
+                        </label>
+                        <label>
+                            <input class="hidden filter" type="radio" name="situation" value="public"
+                                   th:attr="checked=${situation} == 'public'"/>
+                            <div class="filter-div">공식적 상황</div>
+                        </label>
+                        <label>
+                            <input class="hidden filter" type="radio" name="situation" value="open"
+                                   th:attr="checked=${situation} == 'open'"/>
+                            <div class="filter-div">개업축하</div>
+                        </label>
+                        <label>
+                            <input class="hidden filter" type="radio" name="situation" value="parent"
+                                   th:attr="checked=${situation} == 'parent'"/>
+                            <div class="filter-div">부모님 선물</div>
+                        </label>
+                        <label>
+                            <input class="hidden filter" type="radio" name="situation" value="coupleAnniv"
+                                   th:attr="checked=${situation} == 'coupleAnniv'"/>
+                            <div class="filter-div">연인 기념일</div>
+                        </label>
+                    </div>
+                </div>
+                <div class="price-filter">
+                    <div style="display: flex; justify-content: space-between">
+                        <div style="display:inline-block; font-size: 15px; font-weight: bold; margin-bottom: 16px">가격
+                        </div>
+                        <div class="values">
+                                <span id="range1">
+                                    0원
+                                </span>
+                            <span> &backsim; </span>
+                            <span id="range2">
+                                    100,000원
+                                </span>
+                        </div>
+                    </div>
+                    <div class="price-group">
+                        <div class="slider-track"></div>
+                        <input type="range" min="0" max="100000" value="0" id="slider-1" oninput="slideOne()">
+                        <input type="range" min="0" max="100000" value="100000" id="slider-2" oninput="slideTwo()">
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between">
+                    <button class="button-back"
+                            style="width: 100%; font-weight: bold; font-size: 16px; margin-right: 20px"
+                            onclick="clear()">초기화
+                    </button>
+                    <button class="button-next" style="width: 100%; font-weight: bold; font-size: 16px">선택완료
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    window.onload = function () {
+        slideOne();
+        slideTwo();
+    }
+
+    let sliderOne = document.getElementById("slider-1");
+    let sliderTwo = document.getElementById("slider-2");
+    let displayValOne = document.getElementById("range1");
+    let displayValTwo = document.getElementById("range2");
+    let minGap = 0;
+    let sliderTrack = document.querySelector(".slider-track");
+    let sliderMaxValue = document.getElementById("slider-1").max;
+
+    function slideOne() {
+        if (parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap) {
+            sliderOne.value = parseInt(sliderTwo.value) - minGap;
+        }
+        displayValOne.textContent = sliderOne.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + "원";
+        fillColor();
+    }
+
+    function slideTwo() {
+        if (parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap) {
+            sliderTwo.value = parseInt(sliderOne.value) + minGap;
+        }
+        displayValTwo.textContent = sliderTwo.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + "원";
+        fillColor();
+    }
+
+    function fillColor() {
+        percent1 = (sliderOne.value / sliderMaxValue) * 100;
+        percent2 = (sliderTwo.value / sliderMaxValue) * 100;
+        sliderTrack.style.background = `linear-gradient(to right, #E2E2E2 ${percent1}% , #4DA360 ${percent1}% , #4DA360 ${percent2}%, #E2E2E2 ${percent2}%)`;
+    }
+</script>
+<script>
+    function priceToString(price) {
+        return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+
+    function clear() {
+        let sliderOne = document.getElementById("slider-1");
+        let sliderTwo = document.getElementById("slider-2");
+        let displayValOne = document.getElementById("range1");
+        let displayValTwo = document.getElementById("range2");
+        let sliderTrack = document.querySelector(".slider-track");
+        let sliderMaxValue = document.getElementById("slider-1").max;
+
+        sliderOne.value = 0;
+        sliderTwo.value = 100000;
+        displayValOne.textContent = "0원";
+        displayValTwo.textContent = "100,000원";
+
+        percent1 = (sliderOne.value / sliderMaxValue) * 100;
+        percent2 = (sliderTwo.value / sliderMaxValue) * 100;
+        sliderTrack.style.background = `linear-gradient(to right, #E2E2E2 ${percent1}% , #4DA360 ${percent1}% , #4DA360 ${percent2}%, #E2E2E2 ${percent2}%)`;
+    }
+
+    function filter() {
+        let color = $('input[name=color]:checked').val();
+        let situation = $('input[name=situation]:checked').val();
+        let start = document.getElementById("slider-1").value;
+        let end = document.getElementById("slider-2").value;
+        console.log(color);
+        console.log(situation);
+        console.log(start);
+        console.log(end);
+        location.href = `/articles/filter?color=${color}&situation=${situation}&startPrice=${start}&endPrice=${end}`;
+    }
+</script>
+</body>
+
+</html>
