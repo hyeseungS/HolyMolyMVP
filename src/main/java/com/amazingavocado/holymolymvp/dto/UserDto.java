@@ -7,9 +7,9 @@ import javax.validation.constraints.Pattern;
 @Data
 public class UserDto {
 
-    private int age;
+    private String age;
 
-    private int gender;
+    private String gender;
 
-    private int region;
+    private String region;
 }
