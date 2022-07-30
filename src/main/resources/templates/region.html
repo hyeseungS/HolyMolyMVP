@@ -1,10 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://.netlify.app/">
+    <meta property="og:title" content="HolyMoly">
+    <meta property="og:description" content="간편 꽃 예약, 홀리몰리에서 시작하세요">
 
+    <title>HolyMoly</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap"
+          rel="stylesheet">
+</head>
+<body class="container">
+<div class="head text-left"><span style="color: #4DA360">픽업지역</span><span>을 입력해주세요.</span></div>
+<article class="cont-select">
+    <button id="region-btn" class="btn-select" name="region">지역 선택</button>
+    <ul class="list-member">
+        <li>
+            <button class="btn-region" type="button" value="강남구">강남구</button>
+        </li>
+        <li>
+            <button class="btn-region" type="button" value="노원구">노원구</button>
+        </li>
+        <li>
+            <button class="btn-region" type="button" value="마포구">마포구</button>
+        </li>
+        <li>
+            <button class="btn-region" type="button" value="종로구">종로구</button>
+        </li>
+        <li>
+            <button type="button" value="관악구">관악구</button>
+        </li>
+    </ul>
+</article>
+<form action="/feed" method="post">
+    <input id="age" type="text" name="age" hidden>
+    <input id="gender" type="text" name="gender" hidden>
+    <input id="region" type="text" name="region" hidden>
+    <div class="button-group">
+        <button class="button-back" type="button" style="width: 100%; margin-right: 10px" onclick="history.back()">이전
+        </button>
+        <button class="button-next" type="submit" style="width: 100%;" onclick="userData()">다음</button>
+    </div>
+</form>
+<script>
+    const btn = document.querySelector('.btn-select');
+    const list = document.querySelector('.list-member');
+    btn.addEventListener('click', () => {
+        btn.classList.toggle('on');
+    });
+    list.addEventListener('click', (event) => {
+        if (event.target.nodeName === "BUTTON") {
+            btn.innerText = event.target.innerText;
+            btn.classList.remove('on');
+        }
+    });
+</script>
+<script th:inline="javascript">
+
+    function userData() {
+        // 나이, 성별, 지역 데이터
+        /*<![CDATA[*/
+        let ageData = [[${age}]];
+        let genderData = [[${gender}]];
+        let regionData = document.getElementById("region-btn");
+        regionData = regionData.textContent == '지역 선택'? '전체' : regionData.textContent;
+        let ageInput = document.getElementById("age");
+        let genderInput = document.getElementById("gender");
+        let regionInput = document.getElementById("region");
+
+        ageInput.setAttribute('value', ageData);
+        genderInput.setAttribute('value', genderData);
+        regionInput.setAttribute('value', regionData);
+        /*]]>*/
+    }
+
+</script>
+</form>
 </body>
 </html>

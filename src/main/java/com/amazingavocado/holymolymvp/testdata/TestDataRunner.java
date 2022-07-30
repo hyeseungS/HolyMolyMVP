@@ -12,8 +12,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-import java.util.ArrayList;
+
 @Component
 public class TestDataRunner implements ApplicationRunner {
 
@@ -37,16 +36,16 @@ public class TestDataRunner implements ApplicationRunner {
         testUser1 = userRepository.save(testUser1);
 
         // Shop 등록
-        Shop testShop1 = new Shop(1L, "가나다란", "경기 시흥시 서울대학로 210", "", "", "");
+        Shop testShop1 = new Shop(1L, "가나다란", "서울특별시 강남구 논현동 봉은사로 123 리체 힐 604호", "", "", "");
         Shop testShop2 = new Shop(2L, "Amor", "경기 시흥시 서울대학로 210", "", "", "");
         shopRepository.save(testShop1);
         shopRepository.save(testShop2);
 
         // Item 등록
         Item testItem1 = new Item(1L, testShop1, "붉은 튤립 10송이 다발1", 40000, 50000, "꽃 설명", "red", "데이트 연인 기념일", "");
-        Item testItem2 = new Item(2L, testShop2, "프리지아 하늘색 꽃다발1", 40000, 50000, "꽃 설명", "blue", "데이트 연인 기념일", "");
+        Item testItem2 = new Item(2L, testShop1, "프리지아 하늘색 꽃다발1", 40000, 50000, "꽃 설명", "blue", "데이트 연인 기념일", "");
         Item testItem3 = new Item(3L, testShop1, "붉은 튤립 10송이 다발2", 40000, 50000, "꽃 설명", "red", "데이트 연인 기념일", "");
-        Item testItem4 = new Item(4L, testShop2, "프리지아 하늘색 꽃다발2", 70000, 80000, "꽃 설명", "red", "데이트 연인 기념일", "");
+        Item testItem4 = new Item(4L, testShop1, "프리지아 하늘색 꽃다발2", 70000, 80000, "꽃 설명", "red", "데이트 연인 기념일", "");
         Item testItem5 = new Item(5L, testShop1, "붉은 튤립 10송이 다발3", 40000, 50000, "꽃 설명", "red", "데이트 연인 기념일", "");
         Item testItem6 = new Item(6L, testShop2, "프리지아 하늘색 꽃다발3", 40000, 50000, "꽃 설명", "red", "공연", "");
         Item testItem7 = new Item(7L, testShop1, "붉은 튤립 10송이 다발4", 40000, 50000, "꽃 설명", "red", "데이트 연인 기념일", "");

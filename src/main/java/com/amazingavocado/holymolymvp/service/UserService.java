@@ -14,8 +14,8 @@ public class UserService {
 
     public User saveUser(UserDto userDto) {
         User user = User.builder()
-                .age(Integer.parseInt(userDto.getAge()))
-                .gender(Integer.parseInt(userDto.getGender()))
+                .age(userDto.getAge())
+                .gender(userDto.getGender())
                 .region(userDto.getRegion()).build();
         return userRepository.save(user);
     }

@@ -10,6 +10,7 @@ public class HolymolymvpApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(HolymolymvpApplication.class, args);
+
     }
 
 }

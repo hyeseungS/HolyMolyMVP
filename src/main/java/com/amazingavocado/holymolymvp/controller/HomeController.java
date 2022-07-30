@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -20,8 +19,9 @@ public class HomeController {
 
     // 지역 선택 페이지
     @PostMapping("/region")
-    public String region(@ModelAttribute("user") UserDto userDto, Model model) {
-        model.addAttribute("user", userDto);
+    public String region(UserDto userDto, Model model) {
+        model.addAttribute("age", userDto.getAge());
+        model.addAttribute("gender", userDto.getGender());
         return "region";
     }
 

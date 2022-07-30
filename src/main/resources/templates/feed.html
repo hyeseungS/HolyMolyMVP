@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -36,25 +36,73 @@
 </head>
 
 <body class="container">
-<div class="head text-left"><span style="color: #4DA360">강남구</span><span> 꽃집 검색 결과입니다.</span></div>
+<div class="head text-left"><span style="color: #4DA360" th:text="${user.region}"></span><span> 꽃집 검색 결과입니다.</span>
+</div>
 <!-- 필터링 버튼 -->
 <div style="display: flex; flex-flow: row wrap; justify-content: flex-end; margin-bottom: 20px">
     <button type="button" class="button-filter" data-toggle="modal" data-target="#popup_filter">
-        컬러
+        <span th:if="${#strings.isEmpty(filter.filterColor)}">컬러</span>
+        <span th:unless="${#strings.isEmpty(filter.filterColor)}" style="display: flex; justify-content: center;">
+        <th:block th:switch="${filter.filterColor}">
+            <span th:case=null>컬러</span>
+            <svg th:case="red" width="15" height="15" viewBox="0 0 15 15" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+                <circle cx="7.5" cy="7.5" r="7.5" fill="#CF0623"/>
+            </svg>
+            <svg th:case="orange" width="15" height="15" viewBox="0 0 15 15" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+                <circle cx="7.5" cy="7.5" r="7.5" fill="#FF9217"/>
+            </svg>
+            <svg th:case="yellow" width="15" height="15" viewBox="0 0 15 15" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+                <circle cx="7.5" cy="7.5" r="7.5" fill="#FFC900"/>
+            </svg>
+            <svg th:case="blue" width="15" height="15" viewBox="0 0 15 15" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+                <circle cx="7.5" cy="7.5" r="7.5" fill="#0058D9"/>
+            </svg>
+            <svg th:case="purple" width="15" height="15" viewBox="0 0 15 15" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+                <circle cx="7.5" cy="7.5" r="7.5" fill="#BE5CE0"/>
+            </svg>
+            <svg th:case="pink" width="15" height="15" viewBox="0 0 15 15" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+                <circle cx="7.5" cy="7.5" r="7.5" fill="#E36FA2"/>
+            </svg>
+            <svg th:case="white" width="15" height="15" viewBox="0 0 15 15" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+                <circle cx="7.5" cy="7.5" r="7" fill="white" stroke="#E2E2E2"/>
+            </svg>
+            <svg th:case="mix" width="15" height="15" viewBox="0 0 15 15" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+                <circle cx="7.5" cy="7.5" r="7.5" fill="url(#paint0_linear_1630_4963)"/>
+                <defs>
+                    <linearGradient id="paint0_linear_1630_4963" x1="7.5" y1="0" x2="7.5" y2="15"
+                                    gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#FDE57B"/>
+                        <stop offset="0.583333" stop-color="#FE7C59"/>
+                        <stop offset="1" stop-color="#FF0030"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+        </th:block>
+        </span>
         <svg style="margin-left: 10px; line-height: 50px" width="16" height="16" viewBox="0 0 16 16" fill="none"
              xmlns="http://www.w3.org/2000/svg">
             <path d="M4 6L8 10L12 6" stroke="#8A8A8A" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
     </button>
     <button type="button" class="button-filter" data-toggle="modal" data-target="#popup_filter">
-        가격
+        <span th:text="${filter.filterStartPrice} == 0?
+        (${filter.filterEndPrice} == 0? '가격' : (${filter.filterEndPrice} == 100000? '가격' : '0원 ~ ' + ${#numbers.formatInteger(filter.filterEndPrice, 3, 'COMMA')} + '원'))
+        : ${#numbers.formatInteger(filter.filterStartPrice, 3, 'COMMA') + '원 ~ ' + #numbers.formatInteger(filter.filterEndPrice, 3, 'COMMA')} + '원'"></span>
         <svg style="margin-left: 10px;" width="16" height="16" viewBox="0 0 16 16" fill="none"
              xmlns="http://www.w3.org/2000/svg">
             <path d="M4 6L8 10L12 6" stroke="#8A8A8A" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
     </button>
     <button type="button" class="button-filter" data-toggle="modal" data-target="#popup_filter">
-        선물상황
+        <span th:text="${filter.filterSituation} == null? '선물상황' : (${#strings.isEmpty(filter.filterSituation)}? '선물상황' : ${filter.filterSituation})"></span>
         <svg style="margin-left: 10px" width="16" height="16" viewBox="0 0 16 16" fill="none"
              xmlns="http://www.w3.org/2000/svg">
             <path d="M4 6L8 10L12 6" stroke="#8A8A8A" stroke-linecap="round" stroke-linejoin="round"/>
@@ -92,7 +140,7 @@
                     <div class="filter-group">
                         <label>
                             <input class="hidden filter" type="radio" name="color" value="red"
-                                   th:attr="checked=${color} == 'red'">
+                                   th:attr="checked=${filter.filterColor} == 'red'">
                             <div class="filter-div">
                                 <svg style="margin-right: 10px" width="15" height="15" viewBox="0 0 15 15" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
@@ -103,7 +151,7 @@
                         </label>
                         <label>
                             <input class="hidden filter" type="radio" name="color" value="orange"
-                                   th:attr="checked=${color} == 'orange'"/>
+                                   th:attr="checked=${filter.filterColor} == 'orange'"/>
                             <div class="filter-div">
                                 <svg style="margin-right: 10px" width="15" height="15" viewBox="0 0 15 15" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
@@ -114,7 +162,7 @@
                         </label>
                         <label>
                             <input class="hidden filter" type="radio" name="color" value="yellow"
-                                   th:attr="checked=${color} == 'yellow'"/>
+                                   th:attr="checked=${filter.filterColor} == 'yellow'"/>
                             <div class="filter-div">
                                 <svg style="margin-right: 10px" width="15" height="15" viewBox="0 0 15 15" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
@@ -125,7 +173,7 @@
                         </label>
                         <label>
                             <input class="hidden filter" type="radio" name="color" value="blue"
-                                   th:attr="checked=${color} == 'blue'"/>
+                                   th:attr="checked=${filter.filterColor} == 'blue'"/>
                             <div class="filter-div">
                                 <svg style="margin-right: 10px" width="15" height="15" viewBox="0 0 15 15" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
@@ -136,7 +184,7 @@
                         </label>
                         <label>
                             <input class="hidden filter" type="radio" name="color" value="purple"
-                                   th:attr="checked=${color} == 'purple'"/>
+                                   th:attr="checked=${filter.filterColor} == 'purple'"/>
                             <div class="filter-div">
                                 <svg style="margin-right: 10px" width="15" height="15" viewBox="0 0 15 15" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
@@ -147,7 +195,7 @@
                         </label>
                         <label>
                             <input class="hidden filter" type="radio" name="color" value="pink"
-                                   th:attr="checked=${color} == 'pink'"/>
+                                   th:attr="checked=${filter.filterColor} == 'pink'"/>
                             <div class="filter-div">
                                 <svg style="margin-right: 10px" width="15" height="15" viewBox="0 0 15 15" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
@@ -158,7 +206,7 @@
                         </label>
                         <label>
                             <input class="hidden filter" type="radio" name="color" value="white"
-                                   th:attr="checked=${color} == 'white'"/>
+                                   th:attr="checked=${filter.filterColor} == 'white'"/>
                             <div class="filter-div">
                                 <svg style="margin-right: 10px" width="15" height="15" viewBox="0 0 15 15" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
@@ -169,7 +217,7 @@
                         </label>
                         <label>
                             <input class="hidden filter" type="radio" name="color" value="mix"
-                                   th:attr="checked=${color} == 'mix'"/>
+                                   th:attr="checked=${filter.filterColor} == 'mix'"/>
                             <div class="filter-div">
                                 <svg style="margin-right: 10px" width="15" height="15" viewBox="0 0 15 15" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
@@ -189,76 +237,95 @@
                     </div>
                 </div>
 
+                <!-- Situation -->
                 <div class="situation-filter">
                     <div style="font-size: 15px; font-weight: bold; margin-bottom: 16px">선물 상황</div>
                     <div class="filter-group">
                         <label>
-                            <input class="hidden filter" type="radio" name="situation" value="date"
-                                   th:attr="checked=${situation} == 'date'"/>
+                            <input class="hidden filter" type="radio" name="situation" value="데이트"
+                                   th:attr="checked=${filter.filterSituation} == '데이트'"/>
                             <div class="filter-div">데이트</div>
                         </label>
                         <label>
-                            <input class="hidden filter" type="radio" name="situation" value="performance"
-                                   th:attr="checked=${situation} == 'performance'"/>
+                            <input class="hidden filter" type="radio" name="situation" value="공연"
+                                   th:attr="checked=${filter.filterSituation} == '공연'"/>
                             <div class="filter-div">공연</div>
                         </label>
                         <label>
-                            <input class="hidden filter" type="radio" name="situation" value="public"
-                                   th:attr="checked=${situation} == 'public'"/>
+                            <input class="hidden filter" type="radio" name="situation" value="공식적 상황"
+                                   th:attr="checked=${filter.filterSituation} == '공식적 상황'"/>
                             <div class="filter-div">공식적 상황</div>
                         </label>
                         <label>
-                            <input class="hidden filter" type="radio" name="situation" value="open"
-                                   th:attr="checked=${situation} == 'open'"/>
+                            <input class="hidden filter" type="radio" name="situation" value="개업축하"
+                                   th:attr="checked=${filter.filterSituation} == '개업축하'"/>
                             <div class="filter-div">개업축하</div>
                         </label>
                         <label>
-                            <input class="hidden filter" type="radio" name="situation" value="parent"
-                                   th:attr="checked=${situation} == 'parent'"/>
+                            <input class="hidden filter" type="radio" name="situation" value="부모님 선물"
+                                   th:attr="checked=${filter.filterSituation} == '부모님 선물'"/>
                             <div class="filter-div">부모님 선물</div>
                         </label>
                         <label>
-                            <input class="hidden filter" type="radio" name="situation" value="coupleAnniv"
-                                   th:attr="checked=${situation} == 'coupleAnniv'"/>
+                            <input class="hidden filter" type="radio" name="situation" value="연인 기념일"
+                                   th:attr="checked=${filter.filterSituation} == '연인 기념일'"/>
                             <div class="filter-div">연인 기념일</div>
                         </label>
                     </div>
                 </div>
+
+                <!-- Price -->
                 <div class="price-filter">
                     <div style="display: flex; justify-content: space-between">
                         <div style="display:inline-block; font-size: 15px; font-weight: bold; margin-bottom: 16px">가격
                         </div>
                         <div class="values">
-                                <span id="range1">
-                                    0원
+                                <span id="range1"
+                                      th:text="${filter.filterStartPrice} == 0? '0원' : ${#numbers.formatInteger(filter.filterStartPrice, 3, 'COMMA')} + '원'">
                                 </span>
                             <span> &backsim; </span>
-                            <span id="range2">
-                                    100,000원
+                            <span id="range2"
+                                  th:text="${filter.filterEndPrice} == 0? '100,000원' : ${#numbers.formatInteger(filter.filterEndPrice, 3, 'COMMA')} + '원'">
                                 </span>
                         </div>
                     </div>
                     <div class="price-group">
                         <div class="slider-track"></div>
-                        <input type="range" min="0" max="100000" value="0" id="slider-1" oninput="slideOne()">
-                        <input type="range" min="0" max="100000" value="100000" id="slider-2" oninput="slideTwo()">
+                        <input type="range" min="0" max="100000"
+                               th:value="${filter.filterStartPrice} == 0? 0 : ${filter.filterStartPrice}" id="slider-1"
+                               oninput="slideOne()">
+                        <input type="range" min="0" max="100000"
+                               th:value="${filter.filterEndPrice} == 0? 100000 : ${filter.filterEndPrice}" id="slider-2"
+                               oninput="slideTwo()">
                     </div>
                 </div>
-
-                <div style="display: flex; justify-content: space-between">
-                    <button class="button-back"
-                            style="width: 100%; font-weight: bold; font-size: 16px; margin-right: 20px"
-                            onclick="clear()">초기화
-                    </button>
-                    <button class="button-next" style="width: 100%; font-weight: bold; font-size: 16px">선택완료
-                    </button>
-                </div>
+                <!-- 초기화 & 선택완료 Button -->
+                <form action="/feed" method="post">
+                    <input id="age" type="text" name="age" hidden>
+                    <input id="gender" type="text" name="gender" hidden>
+                    <input id="region" type="text" name="region" hidden>
+                    <input id="color" type="text" name="filterColor" hidden>
+                    <input id="situation" type="text" name="filterSituation" hidden>
+                    <input id="start-price" type="text" name="filterStartPrice" hidden>
+                    <input id="end-price" type="text" name="filterEndPrice" hidden>
+                    <div style="display: flex; justify-content: space-between">
+                        <button class="button-back"
+                                type="button"
+                                style="width: 100%; font-weight: bold; font-size: 16px; margin-right: 20px"
+                                onclick="deselect()">초기화
+                        </button>
+                        <button class="button-next" type="submit"
+                                style="width: 100%; font-weight: bold; font-size: 16px" onclick="filter()">선택완료
+                        </button>
+                    </div>
+                </form>
             </div>
 
         </div>
     </div>
 </div>
 <script>
+    // 가격 슬라이더
     window.onload = function () {
         slideOne();
         slideTwo();
@@ -293,13 +360,17 @@
         percent2 = (sliderTwo.value / sliderMaxValue) * 100;
         sliderTrack.style.background = `linear-gradient(to right, #E2E2E2 ${percent1}% , #4DA360 ${percent1}% , #4DA360 ${percent2}%, #E2E2E2 ${percent2}%)`;
     }
-</script>
-<script>
-    function priceToString(price) {
-        return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    }
 
-    function clear() {
+    // 초기화 버튼
+    function deselect() {
+
+        // 컬러 라디오 버튼 해제
+        $("input[name='color']").prop('checked', false);
+
+        // 선물 상황 라디오 버튼 해제
+        $("input[name='situation']").prop('checked', false);
+
+        // 가격 0원 ~ 100000원으로 초기화
         let sliderOne = document.getElementById("slider-1");
         let sliderTwo = document.getElementById("slider-2");
         let displayValOne = document.getElementById("range1");
@@ -316,17 +387,40 @@
         percent2 = (sliderTwo.value / sliderMaxValue) * 100;
         sliderTrack.style.background = `linear-gradient(to right, #E2E2E2 ${percent1}% , #4DA360 ${percent1}% , #4DA360 ${percent2}%, #E2E2E2 ${percent2}%)`;
     }
+</script>
+<script th:inline="javascript">
 
+    // 선택 완료 버튼
     function filter() {
-        let color = $('input[name=color]:checked').val();
-        let situation = $('input[name=situation]:checked').val();
-        let start = document.getElementById("slider-1").value;
-        let end = document.getElementById("slider-2").value;
-        console.log(color);
-        console.log(situation);
-        console.log(start);
-        console.log(end);
-        location.href = `/articles/filter?color=${color}&situation=${situation}&startPrice=${start}&endPrice=${end}`;
+        /*<![CDATA[*/
+        let ageData = [[${user.age}]];
+        let genderData = [[${user.gender}]];
+        let regionData = [[${user.region}]];
+        let colorData = $('input[name=color]:checked').val();
+        let situationData = $('input[name=situation]:checked').val();
+        let startData = document.getElementById("slider-1").value;
+        let endData = document.getElementById("slider-2").value;
+
+        console.log(endData);
+        colorData = colorData == null ? '' : colorData;
+        situationData = situationData == null ? '' : situationData;
+
+        let ageInput = document.getElementById("age");
+        let genderInput = document.getElementById("gender");
+        let regionInput = document.getElementById("region");
+        let colorInput = document.getElementById("color");
+        let situationInput = document.getElementById("situation");
+        let startInput = document.getElementById("start-price");
+        let endInput = document.getElementById("end-price");
+
+        ageInput.setAttribute('value', ageData);
+        genderInput.setAttribute('value', genderData);
+        regionInput.setAttribute('value', regionData);
+        colorInput.setAttribute('value', colorData);
+        situationInput.setAttribute('value', situationData);
+        startInput.setAttribute('value', startData);
+        endInput.setAttribute('value', endData);
+        /*]]>*/
     }
 </script>
 </body>
