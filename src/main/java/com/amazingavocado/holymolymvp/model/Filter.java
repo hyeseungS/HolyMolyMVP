@@ -27,9 +27,13 @@ public class Filter {
     @Column(name = "filter_color")
     private String filterColor;
 
-    // 필터링 가격
-    @Column(name = "filter_price")
-    private String filterPrice;
+    // 필터링 시작 가격
+    @Column(name = "filter_start_price")
+    private int filterStartPrice;
+
+    // 필터링 끝 가격
+    @Column(name = "filter_end_price")
+    private int filterEndPrice;
 
     // 필터링 상황
     @Column(name = "filter_situation")

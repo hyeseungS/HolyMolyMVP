@@ -27,9 +27,13 @@ public class Item {
     @Column(name = "item_name", nullable = false)
     private String itemName;
 
-    // 꽃 가격
-    @Column(name = "item_price", nullable = false)
-    private String itemPrice;
+    // 꽃 시작 가격
+    @Column(name = "item_start_price", nullable = false)
+    private int itemStartPrice;
+
+    // 꽃 시작 가격
+    @Column(name = "item_end_price", nullable = false)
+    private int itemEndPrice;
 
     // 꽃 설명
    @Column(name = "item_desc", nullable = false)
