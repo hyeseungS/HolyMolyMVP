@@ -69,14 +69,6 @@ button:focus {
     margin-bottom: 40px;
 }
 
-.button-group {
-    display: flex;
-    justify-content: space-between;
-    flex-flow: row nowrap;
-    margin-bottom: 50px;
-    margin-top: 350px;
-}
-
 /* custom gender radio button */
 .gender {
     width: 0;
