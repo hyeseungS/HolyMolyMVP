@@ -1,12 +1,12 @@
 package com.amazingavocado.holymolymvp.controller;
 
-import com.amazingavocado.holymolymvp.dto.orderForm;
+import com.amazingavocado.holymolymvp.dto.ReservationDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class OrderController {
+public class ReservationController {
 
     //예약안내 페이지(modal)
     @GetMapping("/order-start")
@@ -23,8 +23,8 @@ public class OrderController {
     }
 
     @PostMapping("/order")
-    public String neworder(orderForm form) {
-        System.out.println(form.toString());
+    public String neworder(ReservationDto orderDto) {
+        System.out.println(orderDto.toString());
         return "";
     }
 
@@ -32,6 +32,11 @@ public class OrderController {
     @PostMapping("/orderer")
     public String orderer() {
         return "orderer_info";
+    }
+
+    @GetMapping("/qq")
+    public String qq() {
+        return "test";
     }
 
     //전송하기 페이지(modal)

@@ -9,7 +9,7 @@ import java.util.Date;
 
 
 @Data
-public class orderForm {
+public class ReservationDto {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd" ,timezone = "Asia/Seoul")
 
@@ -23,7 +23,7 @@ public class orderForm {
     SimpleDateFormat simpledateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
     SimpleDateFormat simpletimeFormat = new SimpleDateFormat("HH시 mm분");
 
-    public orderForm(String price, Date pickup_date, Date pickup_time) {
+    public ReservationDto(String price, Date pickup_date, Date pickup_time) {
         this.price = price;
         this.pickup_date = pickup_date;
         this.pickup_time = pickup_time;
