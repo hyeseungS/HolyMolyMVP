@@ -12,13 +12,12 @@ public class FilterService {
 
     private final FilterRepository filterRepository;
 
-    public Filter saveFilter(User user, String color, String situation, int startPrice, int endPrice) {
+    public Filter saveFilter(User user, String color, int startPrice, int endPrice) {
         Filter filter = Filter.builder()
                 .user(user)
                 .filterColor(color)
                 .filterStartPrice(startPrice)
-                .filterEndPrice(endPrice)
-                .filterSituation(situation).build();
+                .filterEndPrice(endPrice).build();
 
         return filterRepository.save(filter);
     }

@@ -19,20 +19,11 @@ public class Image {
     @Column(name = "image_id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
     private Item item;
 
-    @Column(nullable = false)
+    @Column(name = "image_path", nullable = false)
     private String imagePath;
 
-    // Item 정보 저장
-    public void setItem(Item item){
-        this.item = item;
-
-        // Item에 현재 Image가 존재하지 않는다면
-        if(!item.getItemImage().contains(this))
-            // Image 추가
-            item.getItemImage().add(this);
-    }
 }

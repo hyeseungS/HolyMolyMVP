@@ -41,20 +41,12 @@ public class Item {
    @Column(name = "item_desc", nullable = false)
     private String itemDesc;
 
-   // 꽃 색상
+    // 꽃 색상
     @Column(name = "item_color", nullable = false)
     private String itemColor;
 
-    // 꽃 카테고리
-    @Column(name = "item_category", nullable = false)
-    private String itemCategory;
-
     // 꽃 이미지
-    @OneToMany(
-            mappedBy = "image",
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
-            orphanRemoval = true
-    )
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Image> itemImage = new ArrayList<>();
 
     // Item에서 Image 처리 위함
