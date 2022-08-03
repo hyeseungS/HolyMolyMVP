@@ -28,7 +28,7 @@ public class FeedController {
         User user = userService.saveUser(userDto);
         userDto.setId(user.getId());
         if(filter != null) {
-            filter = filterService.saveFilter(user, filter.getFilterColor(), filter.getFilterSituation(),
+            filter = filterService.saveFilter(user, filter.getFilterColor(),
                     filter.getFilterStartPrice(), filter.getFilterEndPrice());
         }
         List<Item> itemList = itemService.getItems(user, filter);

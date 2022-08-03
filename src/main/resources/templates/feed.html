@@ -101,13 +101,6 @@
             <path d="M4 6L8 10L12 6" stroke="#8A8A8A" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
     </button>
-    <button type="button" class="button-filter" data-toggle="modal" data-target="#popup_filter">
-        <span th:text="${filter.filterSituation} == null? '선물상황' : (${#strings.isEmpty(filter.filterSituation)}? '선물상황' : ${filter.filterSituation})"></span>
-        <svg style="margin-left: 10px" width="16" height="16" viewBox="0 0 16 16" fill="none"
-             xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 6L8 10L12 6" stroke="#8A8A8A" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-    </button>
 </div>
 <div></div>
 <!-- 피드 목록 -->
@@ -115,13 +108,12 @@
     <div class="feed-list-container">
         <a class="feed-container link" th:each="item : ${itemList}"
            th:href="@{/item/{itemId}(itemId=${item.id})}">
-            <img class="feed-image" src="/images/flower_img.jpg"/>
+            <img class="feed-image" th:src="${item.id}"/>
             <div class="feed-shop" th:text="${item.shop.shopName}"></div>
             <div class="feed-item" th:text="${item.itemName}"></div>
             <div class="feed-price">
                 <span data-th-text="${#numbers.formatInteger(item.itemStartPrice, 3, 'COMMA') + '원'}"></span>
-                <span> &backsim; </span>
-                <span data-th-text="${#numbers.formatInteger(item.itemEndPrice, 3, 'COMMA') + '원'}"></span>
+                <span th:unless="${item.itemStartPrice == item.itemEndPrice}" data-th-text="${' &backsim; ' + #numbers.formatInteger(item.itemEndPrice, 3, 'COMMA') + '원'}"></span>
             </div>
         </a>
     </div>
@@ -237,63 +229,6 @@
                     </div>
                 </div>
 
-                <!-- Situation -->
-                <div class="situation-filter">
-                    <div style="font-size: 15px; font-weight: bold; margin-bottom: 16px">선물 상황</div>
-                    <div class="filter-group">
-                        <label>
-                            <input class="hidden filter" type="radio" name="situation" value="데이트"
-                                   th:attr="checked=${filter.filterSituation} == '데이트'"/>
-                            <div class="filter-div">&#x1F491; 데이트</div>
-                        </label>
-                        <label>
-                            <input class="hidden filter" type="radio" name="situation" value="생일"
-                                   th:attr="checked=${filter.filterSituation} == '생일'"/>
-                            <div class="filter-div">&#x1F973; 생일</div>
-                        </label>
-                        <label>
-                            <input class="hidden filter" type="radio" name="situation" value="기념일"
-                                   th:attr="checked=${filter.filterSituation} == '기념일'"/>
-                            <div class="filter-div">&#x1F377; 기념일</div>
-                        </label>
-                        <label>
-                            <input class="hidden filter" type="radio" name="situation" value="공연"
-                                   th:attr="checked=${filter.filterSituation} == '공연'"/>
-                            <div class="filter-div">&#x1F39F; 공연</div>
-                        </label>
-                        <label>
-                            <input class="hidden filter" type="radio" name="situation" value="부모님 선물"
-                                   th:attr="checked=${filter.filterSituation} == '부모님 선물'"/>
-                            <div class="filter-div">&#x1F474; 부모님 선물</div>
-                        </label>
-                        <label>
-                            <input class="hidden filter" type="radio" name="situation" value="개업축하"
-                                   th:attr="checked=${filter.filterSituation} == '개업축하'"/>
-                            <div class="filter-div">&#x1F389; 개업축하</div>
-                        </label>
-                        <label>
-                            <input class="hidden filter" type="radio" name="situation" value="공식적 상황"
-                                   th:attr="checked=${filter.filterSituation} == '공식적 상황'"/>
-                            <div class="filter-div">&#x1F935; 공식적 상황</div>
-                        </label>
-                        <label>
-                            <input class="hidden filter" type="radio" name="situation" value="시상식"
-                                   th:attr="checked=${filter.filterSituation} == '시상식'"/>
-                            <div class="filter-div">&#x1F3C6; 시상식</div>
-                        </label>
-                        <label>
-                            <input class="hidden filter" type="radio" name="situation" value="결혼식"
-                                   th:attr="checked=${filter.filterSituation} == '결혼식'"/>
-                            <div class="filter-div">&#x1F48D; 결혼식</div>
-                        </label>
-                        <label>
-                            <input class="hidden filter" type="radio" name="situation" value="나를 위한 선물"
-                                   th:attr="checked=${filter.filterSituation} == '나를 위한 선물'"/>
-                            <div class="filter-div">&#x1F64B; 나를 위한 선물</div>
-                        </label>
-                    </div>
-                </div>
-
                 <!-- Price -->
                 <div class="price-filter">
                     <div style="display: flex; justify-content: space-between">
@@ -325,7 +260,6 @@
                     <input id="gender" type="text" name="gender" hidden>
                     <input id="region" type="text" name="region" hidden>
                     <input id="color" type="text" name="filterColor" hidden>
-                    <input id="situation" type="text" name="filterSituation" hidden>
                     <input id="start-price" type="text" name="filterStartPrice" hidden>
                     <input id="end-price" type="text" name="filterEndPrice" hidden>
                     <div style="display: flex; justify-content: space-between">
@@ -387,9 +321,6 @@
         // 컬러 라디오 버튼 해제
         $("input[name='color']").prop('checked', false);
 
-        // 선물 상황 라디오 버튼 해제
-        $("input[name='situation']").prop('checked', false);
-
         // 가격 0원 ~ 100000원으로 초기화
         let sliderOne = document.getElementById("slider-1");
         let sliderTwo = document.getElementById("slider-2");
@@ -417,19 +348,15 @@
         let genderData = [[${user.gender}]];
         let regionData = [[${user.region}]];
         let colorData = $('input[name=color]:checked').val();
-        let situationData = $('input[name=situation]:checked').val();
         let startData = document.getElementById("slider-1").value;
         let endData = document.getElementById("slider-2").value;
 
-        console.log(endData);
         colorData = colorData == null ? '' : colorData;
-        situationData = situationData == null ? '' : situationData;
 
         let ageInput = document.getElementById("age");
         let genderInput = document.getElementById("gender");
         let regionInput = document.getElementById("region");
         let colorInput = document.getElementById("color");
-        let situationInput = document.getElementById("situation");
         let startInput = document.getElementById("start-price");
         let endInput = document.getElementById("end-price");
 
@@ -437,7 +364,6 @@
         genderInput.setAttribute('value', genderData);
         regionInput.setAttribute('value', regionData);
         colorInput.setAttribute('value', colorData);
-        situationInput.setAttribute('value', situationData);
         startInput.setAttribute('value', startData);
         endInput.setAttribute('value', endData);
         /*]]>*/

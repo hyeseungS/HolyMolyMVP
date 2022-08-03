@@ -27,34 +27,32 @@ public class ItemService {
         String color = "";
         int startPrice = 0;
         int endPrice = 100000;
-        String situation = "";
 
         if(filter.getFilterColor()!=null) {
             color = filter.getFilterColor();
             startPrice = filter.getFilterStartPrice();
             endPrice = filter.getFilterEndPrice();
-            situation = filter.getFilterSituation();
         }
 
         if(region.equals("전체")) region = "";
 
-        region = '%' + region + '%';
-        color = '%' + color + '%';
-        situation = '%' + situation + '%';
+        List<Item> itemList = itemRepository.findAllByItemColorContainsAndItemStartPriceLessThanEqualAndItemEndPriceGreaterThanEqual(color, endPrice, startPrice);
 
-        Query query = em.createNativeQuery("SELECT * "
-                            + "FROM shop AS s, item AS i "
-                            + "WHERE s.shop_id = i.shop_id AND s.shop_address LIKE :region "
-                            + "AND i.item_color LIKE :color AND i.item_start_price <= :end_price "
-                            + "AND i.item_end_price >= :start_price AND i.item_category LIKE :situation "
-                        , Item.class)
-                            .setParameter("region", region)
-                            .setParameter("color", color)
-                            .setParameter("start_price", startPrice)
-                            .setParameter("end_price", endPrice)
-                            .setParameter("situation", situation);
+//        region = '%' + region + '%';
+//        color = '%' + color + '%';
 
-        List<Item> itemList = query.getResultList();
+//        Query query = em.createNativeQuery("SELECT * "
+//                            + "FROM shop AS s, item AS i "
+//                            + "WHERE s.shop_id = i.shop_id AND s.shop_address LIKE :region "
+//                            + "AND i.item_color LIKE :color AND i.item_start_price <= :end_price "
+//                            + "AND i.item_end_price >= :start_price "
+//                        , Item.class)
+//                            .setParameter("region", region)
+//                            .setParameter("color", color)
+//                            .setParameter("start_price", startPrice)
+//                            .setParameter("end_price", endPrice);
+//
+//        List<Item> itemList = query.getResultList();
 
         return itemList;
     }
