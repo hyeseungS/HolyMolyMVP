@@ -59,7 +59,7 @@ public class ItemService {
         return itemList;
     }
 
-    // 상품 정보
+    // 개별 상품 정보 받아오기 (상품 상세 페이지)
     public Item getItem(Long itemId) {
 
         return itemRepository.findById(itemId).get();

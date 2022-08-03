@@ -1,5 +1,6 @@
 package com.amazingavocado.holymolymvp.dto;
 
+import com.amazingavocado.holymolymvp.model.Filter;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -13,6 +14,13 @@ public class ReservationDto {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd" ,timezone = "Asia/Seoul")
 
+    private Long id;
+
+    private Filter filter;
+
+
+
+
     private String price;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date pickup_date;
@@ -22,6 +30,10 @@ public class ReservationDto {
 
     SimpleDateFormat simpledateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
     SimpleDateFormat simpletimeFormat = new SimpleDateFormat("HH시 mm분");
+
+
+
+
 
     public ReservationDto(String price, Date pickup_date, Date pickup_time) {
         this.price = price;
