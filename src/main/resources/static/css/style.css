@@ -107,6 +107,7 @@ button:focus {
 /* custom select button */
 .cont-select {
     position: relative;
+    margin-bottom: 250px;
 }
 
 .btn-select {

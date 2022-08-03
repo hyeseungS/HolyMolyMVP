@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -40,16 +42,22 @@ public class Item {
    @Column(name = "item_desc", nullable = false)
     private String itemDesc;
 
-   // 꽃 색상
+    // 꽃 색상
     @Column(name = "item_color", nullable = false)
     private String itemColor;
 
-    // 꽃 카테고리
-    @Column(name = "item_category", nullable = false)
-    private String itemCategory;
-
     // 꽃 이미지
-    @Column(name = "item_image", nullable = false)
-    private String itemImage;
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Image> itemImage = new ArrayList<>();
+
+    // Item에서 Image 처리 위함
+    public void addItemImage(Image image) {
+        this.itemImage.add(image);
+
+        // Item에 Image가 저장되어있지 않은 경우
+        if(image.getItem() != this)
+            // Image 저장
+            image.setItem(this);
+    }
 
 }

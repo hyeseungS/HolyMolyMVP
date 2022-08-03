@@ -35,7 +35,4 @@ public class Filter {
     @Column(name = "filter_end_price")
     private int filterEndPrice;
 
-    // 필터링 상황
-    @Column(name = "filter_situation")
-    private String filterSituation;
 }
