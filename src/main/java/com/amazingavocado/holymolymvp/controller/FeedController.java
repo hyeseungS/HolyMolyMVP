@@ -59,6 +59,6 @@ public class FeedController {
         model.addAttribute("filter", filter);
         model.addAttribute("item", item);
 
-        return "flower";
+        return "item_detail";
     }
 }

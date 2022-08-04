@@ -16,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 // 꽃 정보
 public class Item {
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "item_id")
