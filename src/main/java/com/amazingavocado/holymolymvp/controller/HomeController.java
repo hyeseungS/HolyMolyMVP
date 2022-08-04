@@ -17,7 +17,13 @@ public class HomeController {
         return "index";
     }
 
-    // 지역 선택 페이지
+    // GET 지역 선택 페이지
+    @GetMapping("/region")
+    public String getRegion() {
+        return "redirect:/";
+    }
+
+    // POST 지역 선택 페이지
     @PostMapping("/region")
     public String region(UserDto userDto, Model model) {
         model.addAttribute("age", userDto.getAge());

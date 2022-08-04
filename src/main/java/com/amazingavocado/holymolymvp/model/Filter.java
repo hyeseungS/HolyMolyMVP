@@ -13,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 // 필터링 내역
-public class Filter {
+public class Filter extends Timestamped {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "filter_id")

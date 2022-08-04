@@ -23,9 +23,17 @@ public class Shop {
     @Column(name = "shop_name", nullable = false)
     private String shopName;
 
-    // 꽃집 위치
+    // 꽃집 주소
     @Column(name = "shop_address", nullable = false)
     private String shopAddress;
+
+    // 꽃집 주소 코드
+    @Column(name = "shop_address_code", nullable = false)
+    private String shopAddressCode;
+
+    // 꽃집 전화번호
+    @Column(name = "shop_phone")
+    private String shopPhone;
 
     // 영업 시간
     @Column(name = "shop_time", nullable = false)

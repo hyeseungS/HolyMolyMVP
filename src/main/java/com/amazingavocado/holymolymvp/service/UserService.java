@@ -6,6 +6,8 @@ import com.amazingavocado.holymolymvp.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -18,5 +20,9 @@ public class UserService {
                 .gender(userDto.getGender())
                 .region(userDto.getRegion()).build();
         return userRepository.save(user);
+    }
+
+    public Optional<User> getUser(Long id) {
+        return userRepository.findById(id);
     }
 }

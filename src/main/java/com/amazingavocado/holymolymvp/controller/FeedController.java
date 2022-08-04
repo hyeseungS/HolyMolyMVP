@@ -22,11 +22,23 @@ public class FeedController {
     private final UserService userService;
     private final FilterService filterService;
 
-    // 피드 페이지
+    // GET 피드 페이지
+    @GetMapping("/feed")
+    public String getFeed() {
+        return "redirect:/";
+    }
+
+    // POST 피드 페이지
     @PostMapping("/feed")
     public String feed(UserDto userDto, Filter filter, Model model) {
-        User user = userService.saveUser(userDto);
-        userDto.setId(user.getId());
+        User user;
+        if(userDto.getId() == null) {
+            user = userService.saveUser(userDto);
+            userDto.setId(user.getId());
+        }
+        else {
+            user = userService.getUser(userDto.getId()).get();
+        }
         if(filter != null) {
             filter = filterService.saveFilter(user, filter.getFilterColor(),
                     filter.getFilterStartPrice(), filter.getFilterEndPrice());

@@ -36,23 +36,21 @@ public class ItemService {
 
         if(region.equals("전체")) region = "";
 
-        List<Item> itemList = itemRepository.findAllByItemColorContainsAndItemStartPriceLessThanEqualAndItemEndPriceGreaterThanEqual(color, endPrice, startPrice);
+        region = '%' + region + '%';
+        color = '%' + color + '%';
 
-//        region = '%' + region + '%';
-//        color = '%' + color + '%';
+        Query query = em.createNativeQuery("SELECT * "
+                            + "FROM shop AS s, item AS i "
+                            + "WHERE s.shop_id = i.shop_id AND s.shop_address_code LIKE :region "
+                            + "AND i.item_color LIKE :color AND i.item_start_price <= :end_price "
+                            + "AND i.item_end_price >= :start_price "
+                        , Item.class)
+                            .setParameter("region", region)
+                            .setParameter("color", color)
+                            .setParameter("start_price", startPrice)
+                            .setParameter("end_price", endPrice);
 
-//        Query query = em.createNativeQuery("SELECT * "
-//                            + "FROM shop AS s, item AS i "
-//                            + "WHERE s.shop_id = i.shop_id AND s.shop_address LIKE :region "
-//                            + "AND i.item_color LIKE :color AND i.item_start_price <= :end_price "
-//                            + "AND i.item_end_price >= :start_price "
-//                        , Item.class)
-//                            .setParameter("region", region)
-//                            .setParameter("color", color)
-//                            .setParameter("start_price", startPrice)
-//                            .setParameter("end_price", endPrice);
-//
-//        List<Item> itemList = query.getResultList();
+        List<Item> itemList = query.getResultList();
 
         return itemList;
     }
