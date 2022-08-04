@@ -13,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 // 회원 기본 정보
-public class User {
+public class User extends Timestamped {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
