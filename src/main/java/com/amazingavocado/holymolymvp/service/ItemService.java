@@ -41,7 +41,7 @@ public class ItemService {
 
         Query query = em.createNativeQuery("SELECT * "
                             + "FROM shop AS s, item AS i "
-                            + "WHERE s.shop_id = i.shop_id AND s.shop_address LIKE :region "
+                            + "WHERE s.shop_id = i.shop_id AND s.shop_address_code LIKE :region "
                             + "AND i.item_color LIKE :color AND i.item_start_price <= :end_price "
                             + "AND i.item_end_price >= :start_price "
                         , Item.class)
