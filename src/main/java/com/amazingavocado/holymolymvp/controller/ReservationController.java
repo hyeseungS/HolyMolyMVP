@@ -54,7 +54,7 @@ public class ReservationController {
     //test
     @GetMapping("/itemtest")
     public String itemtest() {
-        return "test";
+        return "item_detail";
     }
 
     //가게상세 테스트
