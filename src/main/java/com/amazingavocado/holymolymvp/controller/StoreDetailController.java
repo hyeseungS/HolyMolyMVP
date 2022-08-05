@@ -18,40 +18,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class StoreDetailController {
 
-    /* private final StoreItemService storeItemService;
+    private final StoreItemService storeItemService;
     private final UserService userService;
 
-    // GET 피드 페이지
-    @GetMapping("/store_detail")
-    public String getFeed() {
-        return "redirect:/";
-    }
+    // GET 가게 페이지
+    @GetMapping("/store/{userId}/{shopId}")
+    public String storeDetail(@PathVariable("userId") Long userId, @PathVariable("shopId") Long shopId, Model model) {
+        User user = userService.getUser(userId).get();
 
-    // POST 피드 페이지
-    @PostMapping("/store_detail")
-    public String store_detail(UserDto userDto, Model model) {
-        User user;
-        if(userDto.getId() == null) {
-            user = userService.saveUser(userDto);
-            userDto.setId(user.getId());
-        }
-        else {
-            user = userService.getUser(userDto.getId()).get();
-        }
-        List<Item> itemList = StoreItemService.getItems(user);
+        List<Item> itemList = storeItemService.getItems(shopId);
         model.addAttribute("user", user);
         model.addAttribute("itemList", itemList);
         return "store_detail";
     }
 
-    // 꽃 상품 정보
-    @GetMapping("/item/{itemId}")
-    public String Item(User user, @PathVariable("itemId") Long itemId, Model model) {
-        Item item = StoreItemService.getItem(itemId);
-
-        model.addAttribute("user", user);
-        model.addAttribute("item", item);
-
-        return "item_detail";
-    }*/
 }

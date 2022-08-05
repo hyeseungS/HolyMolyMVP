@@ -2,8 +2,10 @@ package com.amazingavocado.holymolymvp.service;
 
 import com.amazingavocado.holymolymvp.model.Filter;
 import com.amazingavocado.holymolymvp.model.Item;
+import com.amazingavocado.holymolymvp.model.Shop;
 import com.amazingavocado.holymolymvp.model.User;
 import com.amazingavocado.holymolymvp.repository.ItemRepository;
+import com.amazingavocado.holymolymvp.repository.ShopRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,40 +13,21 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class StoreItemService {
 
     private final ItemRepository itemRepository;
-    private final EntityManager em;
+    private final ShopRepository shopRepository;
 
     // 피드 정보
     @Transactional(readOnly = true)
-    public List<Item> getItems(User user) {
+    public List<Item> getItems(Long shopId) {
 
-        String region = user.getRegion();
-        String color = "";
-        int startPrice = 0;
-        int endPrice = 100000;
-
-        if(region.equals("전체")) region = "";
-
-        region = '%' + region + '%';
-        color = '%' + color + '%';
-
-        Query query = em.createNativeQuery("SELECT * "
-                                + "FROM shop AS s, item AS i "
-                                + "WHERE s.shop_id = i.shop_id AND s.shop_address_code LIKE :region "
-                                + "AND i.item_color LIKE :color AND i.item_start_price <= :end_price "
-                                + "AND i.item_end_price >= :start_price "
-                        , Item.class)
-                .setParameter("region", region)
-                .setParameter("color", color)
-                .setParameter("start_price", startPrice)
-                .setParameter("end_price", endPrice);
-
-        List<Item> itemList = query.getResultList();
+        Optional<Shop> shop = shopRepository.findById(shopId);
+        List<Item> itemList = itemRepository.findByShop(shop.get());
 
         return itemList;
     }
