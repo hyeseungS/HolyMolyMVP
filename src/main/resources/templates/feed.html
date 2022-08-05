@@ -107,7 +107,7 @@
 <div style="display: flex; flex-flow: row wrap; justify-content: center;">
     <div class="feed-list-container">
         <a class="feed-container link" th:each="item : ${itemList}"
-           th:href="@{/item/{itemId}(itemId=${item.id})}">
+           th:href="@{/item/{userId}/{filterId}/{itemId}(userId=${user.id}, filterId=${filter.id}, itemId=${item.id})}">
             <img class="feed-image" th:src="${#lists.size(item.itemImage) == 0? '' : item.itemImage[0].imagePath}"/>
             <div class="feed-shop" th:text="${item.shop.shopName}"></div>
             <div class="feed-item" th:text="${item.itemName}"></div>

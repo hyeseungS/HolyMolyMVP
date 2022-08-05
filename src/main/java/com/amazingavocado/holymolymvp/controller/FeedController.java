@@ -51,12 +51,12 @@ public class FeedController {
     }
 
     // 꽃 상품 정보
-    @GetMapping("/item/{itemId}")
-    public String Item(User user, Filter filter, @PathVariable("itemId") Long itemId, Model model) {
+    @GetMapping("/item/{userId}/{filterId}/{itemId}")
+    public String Item(@PathVariable("userId") Long userId, @PathVariable("filterId") Long filterId, @PathVariable("itemId") Long itemId, Model model) {
         Item item = itemService.getItem(itemId);
 
-        model.addAttribute("user", user);
-        model.addAttribute("filter", filter);
+        model.addAttribute("userId", userId);
+        model.addAttribute("filterId", filterId);
         model.addAttribute("item", item);
 
         return "item_detail";

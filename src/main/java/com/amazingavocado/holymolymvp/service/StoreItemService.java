@@ -22,7 +22,7 @@ public class StoreItemService {
     private final ItemRepository itemRepository;
     private final ShopRepository shopRepository;
 
-    // 피드 정보
+    // 가게 정보
     @Transactional(readOnly = true)
     public List<Item> getItems(Long shopId) {
 

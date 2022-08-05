@@ -22,12 +22,12 @@ public class StoreDetailController {
     private final UserService userService;
 
     // GET 가게 페이지
-    @GetMapping("/store/{userId}/{shopId}")
-    public String storeDetail(@PathVariable("userId") Long userId, @PathVariable("shopId") Long shopId, Model model) {
-        User user = userService.getUser(userId).get();
+    @GetMapping("/item/{userId}/{filterId}/{itemId}/{shopId}")
+    public String storeDetail(@PathVariable("userId") Long userId, @PathVariable("filterId") Long filterId, @PathVariable("shopId") Long shopId, Model model) {
 
         List<Item> itemList = storeItemService.getItems(shopId);
-        model.addAttribute("user", user);
+        model.addAttribute("user", userId);
+        model.addAttribute("user", filterId);
         model.addAttribute("itemList", itemList);
         return "store_detail";
     }
