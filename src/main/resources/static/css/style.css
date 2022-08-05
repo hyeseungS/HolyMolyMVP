@@ -376,4 +376,6 @@ input[type="range"]:active::-webkit-slider-thumb {
     font-size: 15px;
 }
 
-
+.store-profile-title {
+    text-align: center;
+}

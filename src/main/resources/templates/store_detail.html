@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://.netlify.app/">
+    <meta property="og:title" content="HolyMoly">
+    <meta property="og:description" content="간편 꽃 예약, 홀리몰리에서 시작하세요">
+
+    <title>HolyMoly</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/css/item_detail.css" th:href="@{/css/item_detail.css}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap"
+          rel="stylesheet">
+    <!--
+        <script type="text/javascript" defer src="order_valid.js"></script>
+    -->
+
+</head>
+
+<body class="container">
+
+<div class="header">
+    <button type="button" class="left-button">
+        <img src="/images/backbtn.png" th:src="@{/images/backbtn.png}" class="back-btn"/>
+    </button>
+</div>
+
+<!-- 가게 배경 사진 받아오기 -->
+<div class="store-bg-imgs">
+    <img id="store-bg-imgs" src="/images/store_bg_img.png" th:src="@{/images/store_bg_img.png}" />
+</div>
+
+<!-- 가게 프로필 사진 받아오기 -->
+<div class="store-profile-imgs">
+    <img id="store-profile-imgs" src="/images/store_profile_img.png" th:src="@{/images/store_profile_img.png}" />
+</div>
+
+<!-- 가게 이름 받아오기 -->
+<div class="store-profile-title" id="store_profile_title">가게 이름
+
+</div>
+
+<!-- 전화번호 아이콘 -->
+<div class="store-number-imgs" id="store_number_imgs">
+
+</div>
+
+<!-- 전화번호 받아오기 -->
+<div class="store-number" id="store_number">
+
+</div>
+
+<!-- 위치 아이콘 -->
+<div class="store-location-imgs" id="store_location_imgs">
+
+</div>
+
+<!-- 위치 받아오기 -->
+<div class="store-location" id="store_location">
+
+</div>
+
+<!--위치보기 버튼 -->
+<button class="button-location" type="submit" style="width: 10%; margin-top: 10px">위치보기</button>
+
+
+<!-- 운영시간 아이콘 -->
+<div class="store-time-imgs" id="store_time_imgs">
+
+</div>
+
+<!-- 운영시간 받아오기 -->
+<div class="store-time" id="store_time">
+
+</div>
+
+<!-- 가게정보 받아오기 -->
+<div class="border_bottom" id="item-shop">
+
+</div>
+
+<!-- 상품정보 받아오기 -->
+<div class="border_bottom" id="item-body">
+
+</div>
+선긋기
+</body>
+
+<!-- 포트폴리오 -->
+<!-- <div style="display: flex; flex-flow: row wrap; justify-content: center;">
+    <div class="feed-list-container">
+        <a class="feed-container link" th:each="item : ${itemList}"
+           th:href="@{/item/{itemId}(itemId=${item.id})}">
+            <img class="feed-image" th:src="${item.itemImage[0].imagePath}"/>
+            <div class="feed-shop" th:text="${item.shop.shopName}"></div>
+            <div class="feed-item" th:text="${item.itemName}"></div>
+            <div class="feed-price">
+                <span data-th-text="${#numbers.formatInteger(item.itemStartPrice, 3, 'COMMA') + '원'}"></span>
+                <span th:unless="${item.itemStartPrice == item.itemEndPrice}" data-th-text="${' &backsim; ' + #numbers.formatInteger(item.itemEndPrice, 3, 'COMMA') + '원'}"></span>
+            </div>
+        </a>
+    </div>
+</div> -->
+
+</html>
