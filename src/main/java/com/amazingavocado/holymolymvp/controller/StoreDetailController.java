@@ -5,6 +5,7 @@ import com.amazingavocado.holymolymvp.model.Item;
 import com.amazingavocado.holymolymvp.model.User;
 import com.amazingavocado.holymolymvp.service.StoreItemService;
 import com.amazingavocado.holymolymvp.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class StoreDetailController {
 
-    private final StoreItemService storeItemService;
+    /* private final StoreItemService storeItemService;
     private final UserService userService;
 
     // GET 피드 페이지
@@ -51,5 +53,5 @@ public class StoreDetailController {
         model.addAttribute("item", item);
 
         return "item_detail";
-    }
+    }*/
 }

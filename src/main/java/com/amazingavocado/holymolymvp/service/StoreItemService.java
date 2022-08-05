@@ -4,12 +4,16 @@ import com.amazingavocado.holymolymvp.model.Filter;
 import com.amazingavocado.holymolymvp.model.Item;
 import com.amazingavocado.holymolymvp.model.User;
 import com.amazingavocado.holymolymvp.repository.ItemRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
 
+@Service
+@RequiredArgsConstructor
 public class StoreItemService {
 
     private final ItemRepository itemRepository;
