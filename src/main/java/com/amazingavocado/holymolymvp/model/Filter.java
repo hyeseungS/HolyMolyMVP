@@ -17,7 +17,7 @@ public class Filter extends Timestamped {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "filter_id")
-    private Long id;
+    private Long filter_id;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)

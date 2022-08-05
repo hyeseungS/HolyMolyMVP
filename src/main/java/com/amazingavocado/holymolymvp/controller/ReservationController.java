@@ -51,4 +51,10 @@ public class ReservationController {
         return "order_complete";
     }
 
+    //test
+    @GetMapping("/itemtest")
+    public String itemtest() {
+        return "item_detail";
+    }
+
 }
