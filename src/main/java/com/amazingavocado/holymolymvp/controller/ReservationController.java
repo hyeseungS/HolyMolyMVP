@@ -34,11 +34,6 @@ public class ReservationController {
         return "orderer_info";
     }
 
-    @GetMapping("/qq")
-    public String qq() {
-        return "test";
-    }
-
     //전송하기 페이지(modal)
     @PostMapping("/order-send")
     public String sendorder() {
@@ -49,18 +44,6 @@ public class ReservationController {
     @PostMapping("/order-complete")
     public String orderComplete() {
         return "order_complete";
-    }
-
-    //test
-    @GetMapping("/itemtest")
-    public String itemtest() {
-        return "item_detail";
-    }
-
-    //가게상세 테스트
-    @GetMapping("/aaa")
-    public String aaa() {
-        return "store_detail";
     }
 
 }

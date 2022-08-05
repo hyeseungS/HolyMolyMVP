@@ -26,6 +26,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'software.amazon.documentdb.jdbc:documentdb-jdbc:1.2.5'
     implementation 'org.springframework:spring-jdbc:5.3.22'
+    implementation 'org.mybatis:mybatis:3.5.10'
     compileOnly 'org.projectlombok:lombok:1.18.24'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'com.h2database:h2'
