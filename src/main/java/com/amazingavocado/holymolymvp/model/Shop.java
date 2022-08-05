@@ -36,7 +36,7 @@ public class Shop {
     private String shopPhone;
 
     // 영업 시간
-    @Column(name = "shop_time", nullable = false)
+    @Column(name = "shop_time")
     private String shopTime;
 
     // 꽃집 이미지
