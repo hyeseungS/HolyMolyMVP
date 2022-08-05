@@ -20,9 +20,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap"
           rel="stylesheet">
-    <!--
-        <script type="text/javascript" defer src="order_valid.js"></script>
-    -->
 
 </head>
 
@@ -112,10 +109,35 @@
     <input id="start-price" type="text" name="filterStartPrice" hidden>
     <input id="end-price" type="text" name="filterEndPrice" hidden>
 
-    <button class="button-next" type="submit" style="width: 100%;">예약하기</button>
-</form>
+    <button class="button-next" type="button" data-toggle="modal" data-target="#alertModal" style="width: 100%;">예약하기</button>
 
-</div>
+
+
+    <!-- modal -->
+
+    <div class="modal fade modal-sheet position-static d-block bg-secondary py-5" id="alertModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content rounded-4 shadow">
+                <div class="modal-header">
+                    <button type="button" name="modal-close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title">꽃집에 들어오는<br><span style="color: #4DA360; font-weight: 700">꽃의 종류</span>는 매일매일 달라요</h5>
+
+                </div>
+
+                <div class="modal-body" style="margin: auto">
+                    <p>사진과 동일한 꽃다발이 아닐 수 있어요.<br>플로리스트님께서 예쁘게 만들어주실거에요!</p>
+                    <img class="img-send" src="../static/images/florist_img.png" th:src="@{/images/florist_img.png}"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn-send">이해했어요!</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</form>
 
 </body>
 

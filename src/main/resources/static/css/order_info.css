@@ -247,24 +247,6 @@ textarea::placeholder {
 
 
 }
-/*
-.btn-primary{
-    --bs-btn-color:#fff;
-    --bs-btn-bg:#4DA360;
-    --bs-btn-border-color:#4DA360;
-    --bs-btn-hover-color:#fff;
-    --bs-btn-hover-bg:#4DA360;
-    --bs-btn-hover-border-color:#4DA360;
-    --bs-btn-focus-shadow-rgb:49,132,253;
-    --bs-btn-active-color:#fff;
-    --bs-btn-active-bg:#4DA360;
-    --bs-btn-active-border-color:#4DA360;
-    --bs-btn-active-shadow:inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    --bs-btn-disabled-color:#fff;
-    --bs-btn-disabled-bg:#4DA360;
-    --bs-btn-disabled-border-color:#4DA360;
-}*/
-
 
 .modal-sheet .modal-footer {
     padding-bottom: 1rem;
@@ -279,29 +261,6 @@ textarea::placeholder {
 
 
 /* 선물상황 라디오 버튼 */
-
-/*.filter + div {
-    color: #8A8A8A;
-    margin-right: 12px;
-    box-sizing: border-box;
-    padding: 10px;
-    font-weight: 400;
-    border: solid 1px rgba(226, 226, 226, 1);
-    background-color: #FFF;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-.filter:checked + div {
-    color: #4DA360;
-    border-color: #4DA360;
-    z-index: 1;
-    border-radius: 4px;
-    font-size: 14px;
-}*/
 
 .situationRadio input[type="radio"]{
     display:none;
