@@ -39,11 +39,11 @@ public class Item {
     private int itemEndPrice;
 
     // 꽃 설명
-   @Column(name = "item_desc", nullable = false)
+   @Column(name = "item_desc")
     private String itemDesc;
 
     // 꽃 색상
-    @Column(name = "item_color", nullable = false)
+    @Column(name = "item_color")
     private String itemColor;
 
     // 꽃 이미지
