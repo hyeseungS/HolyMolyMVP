@@ -28,33 +28,95 @@
 
 <body class="container">
 
-<div id="header">
-<img src="/images/backbtn.png" th:src="@{/images/backbtn.png}" id="back-btn"/>
+<div class="header">
+    <button type="button" class="left-button">
+        <img src="/images/backbtn.png" th:src="@{/images/backbtn.png}" class="back-btn"/>
+    </button>
 </div>
 
 <!-- 상품 사진 받아오기 -->
 <div class="item-img">
-    <img id="item-detail-imgs" th:src=""/>
+    <img id="item-detail-img" src="/images/testimg.png" th:src="@{/images/testimg.png}">
 </div>
+
 
 <!-- 상품이름 / 상품가격 받아오기 -->
 <div class="border_bottom" id="item-head">
-
+    <div class="item-title">상품이름 10송이</div>
+    <div class="item-price">상품 가격~200원</div>
 </div>
 
 <!-- 가게정보 받아오기 -->
 <div class="border_bottom" id="item-shop">
 
+    <!-- 가게 소개 -->
+    <div class="shop_info horizontal-div horizontal-div-center">
+        <div class="shop-img-box">
+            <img class="div-in-img" alt="가게이미지" src="/images/testimg.png" th:src="@{/images/testimg.png}"/>
+        </div>
+        <div class="item-subtitle">가게 이름</div>
+        <button type="button" class="button-shop">
+            <img class="div-in-img" src="/images/chevron-right.png" th:src="@{/images/chevron-right.png}"/>
+        </button>
+    </div>
+
+    <!-- 주소 -->
+    <div class="shop_address">
+        <div class="horizontal-div horizontal-div-center">
+            <div>
+                <img class="vector-img" src="/images/map-pin.png" th:src="@{/images/map-pin.png}"/>
+            </div>
+            <div class="shop-detail-text shop-detail-text-address">경기어쩌고 통일로 39231</div>
+            <button type="button" class="green-button">위치 보기</button>
+        </div>
+
+    </div>
+
+    <!-- 영업시간 -->
+    <div class="shop_time horizontal-div horizontal-div-flex-start">
+        <div>
+            <img class="vector-img" src="/images/clock.png" th:src="@{/images/clock.png}"/>
+        </div>
+        <div class="shop-detail-text shop-detail-text-time">여기에 가게시간<br>월화수<br>수수목<br>11~12<br>영업안해요</div>
+    </div>
+
 </div>
 
+
+
 <!-- 상품정보 받아오기 -->
-<div class="border_bottom" id="item-body">
+<div class="border_bottom_none item-info" id="item-body">
+    <div class="item-subtitle">상품 정보</div>
+    <div class="item-intro">
+        이제 곧 있으면 크리스마스네요 ~ 크리스마스 때 연인에게 따뜻함을 선물해보세요 !<br>
+        가나다란에서 준비한 붉은 튤립 10송이 다발은 크리스마스에 잘 어울려 연인도 좋아할거예요 ~<br><br>
+        📌구성<br>
+        10송이 다발<br><br>
+        📌사이즈<br>
+        튤립 지름 : 약 5cm<br>
+        📌추가사항<br>
+        튤립 갯수 추가 가능해요 :)
+    </div>
 
 </div>
 
 <!--예약하기 버튼 -->
 
-    <button class="button-next" type="submit" style="width: 100%; margin-top: 100px">예약하기</button>
+<form action="/order-start" method="post">
+    <input id="userid" type="text" name="id" hidden>
+    <input id="filterid" type="text" name="filterid" hidden>
+    <input id="shopid" type="text" name="shopid" hidden>
+    <input id="itemid" type="text" name="itemid" hidden>
+
+    <input id="color" type="text" name="filterColor" hidden>
+    <input id="start-price" type="text" name="filterStartPrice" hidden>
+    <input id="end-price" type="text" name="filterEndPrice" hidden>
+
+    <button class="button-next" type="submit" style="width: 100%;">예약하기</button>
+</form>
+
+</div>
 
 </body>
+
 </html>
