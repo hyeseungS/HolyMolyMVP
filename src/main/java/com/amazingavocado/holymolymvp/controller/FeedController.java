@@ -53,6 +53,7 @@ public class FeedController {
         //아이템 리스트 출력
         List<Item> itemList = itemService.getItems(code, filter);
         model.addAttribute("user", user);
+        model.addAttribute("code", code);
         model.addAttribute("filter", filter);
         model.addAttribute("itemList", itemList);
         return "feed";
