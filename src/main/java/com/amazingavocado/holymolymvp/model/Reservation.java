@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -25,6 +28,7 @@ public class Reservation extends Timestamped {
     @Column(name = "reservation_id")
     private Long id;
 
+/* FK 말고 id만 받아오는 Long으로 해볼게요
     //FK 필터링id
     @ManyToOne
     @JoinColumn(name = "filter_id", nullable = false)
@@ -39,6 +43,24 @@ public class Reservation extends Timestamped {
     @ManyToOne
     @JoinColumn(name = "item_id", nullable = false)
     private Item item;
+    */
+
+    //유저id
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
+
+    //필터링id
+    @Column(name = "filter_id", nullable = false)
+    private Long filterId;
+
+    //가게id
+    @Column(name = "shop_id", nullable = false)
+    private Long shopId;
+
+    //상품id
+    @Column(name = "item_id", nullable = false)
+    private Long itemId;
+
 
     // 가격
     @Column(name = "reservation_price", nullable = false)
@@ -46,11 +68,11 @@ public class Reservation extends Timestamped {
 
     // 픽업 날짜
     @Column(name = "reservation_pickup_date", nullable = false)
-    private Date reservationPickupDate;
+    private LocalDate reservationPickupDate;
 
     // 픽업 시간
     @Column(name = "reservation_pickup_time", nullable = false)
-    private Time reservationPickupTime;
+    private LocalTime reservationPickupTime;
 
     // 추가 입력 사항 null
     @Column(name = "reservation_adding")
@@ -70,5 +92,5 @@ public class Reservation extends Timestamped {
 
     // 생성 날짜
     @Column(name = "reservation_create_date", nullable = false)
-    private DateTime reservationCreateDate;
+    private LocalDate reservationCreateDate;
 }

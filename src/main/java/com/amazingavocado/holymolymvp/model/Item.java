@@ -34,7 +34,7 @@ public class Item {
     @Column(name = "item_start_price", nullable = false)
     private int itemStartPrice;
 
-    // 꽃 시작 가격
+    // 꽃 최대 가격
     @Column(name = "item_end_price", nullable = false)
     private int itemEndPrice;
 

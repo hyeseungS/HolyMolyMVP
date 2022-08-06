@@ -113,7 +113,7 @@
             <div class="feed-item" th:text="${item.itemName}"></div>
             <div class="feed-price">
                 <span data-th-text="${#numbers.formatInteger(item.itemStartPrice, 3, 'COMMA') + '원'}"></span>
-                <span th:unless="${item.itemStartPrice == item.itemEndPrice}" data-th-text="${' &backsim; ' + #numbers.formatInteger(item.itemEndPrice, 3, 'COMMA') + '원'}"></span>
+                <span th:unless="${item.itemStartPrice == item.itemEndPrice}" data-th-text="${' &#126; ' + #numbers.formatInteger(item.itemEndPrice, 3, 'COMMA') + '원'}"></span>
             </div>
         </a>
     </div>

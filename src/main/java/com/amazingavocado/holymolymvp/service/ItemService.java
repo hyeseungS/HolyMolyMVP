@@ -61,4 +61,15 @@ public class ItemService {
         return itemRepository.findById(itemId).get();
 
     }
+
+/*
+    public Long getShopId(Long itemId) {
+
+        Query query = em.createNativeQuery("SELECT shop_id FROM item WHERE item_id = "+itemId, Long shop_id);
+
+        Long shopId = query.getSingleResult();
+
+        return shopId;
+    }
+    */
 }
