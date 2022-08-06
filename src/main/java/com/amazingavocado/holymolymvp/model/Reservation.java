@@ -72,11 +72,15 @@ public class Reservation extends Timestamped {
 
     // 픽업 시간
     @Column(name = "reservation_pickup_time", nullable = false)
-    private LocalTime reservationPickupTime;
+    private String reservationPickupTime;
 
     // 추가 입력 사항 null
     @Column(name = "reservation_adding")
     private String reservationAdding;
+
+    // 메세지 카드 null
+    @Column(name = "reservation_msg_card")
+    private String reservationMsgCard;
 
     // 선물 상황 null
     @Column(name = "reservation_situation")
@@ -89,6 +93,10 @@ public class Reservation extends Timestamped {
     // 전화번호
     @Column(name = "reservation_orderer_phone", nullable = false)
     private String reservationOrdererPhone;
+
+    // 약관 선택 동의 체크 null
+    @Column(name = "reservaion_term")
+    private Integer reservationTerm;
 
     // 생성 날짜
     @Column(name = "reservation_create_date", nullable = false)

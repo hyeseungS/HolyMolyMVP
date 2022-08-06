@@ -71,5 +71,4 @@ public class ItemService {
 
         return item.get().getShop().getId();
     }
-
 }

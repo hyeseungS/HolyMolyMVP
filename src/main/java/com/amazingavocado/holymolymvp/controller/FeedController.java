@@ -65,20 +65,20 @@ public class FeedController {
                        @PathVariable("itemId") Long itemId,
                        Model model) {
         Item item = itemService.getItem(itemId);
-//        Object shopId = itemService.getShopId(itemId);
+        Long shopId = itemService.getShopId(itemId);
 
         //아이템 출력
         model.addAttribute("userId", userId);
         model.addAttribute("filterId", filterId);
         model.addAttribute("item", item);
-//        model.addAttribute("shopId", shopId);
+        model.addAttribute("shopId", shopId);
         model.addAttribute("itemId", itemId);
 
 
         System.out.println("첫번째");
         System.out.println(userId);
         System.out.println(filterId);
-//        System.out.println(shopId);
+        System.out.println(shopId);
         System.out.println(itemId);
 
         return "item_detail";

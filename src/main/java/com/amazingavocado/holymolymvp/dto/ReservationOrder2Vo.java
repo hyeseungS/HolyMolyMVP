@@ -15,7 +15,7 @@ import java.util.Date;
 @Getter
 @Setter
 // 주문 건 관련 저장 -
-public class ReservationOrderVo {
+public class ReservationOrder2Vo {
 
     private Long userId;
 
@@ -33,13 +33,15 @@ public class ReservationOrderVo {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate reservationPickupDate;
 
-    @DateTimeFormat(pattern = "HH:mm")
-    private LocalTime reservationPickupTime;
+    private String reservationPickupTime;
 
+
+    //새정보
     private String reservationAdding;
+
+    private String reservationMsgCard;
 
     private String reservationSituation;
 
     SimpleDateFormat simpledateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
-    SimpleDateFormat simpletimeFormat = new SimpleDateFormat("HH시 mm분");
 }

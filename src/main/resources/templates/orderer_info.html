@@ -44,9 +44,13 @@
     <input id="reservationPrice" type="text" name="reservationPrice" hidden>
     <input id="reservationPickupDate" type="text" name="reservationPickupDate" hidden>
     <input id="reservationPickupTime" type="text" name="reservationPickupTime" hidden>
+
     <input id="reservationAdding" type="text" name="reservationAdding" hidden>
+    <input id="reservationMsgCard" type="text" name="reservationMsgCard" hidden>
     <input id="reservationSituation" type="text" name="reservationSituation" hidden>
 
+
+    <!-- 새정보 -->
 
     <div class="head text-left"><span style="color: #4DA360">주문자 정보</span><span>를 입력해주세요.</span></div>
 <div class="form-title">이름<span style="color: #FF0000"> *</span></div>
@@ -58,12 +62,46 @@
 <div class="form-group">
     <input type="text" name="orderer_phone" class="form-control" placeholder="010-1234-5678">
 </div>
+    <div class="form-alert">✓  원활한 주문 접수를 위해 전화번호 입력 후 확인 부탁드려요!</div>
 
-<div class="button_group">
-    <button type="button" class="button_back btn-what" style="width: 40%">이전</button>
-    <button type="button" class="button-next" data-toggle="modal" data-target="#order_modal" style="width: 40%">다음</button>
+    <!--약관-->
+    <div>
+        <div>
+        <label for="all_check">약관 전체동의</label>
+            <input type="checkbox" id="all_check">
+        </div>
 
-</div>
+        <div>
+            <p>이용약관 동의 (필수)</p>
+            <button type="button">
+            <img src="/images/chevron-right.png" th:src="@{/images/chevron-right.png}"/>
+            </button>
+            <input type="checkbox">
+        </div>
+
+        <div>
+            <p>개인정보 수집 및 이용 동의 (필수)</p>
+            <button type="button">
+                <img src="/images/chevron-right.png" th:src="@{/images/chevron-right.png}"/>
+            </button>
+            <input type="checkbox">
+        </div>
+
+        <div>
+            <p>E-mail 및 SNS 광고성 정보 수신동의 (선택)</p>
+            <button type="button">
+                <img src="/images/chevron-right.png" th:src="@{/images/chevron-right.png}"/>
+            </button>
+            <input type="checkbox">
+        </div>
+
+    </div>
+
+    <div class="button-group">
+    <button type="button" class="button-back" style="width: 100%; margin-right: 10px" onclick="history.back()">이전</button>
+    <button type="button" class="button-next" style="width: 100%" data-toggle="modal" data-target="#order_modal">다음</button>
+    </div>
+
 
 <!-- 모달 -->
 <div class="modal fade modal-sheet position-static d-block bg-secondary py-5" id="order_modal"  data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" role="dialog">

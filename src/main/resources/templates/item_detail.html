@@ -106,11 +106,11 @@
 
 
 <!--예약하기 버튼 -->
-<form action="/order" method="post">
+<form action="/order1" method="post">
     <!-- 정보 넘기기 hidden-->
     <input id="userId" type="text" name="userId" th:value="${userId}" hidden>
     <input id="filterId" type="text" name="filterId" th:value="${filterId}" hidden>
-    <input id="shopId" type="text" name="shopId" th:value="${random1}" hidden>
+    <input id="shopId" type="text" name="shopId" th:value="${shopId}" hidden>
     <input id="itemId" type="text" name="itemId" th:value="${itemId}" hidden>
 
     <button type="button" class="button-next" data-toggle="modal" data-target="#alert_modal" style="width: 100%">예약하기</button>
