@@ -22,9 +22,9 @@ public class ItemService {
 
     // 피드 정보
     @Transactional(readOnly = true)
-    public List<Item> getItems(User user, Filter filter) {
+    public List<Item> getItems(String regionCode, Filter filter) {
 
-        String region = user.getRegion();
+        String region = regionCode;
         String color = "";
         int startPrice = 0;
         int endPrice = 500000;
