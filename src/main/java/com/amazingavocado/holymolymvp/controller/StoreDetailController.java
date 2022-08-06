@@ -26,8 +26,8 @@ public class StoreDetailController {
     public String storeDetail(@PathVariable("userId") Long userId, @PathVariable("filterId") Long filterId, @PathVariable("shopId") Long shopId, Model model) {
 
         List<Item> itemList = storeItemService.getItems(shopId);
-        model.addAttribute("user", userId);
-        model.addAttribute("user", filterId);
+        model.addAttribute("userId", userId);
+        model.addAttribute("filterId", filterId);
         model.addAttribute("itemList", itemList);
         return "store_detail";
     }

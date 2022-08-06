@@ -2,6 +2,7 @@ package com.amazingavocado.holymolymvp.service;
 
 import com.amazingavocado.holymolymvp.model.Filter;
 import com.amazingavocado.holymolymvp.model.Item;
+import com.amazingavocado.holymolymvp.model.Shop;
 import com.amazingavocado.holymolymvp.model.User;
 import com.amazingavocado.holymolymvp.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -62,14 +64,12 @@ public class ItemService {
 
     }
 
-/*
+
     public Long getShopId(Long itemId) {
 
-        Query query = em.createNativeQuery("SELECT shop_id FROM item WHERE item_id = "+itemId, Long shop_id);
+        Optional<Item> item = itemRepository.findById(itemId);
 
-        Long shopId = query.getSingleResult();
-
-        return shopId;
+        return item.get().getShop().getId();
     }
-    */
+
 }
