@@ -8,6 +8,7 @@ import com.amazingavocado.holymolymvp.service.FilterService;
 import com.amazingavocado.holymolymvp.service.ItemService;
 import com.amazingavocado.holymolymvp.service.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.val;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -44,6 +45,8 @@ public class FeedController {
                     filter.getFilterStartPrice(), filter.getFilterEndPrice());
         }
         List<Item> itemList = itemService.getItems(user, filter);
+        String nlString = System.getProperty("line.separator").toString();
+        model.addAttribute("newLineChar", '\n');
         model.addAttribute("user", user);
         model.addAttribute("filter", filter);
         model.addAttribute("itemList", itemList);
