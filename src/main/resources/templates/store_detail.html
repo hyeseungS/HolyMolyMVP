@@ -63,8 +63,8 @@
         <div>
             <img class="vector-img" src="/images/map-pin.png" th:src="@{/images/map-pin.png}"/>
         </div>
-        <div class="shop-detail-text shop-detail-text-address">경기어쩌고 통일로 39231</div>
-        <button type="button" class="green-button">위치 보기</button>
+        <div class="shop-detail-text shop-detail-text-address"></div>
+        <button type="button" class="green-button"></button>
     </div>
 </div>
 
@@ -74,7 +74,7 @@
     <div>
         <img class="vector-img" src="/images/clock.png" th:src="@{/images/clock.png}"/>
     </div>
-    <div class="shop-detail-text shop-detail-text-time">여기에 가게시간<br>월화수<br>수수목<br>11~12<br>영업안해요</div>
+    <div class="shop-detail-text shop-detail-text-time"></div>
 </div>
 </div>
 
@@ -88,7 +88,7 @@
             <div class="feed-item" th:text="${item.itemName}"></div>
             <div class="feed-price">
                 <span data-th-text="${#numbers.formatInteger(item.itemStartPrice, 3, 'COMMA') + '원'}"></span>
-                <span th:unless="${item.itemStartPrice == item.itemEndPrice}" data-th-text="${' &backsim; ' + #numbers.formatInteger(item.itemEndPrice, 3, 'COMMA') + '원'}"></span>
+                <span th:unless="${item.itemStartPrice == item.itemEndPrice}" data-th-text="${' &#126; ' + #numbers.formatInteger(item.itemEndPrice, 3, 'COMMA') + '원'}"></span>
             </div>
         </a>
     </div>
