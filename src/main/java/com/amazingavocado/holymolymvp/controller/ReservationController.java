@@ -77,9 +77,9 @@ public class ReservationController {
         //주문내역 저장
         Reservation reservation;
 
-       reservation = reservationService.saveReservation(reservationDto);
-
-       System.out.println(reservation.toString());
+        /*
+        reservation = reservationService.saveReservation(reservationDto);
+         */
 
         return "order_complete";
     }
