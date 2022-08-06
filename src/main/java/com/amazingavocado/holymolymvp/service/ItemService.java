@@ -2,7 +2,6 @@ package com.amazingavocado.holymolymvp.service;
 
 import com.amazingavocado.holymolymvp.model.Filter;
 import com.amazingavocado.holymolymvp.model.Item;
-import com.amazingavocado.holymolymvp.model.Shop;
 import com.amazingavocado.holymolymvp.model.User;
 import com.amazingavocado.holymolymvp.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +27,7 @@ public class ItemService {
         String region = user.getRegion();
         String color = "";
         int startPrice = 0;
-        int endPrice = 100000;
+        int endPrice = 500000;
 
         if(filter.getFilterColor()!=null) {
             color = filter.getFilterColor();
