@@ -95,7 +95,7 @@
     </button>
     <button type="button" class="button-filter" data-toggle="modal" data-target="#popup_filter">
         <span th:text="${filter.filterStartPrice} == 0?
-        (${filter.filterEndPrice} == 0? '가격' : (${filter.filterEndPrice} == 100000? '가격' : '0원 ~ ' + ${#numbers.formatInteger(filter.filterEndPrice, 3, 'COMMA')} + '원'))
+        (${filter.filterEndPrice} == 0? '가격' : (${filter.filterEndPrice} == 500000? '가격' : '0원 ~ ' + ${#numbers.formatInteger(filter.filterEndPrice, 3, 'COMMA')} + '원'))
         : ${#numbers.formatInteger(filter.filterStartPrice, 3, 'COMMA') + '원 ~ ' + #numbers.formatInteger(filter.filterEndPrice, 3, 'COMMA')} + '원'"></span>
         <svg style="margin-left: 10px;" width="16" height="16" viewBox="0 0 16 16" fill="none"
              xmlns="http://www.w3.org/2000/svg">
@@ -227,6 +227,17 @@
                                 <div style="display: inline-block">혼합계열</div>
                             </div>
                         </label>
+                        <label>
+                            <input class="hidden filter" type="radio" name="color" value="other"
+                                   th:attr="checked=${filter.filterColor} == 'other'"/>
+                            <div class="filter-div">
+                                <svg style="margin-right: 10px" width="15" height="15" viewBox="0 0 15 15" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="7.5" cy="7.5" r="7.5" fill="#419654"/>
+                                </svg>
+                                <div style="display: inline-block">기타</div>
+                            </div>
+                        </label>
                     </div>
                 </div>
 
@@ -241,17 +252,17 @@
                                 </span>
                             <span> &backsim; </span>
                             <span id="range2"
-                                  th:text="${filter.filterEndPrice} == 0? '100,000원' : ${#numbers.formatInteger(filter.filterEndPrice, 3, 'COMMA')} + '원'">
+                                  th:text="${filter.filterEndPrice} == 0? '500,000원' : ${#numbers.formatInteger(filter.filterEndPrice, 3, 'COMMA')} + '원'">
                                 </span>
                         </div>
                     </div>
                     <div class="price-group">
                         <div class="slider-track"></div>
-                        <input type="range" min="0" max="100000"
+                        <input type="range" min="0" max="500000"
                                th:value="${filter.filterStartPrice} == 0? 0 : ${filter.filterStartPrice}" id="slider-1"
                                oninput="slideOne()">
-                        <input type="range" min="0" max="100000"
-                               th:value="${filter.filterEndPrice} == 0? 100000 : ${filter.filterEndPrice}" id="slider-2"
+                        <input type="range" min="0" max="500000"
+                               th:value="${filter.filterEndPrice} == 0? 500000 : ${filter.filterEndPrice}" id="slider-2"
                                oninput="slideTwo()">
                     </div>
                 </div>
@@ -334,7 +345,7 @@
         sliderOne.value = 0;
         sliderTwo.value = 100000;
         displayValOne.textContent = "0원";
-        displayValTwo.textContent = "100,000원";
+        displayValTwo.textContent = "500,000원";
 
         percent1 = (sliderOne.value / sliderMaxValue) * 100;
         percent2 = (sliderTwo.value / sliderMaxValue) * 100;
