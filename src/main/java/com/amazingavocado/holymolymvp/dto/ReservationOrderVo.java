@@ -11,11 +11,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
 @Data
 @Getter
 @Setter
-public class ReservationDto {
+// 주문 건 관련 저장 -
+public class ReservationOrderVo {
 
     private Long userId;
 
@@ -25,6 +25,7 @@ public class ReservationDto {
 
     private Long itemId;
 
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd" ,timezone = "Asia/Seoul")
 
     private String reservationPrice;
@@ -32,17 +33,13 @@ public class ReservationDto {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate reservationPickupDate;
 
-     @DateTimeFormat(pattern = "HH:mm")
-     private LocalTime reservationPickupTime;
+    @DateTimeFormat(pattern = "HH:mm")
+    private LocalTime reservationPickupTime;
 
-     private String reservationAdding;
+    private String reservationAdding;
 
-     private String reservationSituation;
+    private String reservationSituation;
 
-     SimpleDateFormat simpledateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
-     SimpleDateFormat simpletimeFormat = new SimpleDateFormat("HH시 mm분");
-
-     private String reservationOrdererName;
-
-     private String reservationOrdererPhone;
+    SimpleDateFormat simpledateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
+    SimpleDateFormat simpletimeFormat = new SimpleDateFormat("HH시 mm분");
 }

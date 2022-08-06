@@ -89,7 +89,7 @@
 }
 
 .shop_info {
-    margin-top: 37px;
+    margin-top: 30px;
 }
 
 
@@ -199,8 +199,6 @@
 .button-shop {
     width: 24px;
     height: 24px;
-    margin-left: auto;
-    margin-right: 20px;
 
     background-color: white;
     border: 0;

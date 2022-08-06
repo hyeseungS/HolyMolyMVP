@@ -33,7 +33,22 @@
 <body class="container">
 
 <form action="/order-complete" method="post">
-<div class="head text-left"><span style="color: #4DA360">주문자 정보</span><span>를 입력해주세요.</span></div>
+
+
+    <!-- 정보 넘기기 hidden-->
+    <input id="userId" type="text" name="userId" hidden>
+    <input id="filterId" type="text" name="filterId" hidden>
+    <input id="shopId" type="text" name="shopId" hidden>
+    <input id="itemId" type="text" name="itemId" hidden>
+
+    <input id="reservationPrice" type="text" name="reservationPrice" hidden>
+    <input id="reservationPickupDate" type="text" name="reservationPickupDate" hidden>
+    <input id="reservationPickupTime" type="text" name="reservationPickupTime" hidden>
+    <input id="reservationAdding" type="text" name="reservationAdding" hidden>
+    <input id="reservationSituation" type="text" name="reservationSituation" hidden>
+
+
+    <div class="head text-left"><span style="color: #4DA360">주문자 정보</span><span>를 입력해주세요.</span></div>
 <div class="form-title">이름<span style="color: #FF0000"> *</span></div>
 <div class="form-group">
     <input type="text" name="orderer_name" class="form-control" placeholder="홍길동">

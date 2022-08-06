@@ -29,74 +29,81 @@
 <body class="container">
 <div class="head text-left"><span style="color: #4DA360">주문 정보</span><span>를 입력해주세요.</span></div>
 
-<form action="/orderer" method="post"> <!--onsubmit="orderCheck()"-->
+<form action="/orderer" method="post">
+
+    <!-- 정보 넘기기 hidden-->
+    <input id="userId" type="text" name="userId" th:value="${userId}" hidden>
+    <input id="filterId" type="text" name="filterId" th:value="${filterId}" hidden>
+    <input id="shopId" type="text" name="shopId" th:value="${random1}" hidden>
+    <input id="itemId" type="text" name="itemId" th:value="${itemId}" hidden>
+
+    <!--새 정보-->
     <div class="form-title">가격<span style="color: #FF0000"> *</span></div>
     <div class="form-group">
-        <input type="text" name="price" id="price" class="form-control" placeholder="000000원">
+        <input type="text" name="reservationPrice" id="reservationPrice" class="form-control" placeholder="000000원">
     </div>
     <div class="form-alert">✓ 5,000원 단위로 설정이 가능해요.</div>
 
 
     <div class="form-title">픽업 날짜<span style="color: #FF0000"> *</span></div>
     <div class="form-group">
-        <input type="date" name="pickup_date" id="pickup_date" class="form-control" placeholder="00월 00일">
+        <input type="date" name="reservationPickupDate" id="reservationPickupDate" class="form-control" max="2022-08-31">
     </div>
 
     <div class="form-title">픽업 시간<span style="color: #FF0000"> *</span></div>
     <div class="form-group">
-        <input type="time" name="pickup_time" id="pickup_time" class="form-control" placeholder="오후 00시 00분">
+        <input type="time" name="reservationPickupTime" id="reservationPickupTime" class="form-control" min="00:00:00" max="23:00:00" step="600"><!--min="가게픽업가능시간최소" max="최대"-->
     </div>
 
     <div class="form-title">추가 입력 사항<span style="color: #FF0000"> (선택)</span></div>
     <div class="form-group">
-        <textarea type="text" name="adding" id="adding" class="form-control" placeholder="포장지를 옅은 회색으로 바꿔주세요."></textarea>
+        <textarea type="text" name="reservationAdding" id="reservationAdding" class="form-control" placeholder="포장지를 옅은 회색으로 바꿔주세요."></textarea>
     </div>
 
+    <!-- Situation -->
     <div class="form-title">선물 상황<span style="color: #FF0000"> (선택)</span></div>
-        <!-- Situation -->
     <div class="form-group">
             <div class="filter-group">
 
                 <label class="situationRadio">
-                    <input class="hidden filter" type="radio" name="situation" value="연인 선물"/>
+                    <input class="hidden filter" type="radio" name="reservationSituation" value="연인 선물"/>
                     <span class="filter-div">&#x1F491; 연인 선물</span>
                 </label>
 
-
                 <label class="situationRadio">
-                    <input class="hidden filter" type="radio" name="situation" value="생일"/>
+                    <input class="hidden filter" type="radio" name="reservationSituation" value="생일"/>
                     <span class="filter-div">&#x1F973; 생일</span>
                 </label>
                 <label class="situationRadio">
-                    <input class="hidden filter" type="radio" name="situation" value="기념일"/>
+                    <input class="hidden filter" type="radio" name="reservationSituation" value="기념일"/>
                     <span class="filter-div">&#x1F377; 기념일</span>
                 </label>
                 <label class="situationRadio">
-                    <input class="hidden filter" type="radio" name="situation" value="공연"/>
+                    <input class="hidden filter" type="radio" name="reservationSituation" value="공연"/>
                     <span class="filter-div">&#x1F3AB; 공연</span>
                 </label>
                 <label class="situationRadio">
-                    <input class="hidden filter" type="radio" name="situation" value="부모님 선물"/>
+                    <input class="hidden filter" type="radio" name="reservationSituation" value="부모님 선물"/>
                     <span class="filter-div">&#x1F474; 부모님 선물</span>
                 </label>
                 <label class="situationRadio">
-                    <input class="hidden filter" type="radio" name="situation" value="개업축하"/>
+                    <input class="hidden filter" type="radio" name="reservationSituation" value="개업축하"/>
                     <span class="filter-div">&#x1F389; 개업축하</span>
                 </label>
                 <label class="situationRadio">
-                    <input class="hidden filter" type="radio" name="situation" value="공식적 상황"/>
+                    <input class="hidden filter" type="radio" name="reservationSituation" value="공식적 상황"/>
                     <span class="filter-div">&#x1F935; 공식적 상황</span>
                 </label>
                 <label class="situationRadio">
-                    <input class="hidden filter" type="radio" name="situation" value="시상식"/>
+                    <input class="hidden filter" type="radio" name="reservationSituation" value="시상식"/>
                     <span class="filter-div">&#x1F3C6; 시상식</span>
                 </label>
                 <label class="situationRadio">
-                    <input class="hidden filter" type="radio" name="situation" value="결혼식"/>
+                    <input class="hidden filter" type="radio" name="reservationSituation" value="결혼식"/>
                     <span class="filter-div">&#x1F48D; 결혼식</span>
                 </label>
                 <label class="situationRadio">
-                    <input class="hidden filter" type="radio" name="situation" value="나를 위한 선물"/>
+                    <input class="hidden filter" type="radio" name="reservationSituation" value="나를 위한 선물"/>
                     <span class="filter-div">&#x1F64B; 나를 위한 선물</span>
                 </label>
             </div>
@@ -104,13 +111,16 @@
 
     <div class="button_group">
         <button class="button_back" type="button" style="width: 100%;">이전</button>
-        <button class="button_next" type="submit" style="width: 100%" onclick="">다음</button>
+        <button class="button_next" type="submit" style="width: 100%;">다음</button>
     </div>
 
 </form>
 
-<script type="text/javascript"> </script>
-
 </body>
+
+<script type="text/javascript">
+    document.getElementById("reservationPickupDate").value = new Date().toISOString().slice(0,10);
+    document.getElementById("reservationPickupDate").min = new Date().toISOString().slice(0,10);
+</script>
 
 </html>
