@@ -203,8 +203,7 @@ button:focus {
 .feed-list-container {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
-    width: 360px;
+    justify-content: center;
 }
 
 .feed-container {
@@ -243,18 +242,21 @@ button:focus {
 }
 
 .feed-shop {
+    width: 150px;
     font-weight: bold;
     font-size: 12px;
     margin-bottom: 5px;
 }
 
 .feed-item {
+    width: 150px;
     font-weight: normal;
     font-size: 12px;
     margin-bottom: 5px;
 }
 
 .feed-price {
+    width: 150px;
     font-weight: bold;
     font-size: 15px;
 }
