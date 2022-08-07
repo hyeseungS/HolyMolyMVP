@@ -32,7 +32,7 @@ public class FeedController {
 
     // POST 피드 페이지
     @PostMapping("/feed")
-    public String feed(UserDto userDto, Filter filter, String code, Model model) {
+    public String feed(UserDto userDto, String code, Filter filter, Model model) {
 
         //유저 저장
         User user;
@@ -52,7 +52,7 @@ public class FeedController {
 
         //아이템 리스트 출력
         List<Item> itemList = itemService.getItems(code, filter);
-        model.addAttribute("user", user);
+        model.addAttribute("user", userDto);
         model.addAttribute("code", code);
         model.addAttribute("filter", filter);
         model.addAttribute("itemList", itemList);
