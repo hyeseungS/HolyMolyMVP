@@ -29,15 +29,16 @@
 <body class="container">
 
 <div class="header">
-    <button type="button" class="left-button">
-        <img src="/images/backbtn.png" th:src="@{/images/backbtn.png}" class="back-btn"/>
+    <button type="button" class="left-button" onclick="history.back()">
+        <img src="/images/backbtn.svg" th:src="@{/images/backbtn.svg}" class="back-btn"/>
     </button>
 </div>
 
 <!-- 상품 사진 받아오기 -->
 <div class="item-img">
-    <img id="item-detail-img" th:src="${item.itemImage[0].imagePath}">
+    <img id="item-detail-img" src="/images/testimg.png" th:src="${item.shop.shopBgImage}">
 </div>
+
 
 <!-- 상품이름 / 상품가격 받아오기 -->
 <div class="border_bottom" id="item-head">
@@ -49,6 +50,7 @@
 
     <div class="item-warn">* 가격 범위 내에서 주문자의 선택 가격으로 꽃다발 제작이 이루어집니다. 꽃의 시세에 따라 꽃의 수, 종류에 차이가 있을 수 있습니다.</div>
 </div>
+
 
 <!-- 가게정보 받아오기 -->
 <div class="border_bottom" id="item-shop">
@@ -66,11 +68,12 @@
             <!--가게이름-->
             <div class="item-subtitle" data-th-text="${item.shop.shopName}"></div>
             <!--가게 바로가기 버튼-->
+            <a th:href="@{/item/{userId}/{filterId}/{itemId}/{shopId}(userId=${userId}, filterId=${filterId}, itemId=${item.id}, shopId=${item.shop.id})}">
             <button type="button" class="button-shop">
                 <img class="div-in-img" src="/images/chevron-right.svg" th:src="@{/images/chevron-right.svg}"/>
             </button>
+            </a>
         </div>
-    </a>
 
     <!-- 주소 -->
     <div class="shop_address">
