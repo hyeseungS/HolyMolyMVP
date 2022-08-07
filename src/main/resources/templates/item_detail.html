@@ -36,7 +36,7 @@
 
 <!-- 상품 사진 받아오기 -->
 <div class="item-img">
-    <img id="item-detail-img" src="/images/testimg.png" th:src="${item.shop.shopBgImage}">
+    <img id="item-detail-img" th:src="${item.shop.shopImage}">
 </div>
 
 
@@ -45,7 +45,8 @@
     <div class="item-title" data-th-text="${item.itemName}"></div>
     <div class="item-price">
         <span data-th-text="${#numbers.formatInteger(item.itemStartPrice, 3, 'COMMA') + '원'}"></span>
-        <span th:if="${item.itemStartPrice == item.itemEndPrice}" data-th-text="${' &#126; ' + #numbers.formatInteger(item.itemEndPrice, 3, 'COMMA') + '원'}"></span>
+        <span th:unless="${item.itemStartPrice == item.itemEndPrice}"
+              data-th-text="${' &#126; ' + #numbers.formatInteger(item.itemEndPrice, 3, 'COMMA') + '원'}"></span>
     </div>
 
     <div class="item-warn">* 가격 범위 내에서 주문자의 선택 가격으로 꽃다발 제작이 이루어집니다. 꽃의 시세에 따라 꽃의 수, 종류에 차이가 있을 수 있습니다.</div>
@@ -54,12 +55,12 @@
 
 <!-- 가게정보 받아오기 -->
 <div class="border_bottom" id="item-shop">
-
-    <!-- 가게 소개 -->
     <a class="shop-link"
        th:href="@{/item/{userId}/{filterId}/{itemId}/{shopId}(userId=${userId}, filterId=${filterId}, itemId=${item.id}, shopId=${item.shop.id})}">
 
-    <div class="shop_info horizontal-div horizontal-div-center">
+        <!-- 가게 소개 -->
+
+        <div class="shop_info horizontal-div horizontal-div-center">
             <!--가게 이미지-->
             <div class="shop-img-box">
                 <img class="div-in-img" alt="가게이미지" th:src="${item.shop.shopImage}"/>
@@ -68,12 +69,11 @@
             <!--가게이름-->
             <div class="item-subtitle" data-th-text="${item.shop.shopName}"></div>
             <!--가게 바로가기 버튼-->
-            <a th:href="@{/item/{userId}/{filterId}/{itemId}/{shopId}(userId=${userId}, filterId=${filterId}, itemId=${item.id}, shopId=${item.shop.id})}">
             <button type="button" class="button-shop">
                 <img class="div-in-img" src="/images/chevron-right.svg" th:src="@{/images/chevron-right.svg}"/>
             </button>
-            </a>
         </div>
+    </a>
 
     <!-- 주소 -->
     <div class="shop_address">
@@ -97,7 +97,8 @@
             <img class="vector-img" src="/images/clock.png" th:src="@{/images/clock.png}"/>
         </div>
         <!--영업시간-->
-        <div class="shop-detail-text shop-detail-text-time" th:utext="${#strings.replace(#strings.escapeXml(item.shop.shopTime),'&#10;','&lt;br&gt;')}"></div>
+        <div class="shop-detail-text shop-detail-text-time"
+             th:utext="${#strings.replace(#strings.escapeXml(item.shop.shopTime),'&#10;','&lt;br&gt;')}"></div>
     </div>
 
 </div>
@@ -132,22 +133,27 @@
     <input id="itemId" type="text" name="itemId" th:value="${itemId}" hidden>
 
     <div class="button-fix">
-    <button type="button" class="button-next" data-toggle="modal" data-target="#alert_modal">예약하기</button>
+        <button type="button" class="button-next" data-toggle="modal" data-target="#alert_modal">예약하기</button>
     </div>
     <!-- 모달 -->
-    <div class="modal fade modal-sheet position-static d-block bg-secondary py-5" id="alert_modal"  data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" role="dialog">
+    <div class="modal fade modal-sheet position-static d-block bg-secondary py-5" id="alert_modal"
+         data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+         aria-hidden="true" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content rounded-4 shadow">
                 <div class="modal-header">
-                    <button type="button"  name="modal-close" class="btn-close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" name="modal-close" class="btn-close" data-dismiss="modal"
+                            aria-label="Close">
                         <img class="close-btn" src="/images/close.svg" th:src="@{/images/close.svg}"/>
                     </button>
-                    <h5 class="modal-title">꽃집에 들어오는<br><span style="color: #4DA360; font-weight: 700">꽃의 종류</span>는 매일매일 달라요</h5>
+                    <h5 class="modal-title">꽃집에 들어오는<br><span style="color: #4DA360; font-weight: 700">꽃의 종류</span>는
+                        매일매일 달라요</h5>
                 </div>
 
-                <div class="modal-body"  style="margin: auto">
+                <div class="modal-body" style="margin: auto">
                     <p>사진과 동일한 꽃다발이 아닐 수 있어요.<br>플로리스트님께서 예쁘게 만들어주실거에요!</p>
-                    <img class="img-send" src="../static/images/florist_img.png" th:src="@{/images/florist_img.png}"/>
+                    <img class="img-send" src="../static/images/florist_img.png"
+                         th:src="@{/images/florist_img.png}"/>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn-send">이해했어요!</button>
