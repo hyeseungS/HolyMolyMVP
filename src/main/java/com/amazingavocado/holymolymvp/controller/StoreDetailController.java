@@ -3,6 +3,7 @@ package com.amazingavocado.holymolymvp.controller;
 import com.amazingavocado.holymolymvp.dto.UserDto;
 import com.amazingavocado.holymolymvp.model.Item;
 import com.amazingavocado.holymolymvp.model.User;
+import com.amazingavocado.holymolymvp.service.ItemService;
 import com.amazingavocado.holymolymvp.service.StoreItemService;
 import com.amazingavocado.holymolymvp.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -20,14 +21,19 @@ public class StoreDetailController {
 
     private final StoreItemService storeItemService;
     private final UserService userService;
+    private final ItemService itemService;
 
     // GET 가게 페이지
     @GetMapping("/item/{userId}/{filterId}/{itemId}/{shopId}")
-    public String storeDetail(@PathVariable("userId") Long userId, @PathVariable("filterId") Long filterId, @PathVariable("shopId") Long shopId, Model model) {
+    public String storeDetail(@PathVariable("userId") Long userId, @PathVariable("filterId") Long filterId, @PathVariable("itemId") Long itemId, @PathVariable("shopId") Long shopId, Model model) {
 
         List<Item> itemList = storeItemService.getItems(shopId);
+        Item item = itemService.getItem(itemId);
+
         model.addAttribute("userId", userId);
         model.addAttribute("filterId", filterId);
+        model.addAttribute("item", item);
+        model.addAttribute("itemId", itemId);
         model.addAttribute("itemList", itemList);
         return "store_detail";
     }
