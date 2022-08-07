@@ -114,7 +114,7 @@ geocoder.addressSearch('[[${item.shop.shopAddress}]]', function(result, status) 
         <img class="vector-img" src="/images/clock.png" th:src="@{/images/clock.png}"/>
     </div>
     <!--영업시간-->
-    <div class="shop-detail-text shop-detail-text-time" th:utext="${#strings.replace(item.shop.shopTime, '\n', '&lt;br&gt;')}"></div>
+    <div class="shop-detail-text shop-detail-text-time" th:utext="${#strings.replace(#strings.escapeXml(item.shop.shopTime),'&#10;','&lt;br&gt;')}"></div>
 </div>
 
 <div class="border_bottom_1">
