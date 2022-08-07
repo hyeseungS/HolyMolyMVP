@@ -46,5 +46,9 @@ public class Shop {
     // 꽃집 배경 이미지
     @Column(name = "shop_bg_image")
     private String shopBgImage;
+
+    // 꽃집 주소 링크
+    @Column(name = "shop_link")
+    private String shopLink;
 }
 

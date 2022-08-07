@@ -35,8 +35,6 @@ public class ItemService {
             endPrice = filter.getFilterEndPrice();
         }
 
-        if(region.equals("전체")) region = "";
-
         region = '%' + region + '%';
         color = '%' + color + '%';
 
@@ -44,7 +42,7 @@ public class ItemService {
                             + "FROM shop AS s, item AS i "
                             + "WHERE s.shop_id = i.shop_id AND s.shop_address_code LIKE :region "
                             + "AND i.item_color LIKE :color AND i.item_start_price <= :end_price "
-                            + "AND i.item_end_price >= :start_price "
+                            + "AND i.item_end_price >= :start_price ORDER BY RAND() "
                         , Item.class)
                             .setParameter("region", region)
                             .setParameter("color", color)
