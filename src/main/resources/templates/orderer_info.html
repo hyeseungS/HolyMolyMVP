@@ -32,7 +32,7 @@
 
 <body class="container">
 
-<form action="/order-complete" method="post">
+<form action="/order-sheet" method="post">
 
     <!-- 정보 넘기기 hidden-->
     <input id="userId" type="text" name="userId" th:value="${userId}" hidden>
@@ -52,80 +52,78 @@
     <!-- 새정보 -->
 
     <div class="head text-left"><span style="color: #4DA360">주문자 정보</span><span>를 입력해주세요.</span></div>
-<div class="form-title">이름<span style="color: #FF0000"> *</span></div>
-<div class="form-group">
-    <input type="text" name="orderer_name" class="form-control" placeholder="홍길동" required>
-</div>
+    <div class="form-title">이름<span style="color: #FF0000"> *</span></div>
+    <div class="form-group">
+        <input type="text" name="reservationOrdererName" class="form-control" placeholder="홍길동" required>
+    </div>
 
-<div class="form-title">전화번호<span style="color: #FF0000"> *</span></div>
-<div class="form-group">
-    <input type="text" name="orderer_phone" class="form-control" placeholder="01012345678 (-를 제외한 숫자만 입력해주세요.)" required>
-</div>
-    <div class="form-alert">✓  원활한 주문 접수를 위해 전화번호 입력 후 확인 부탁드려요!</div>
+    <div class="form-title">전화번호<span style="color: #FF0000"> *</span></div>
+    <div class="form-group">
+        <input type="text" name="reservationOrdererPhone" class="form-control" placeholder="01012345678 (-를 제외한 숫자만 입력해주세요.)" required>
+    </div>
+    <div class="form-alert">✓  전화번호를 정확히 입력하지 않으면 주문이 들어가지 않아요!<br>원활한 주문 접수를 위해 전화번호 입력 후 확인 부탁드려요!</div>
 
     <!--약관-->
-    <div>
-        <div>
-        <label for="all_check">약관 전체동의</label>
-            <input type="checkbox" id="all_check">
+    <div class="term-group">
+
+        <div class="term-div horizontal-div horizontal-div-center">
+            <div class="term-title">약관 전체동의</div>
+            <div class="horizontal-div-right">
+                <input type="checkbox" id="all_check" class="term-check horizontal-div-right">
+            </div>
         </div>
 
-        <div>
-            <p>이용약관 동의 (필수)</p>
-            <button type="button">
-            <img src="/images/chevron-right.png" th:src="@{/images/chevron-right.png}"/>
+        <div class="border_bottom_thin"></div>
+
+        <div class="term-div horizontal-div horizontal-div-center">
+            <div class="term-title">이용약관 동의 (필수)</div>
+            <button type="button" class="clear-btn term-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 12L10 8L6 4" stroke="#8A8A8A" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </button>
-            <input type="checkbox">
+            <div class="horizontal-div-right">
+                <input type="checkbox" id="check1" class="term-check horizontal-div-right" required>
+            </div>
         </div>
 
-        <div>
-            <p>개인정보 수집 및 이용 동의 (필수)</p>
-            <button type="button">
-                <img src="/images/chevron-right.png" th:src="@{/images/chevron-right.png}"/>
+        <div class="term-div horizontal-div horizontal-div-center">
+            <div class="term-title">개인정보 수집 및 이용 동의 (필수)</div>
+            <button type="button" class="clear-btn term-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 12L10 8L6 4" stroke="#8A8A8A" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </button>
-            <input type="checkbox">
+            <div class="horizontal-div-right">
+                <input type="checkbox" id="check2" class="term-check" required>
+            </div>
         </div>
 
-        <div>
-            <p>E-mail 및 SNS 광고성 정보 수신동의 (선택)</p>
-            <button type="button">
-                <img src="/images/chevron-right.png" th:src="@{/images/chevron-right.png}"/>
+        <div class="term-div horizontal-div horizontal-div-center">
+            <div class="term-title">E-mail 및 SNS 광고성 정보 수신동의 (선택)</div>
+            <button type="button" class="clear-btn term-button">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 12L10 8L6 4" stroke="#8A8A8A" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </button>
-            <input type="checkbox">
+            <div class="horizontal-div-right">
+                <input type="checkbox" id="check3" name="reservationTerm" value="선택 동의함" class="term-check">
+            </div>
         </div>
 
     </div>
 
     <div class="button-group">
-    <button type="button" class="button-back" style="width: 100%; margin-right: 10px" onclick="history.back()">이전</button>
-    <button type="button" class="button-next" style="width: 100%" data-toggle="modal" data-target="#order_modal">다음</button>
+        <button type="button" class="button-back" style="width: 100%; margin-right: 10px" onclick="history.back()">이전</button>
+        <button type="submit" class="button-next" style="width: 100%">다음</button>
     </div>
-
-
-<!-- 모달 -->
-<div class="modal fade modal-sheet position-static d-block bg-secondary py-5" id="order_modal"  data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" role="dialog">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content rounded-4 shadow">
-            <div class="modal-header">
-                <button type="button"  name="modal-close" class="btn-close" data-dismiss="modal" aria-label="Close">
-                    <img class="close-btn" src="/images/closebtn.png" th:src="@{/images/closebtn.png}"/>
-                </button>
-                <h5 class="modal-title">플로리스트님께 실제로<br><span style="color: #4DA360; font-weight: 700">예약이 전송</span>됩니다.</h5>
-            </div>
-
-            <div class="modal-body"  style="margin: auto">
-                <p>확인 후 전송하기를 눌러주세요!</p>
-                <img class="img-send" src="/images/sendimg.png" th:src="@{/images/sendimg.png}"/>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn-send">전송하기</button>
-            </div>
-    </div>
-    </div>
-</div>
 
 </form>
 
 </body>
+
+<script type="text/javascript">
+
+</script>
 
 </html>

@@ -4,14 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
-import org.joda.time.LocalTime;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.sql.Time;
 
 @Entity
 @Data
@@ -96,7 +91,7 @@ public class Reservation extends Timestamped {
 
     // 약관 선택 동의 체크 null
     @Column(name = "reservaion_term")
-    private Integer reservationTerm;
+    private String reservationTerm;
 
     // 생성 날짜
     @Column(name = "reservation_create_date", nullable = false)

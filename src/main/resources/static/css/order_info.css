@@ -3,19 +3,22 @@
     font-family: 'Noto Sans KR', sans-serif;
 }
 
-.container {
-    margin-top: 74px;
-    margin-right: 20px;
+* {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
 }
 
 .head {
-    font-family: 'Noto Sans KR';
-    font-style: normal;
     font-weight: 500;
     font-size: 22px;
     line-height: 100%;
 
     margin-bottom: 48.48px;
+}
+
+.container {
+    margin-top: 74px;
+    margin-right: 20px;
 }
 .button-group {
     display: flex;
@@ -37,8 +40,6 @@
     height: 48px;
     border: 1px solid #E2E2E2;
 
-    font-family: 'Noto Sans KR';
-    font-style: normal;
     font-weight: 500;
     font-size: 16px;
     line-height: 100%;
@@ -53,8 +54,6 @@
     padding: 6px;
     height: 48px;
 
-    font-family: 'Noto Sans KR';
-    font-style: normal;
     font-weight: 500;
     font-size: 16px;
     line-height: 100%;
@@ -113,7 +112,7 @@
 .time-select-group {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 .time-select {
@@ -137,8 +136,6 @@ textarea::placeholder {
 }
 
 .form-title {
-    font-family: 'Noto Sans KR';
-    font-style: normal;
     font-weight: 500;
     font-size: 15px;
     line-height: 100%;
@@ -148,8 +145,6 @@ textarea::placeholder {
 }
 
 .form-alert {
-    font-family: 'Noto Sans KR';
-    font-style: normal;
     font-weight: 400;
     font-size: 12px;
     line-height: 100%;
@@ -161,8 +156,6 @@ input::placeholder {
 /*    width: 60px;
     height: 15px;*/
 
-    font-family: 'Noto Sans KR';
-    font-style: normal;
     font-weight: 400;
     font-size: 15px;
     line-height: 100%;
@@ -174,8 +167,6 @@ textarea::placeholder {
 /*    width: 60px;
     height: 15px;*/
 
-    font-family: 'Noto Sans KR';
-    font-style: normal;
     font-weight: 400;
     font-size: 15px;
     line-height: 100%;
@@ -188,10 +179,6 @@ textarea::placeholder {
     resize: none;
 }
 
-@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
-.notosanskr * {
-    font-family: 'Noto Sans KR', sans-serif;
-}
 
 .modal-sheet .modal-dialog .modal-content {
     position: relative;
@@ -241,8 +228,6 @@ textarea::placeholder {
     left: 20px;
     top: 51px;
 
-    font-family: 'Noto Sans KR';
-    font-style: normal;
     font-weight: 400;
     font-size: 20px;
     line-height: 29px;
@@ -257,8 +242,6 @@ textarea::placeholder {
     position: relative;
     margin-top: 20px;
 
-    font-family: 'Noto Sans KR';
-    font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 20px;
@@ -282,8 +265,6 @@ textarea::placeholder {
     flex-direction: row;
     justify-content: center;
 
-    font-family: 'Noto Sans KR';
-    font-style: normal;
     font-weight: 500;
     font-size: 16px;
     line-height: 100%;
@@ -295,9 +276,6 @@ textarea::placeholder {
 
     background-color: #4DA360;
     color: white;
-
-
-
 }
 
 .modal-sheet .modal-footer {
@@ -330,8 +308,6 @@ textarea::placeholder {
     gap: 10px;
     margin-right: 12px;
 
-    font-family: 'Noto Sans KR';
-    font-style: normal;
     font-weight: 400;
     font-size: 13px;
     line-height: 100%;
@@ -344,4 +320,162 @@ textarea::placeholder {
     background:#F1F8E9;
     color: #4DA360;
     font-weight: bold;
+}
+
+<!-- 이용약관 부분 -->
+
+
+.horizontal-div {
+
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
+.horizontal-div .horizontal-div-center {
+
+    align-items: center;
+}
+
+
+.term-group {
+    margin-bottom: 15px;
+    margin-top: 45px;
+}
+
+.term-div {
+    height: 18px;
+
+    margin-top: 5px;
+    margin-bottom: 8px;
+
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.term-title {
+    pointer-events: none;
+
+    font-weight: 400;
+    font-size: 14px;
+
+    color: #8A8A8A;
+}
+
+.clear-btn {
+    background-color: white;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+
+}
+
+.term-button {
+    align-items: center;
+    width: 16px;
+    height: 16px;
+
+    text-align: center;
+
+    margin-left: 2px;
+}
+
+.term-check {
+    width: 18px;
+    height: 18px;
+
+    border: 1px solid #8A8A8A;
+}
+
+input[class="term-check"]:checked + label span {
+    background-color: #4DA360;
+}
+
+.horizontal-div-right {
+    margin-left: auto;
+}
+
+.border_bottom_thin {
+    margin-top: 8px;
+    height: 1px;
+    border-bottom: 1px solid #E2E2E2;
+}
+
+
+/*order sheet*/
+
+.sheet-head {
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 100%;
+}
+
+.sheet-head-price {
+    margin-top: 7px;
+
+    font-weight: 500;
+    font-size: 35px;
+    line-height: 100%;
+
+    color: #000000;
+}
+
+.sheet-body-item {
+    margin-top: 23px;
+    margin-bottom: 12px;
+
+}
+
+.sheet-body-item-text {
+    margin-left: 20px;
+}
+
+.mt-8 {
+    margin-top: 8px;
+}
+
+.sheet-img-div {
+    width: 82px;
+    height: 82px;
+
+    border-radius: 4px;
+}
+
+.order-div {
+    margin-top: 15px;
+
+}
+
+.order-key {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+
+    /* grey */
+    color: #8A8A8A;
+
+}
+
+.order-value {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+
+    color: #000000;
+}
+
+.item-img-div {
+    width: 82px;
+    height: 82px;
+
+    border-radius: 4px;
+}
+
+.feed-image {
+    object-fit: cover;
 }

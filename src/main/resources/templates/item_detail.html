@@ -67,7 +67,7 @@
             <div class="item-subtitle" data-th-text="${item.shop.shopName}"></div>
             <!--가게 바로가기 버튼-->
             <button type="button" class="button-shop">
-                <img class="div-in-img" src="/images/chevron-right.png" th:src="@{/images/chevron-right.png}"/>
+                <img class="div-in-img" src="/images/chevron-right.svg" th:src="@{/images/chevron-right.svg}"/>
             </button>
         </div>
     </a>
@@ -81,7 +81,7 @@
             <!--주소-->
             <div class="shop-detail-text shop-detail-text-address" data-th-text="${item.shop.shopAddress}"></div>
             <!--주소 위치보기 버튼-->
-            <a class="green-button" th:href="${item.shop.shopLink}">
+            <a class="green-button horizontal-div-right" th:href="${item.shop.shopLink}">
                 <div style="top: 3px;">위치 보기</div>
             </a>
         </div>
@@ -137,7 +137,7 @@
             <div class="modal-content rounded-4 shadow">
                 <div class="modal-header">
                     <button type="button"  name="modal-close" class="btn-close" data-dismiss="modal" aria-label="Close">
-                        <img class="close-btn" src="/images/closebtn.png" th:src="@{/images/closebtn.png}"/>
+                        <img class="close-btn" src="/images/close.svg" th:src="@{/images/close.svg}"/>
                     </button>
                     <h5 class="modal-title">꽃집에 들어오는<br><span style="color: #4DA360; font-weight: 700">꽃의 종류</span>는 매일매일 달라요</h5>
                 </div>
