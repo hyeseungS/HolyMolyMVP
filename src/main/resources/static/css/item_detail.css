@@ -176,12 +176,24 @@
     /*font*/
     font-weight: 400;
     font-size: 13px;
-    line-height: 100%;
     letter-spacing: -0.6px;
     color: #4DA360;
     text-align: center;
 }
 
+.green-button:link {
+    color: black;
+    text-decoration: none;
+}
+green-button:visited {
+    color: black;
+    text-decoration: none;
+}
+
+.green-button:hover {
+    color: black;
+    text-decoration: none;
+}
 
 .button-next {
     background-color: #4DA360;
