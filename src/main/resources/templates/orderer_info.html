@@ -34,20 +34,19 @@
 
 <form action="/order-complete" method="post">
 
-
     <!-- 정보 넘기기 hidden-->
-    <input id="userId" type="text" name="userId" hidden>
-    <input id="filterId" type="text" name="filterId" hidden>
-    <input id="shopId" type="text" name="shopId" hidden>
-    <input id="itemId" type="text" name="itemId" hidden>
+    <input id="userId" type="text" name="userId" th:value="${userId}" hidden>
+    <input id="filterId" type="text" name="filterId" th:value="${filterId}" hidden>
+    <input id="shopId" type="text" name="shopId" th:value="${shopId}" hidden>
+    <input id="itemId" type="text" name="itemId" th:value="${itemId}" hidden>
 
-    <input id="reservationPrice" type="text" name="reservationPrice" hidden>
-    <input id="reservationPickupDate" type="text" name="reservationPickupDate" hidden>
-    <input id="reservationPickupTime" type="text" name="reservationPickupTime" hidden>
+    <input id="reservationPrice" type="text" name="reservationPrice" th:value="${reservationPrice}" hidden>
+    <input id="reservationPickupDate" type="date" name="reservationPickupDate" th:value="${reservationPickupDate}" hidden>
+    <input id="reservationPickupTime" type="text" name="reservationPickupTime" th:value="${reservationPickupTime}" hidden>
 
-    <input id="reservationAdding" type="text" name="reservationAdding" hidden>
-    <input id="reservationMsgCard" type="text" name="reservationMsgCard" hidden>
-    <input id="reservationSituation" type="text" name="reservationSituation" hidden>
+    <input id="reservationAdding" type="text" name="reservationAdding" th:value="${reservationAdding}" hidden>
+    <input id="reservationMsgCard" type="text" name="reservationMsgCard" th:value="${reservationMsgCard}" hidden>
+    <input id="reservationSituation" type="text" name="reservationSituation" th:value="${reservationSituation}" hidden>
 
 
     <!-- 새정보 -->
@@ -55,12 +54,12 @@
     <div class="head text-left"><span style="color: #4DA360">주문자 정보</span><span>를 입력해주세요.</span></div>
 <div class="form-title">이름<span style="color: #FF0000"> *</span></div>
 <div class="form-group">
-    <input type="text" name="orderer_name" class="form-control" placeholder="홍길동">
+    <input type="text" name="orderer_name" class="form-control" placeholder="홍길동" required>
 </div>
 
 <div class="form-title">전화번호<span style="color: #FF0000"> *</span></div>
 <div class="form-group">
-    <input type="text" name="orderer_phone" class="form-control" placeholder="010-1234-5678">
+    <input type="text" name="orderer_phone" class="form-control" placeholder="01012345678 (-를 제외한 숫자만 입력해주세요.)" required>
 </div>
     <div class="form-alert">✓  원활한 주문 접수를 위해 전화번호 입력 후 확인 부탁드려요!</div>
 

@@ -5,6 +5,7 @@
 
 .container {
     margin-top: 74px;
+    margin-right: 20px;
 }
 
 .head {
@@ -208,6 +209,17 @@ textarea::placeholder {
     height: 24px;
     left: 276px;
     top: 22.5px;
+
+    background-color: white;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+}
+
+.btn-term {
+    margin-left: 6px;
+    width: 16px;
+    height: 16px;
 
     background-color: white;
     border: 0;

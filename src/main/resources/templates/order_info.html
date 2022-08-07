@@ -60,6 +60,8 @@
     </div>
 
     <div class="form-title">픽업 시간<span style="color: #FF0000"> *</span></div>
+    <input type="text" name="reservationPickupTime" id="reservationPickupTime" class="form-control" value="null" hidden>
+
     <div class="form-group time-select-group">
         <select name="reservationPickupP" id="reservationPickupP" size="1" class="time-select" required>
             <option value="">오전/오후</option>
@@ -81,7 +83,6 @@
             <option value="30">30</option> <option value="45">45</option>
         </select>
 
-        <input type="time" name="reservationPickupTime" id="reservationPickupTime" class="form-control" hidden>
     </div>
     <div class="form-alert">✓  가게 운영시간이 아닌 시간을 기입하실 경우,<br>픽업시간에 조정이 있을 수 있습니다</div>
 
@@ -89,7 +90,6 @@
         <button class="button-back" type="button" style="width: 100%; margin-right: 10px" onclick="history.back()">이전</button>
         <button class="button-next" type="submit" style="width: 100%;" onclick="getTime()">다음</button>
     </div>
-
 
 </form>
 
@@ -105,11 +105,13 @@
     var p = document.getElementById("reservationPickupP");
     var hh = document.getElementById("reservationPickupHH");
     var mm = document.getElementById("reservationPickupMM");
-    console.log(p.options[p.selectedIndex].value);
-    console.log(hh.options[p.selectedIndex].value);
-    console.log(mm.options[p.selectedIndex].value);
-    document.getElementById("reservationPickupTime").value = p +" " + hh +'시' + mm + '분';
+
+    let timeData = p.options[p.selectedIndex].value +" " + hh.options[hh.selectedIndex].value +'시 ' + mm.options[mm.selectedIndex].value + '분';
+
+    let timeInput = document.getElementById("reservationPickupTime");
+    timeInput.setAttribute("value", timeData);
     }
+
 </script>
 
 </html>
