@@ -272,6 +272,7 @@
                     <input id="age" type="text" name="age" hidden>
                     <input id="gender" type="text" name="gender" hidden>
                     <input id="region" type="text" name="region" hidden>
+                    <input id="code" type="text" name="code" hidden>
                     <input id="color" type="text" name="filterColor" hidden>
                     <input id="start-price" type="text" name="filterStartPrice" hidden>
                     <input id="end-price" type="text" name="filterEndPrice" hidden>
@@ -343,7 +344,7 @@
         let sliderMaxValue = document.getElementById("slider-1").max;
 
         sliderOne.value = 0;
-        sliderTwo.value = 100000;
+        sliderTwo.value = 500000;
         displayValOne.textContent = "0원";
         displayValTwo.textContent = "500,000원";
 
@@ -361,6 +362,7 @@
         let ageData = [[${user.age}]];
         let genderData = [[${user.gender}]];
         let regionData = [[${user.region}]];
+        let regionCodeData = [[${code}]];
         let colorData = $('input[name=color]:checked').val();
         let startData = document.getElementById("slider-1").value;
         let endData = document.getElementById("slider-2").value;
@@ -371,6 +373,7 @@
         let ageInput = document.getElementById("age");
         let genderInput = document.getElementById("gender");
         let regionInput = document.getElementById("region");
+        let regionCodeInput = document.getElementById("code");
         let colorInput = document.getElementById("color");
         let startInput = document.getElementById("start-price");
         let endInput = document.getElementById("end-price");
@@ -379,6 +382,7 @@
         ageInput.setAttribute('value', ageData);
         genderInput.setAttribute('value', genderData);
         regionInput.setAttribute('value', regionData);
+        regionCodeInput.setAttribute('value', regionCodeData)
         colorInput.setAttribute('value', colorData);
         startInput.setAttribute('value', startData);
         endInput.setAttribute('value', endData);
