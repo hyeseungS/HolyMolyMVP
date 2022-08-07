@@ -5,11 +5,9 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.joda.time.LocalDate;
-import org.joda.time.LocalTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Data
 @Getter

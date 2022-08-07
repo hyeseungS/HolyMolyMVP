@@ -29,14 +29,14 @@
 <form action="/orderer" method="post">
 
     <!-- 정보 넘기기 hidden-->
-    <input id="userId" type="text" name="userId" hidden>
-    <input id="filterId" type="text" name="filterId" hidden>
-    <input id="shopId" type="text" name="shopId" hidden>
-    <input id="itemId" type="text" name="itemId" hidden>
+    <input id="userId" type="text" name="userId" th:value="${userId}" hidden>
+    <input id="filterId" type="text" name="filterId" th:value="${filterId}" hidden>
+    <input id="shopId" type="text" name="shopId" th:value="${shopId}" hidden>
+    <input id="itemId" type="text" name="itemId" th:value="${itemId}" hidden>
 
-    <input id="reservationPrice" type="text" name="reservationPrice" hidden>
-    <input id="reservationPickupDate" type="text" name="reservationPickupDate" hidden>
-    <input id="reservationPickupTime" type="text" name="reservationPickupTime" hidden>
+    <input id="reservationPrice" type="text" name="reservationPrice" th:value="${reservationPrice}" hidden>
+    <input id="reservationPickupDate" type="date" name="reservationPickupDate" th:value="${reservationPickupDate}" hidden>
+    <input id="reservationPickupTime" type="text" name="reservationPickupTime" th:value="${reservationPickupTime}" hidden>
 
 
     <!--새 정보-->
