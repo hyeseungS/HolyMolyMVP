@@ -65,7 +65,7 @@
             <!--가게 바로가기 버튼-->
             <a th:href="@{/item/{userId}/{filterId}/{itemId}/{shopId}(userId=${userId}, filterId=${filterId}, itemId=${item.id}, shopId=${item.shop.id})}">
             <button type="button" class="button-shop">
-                <img class="div-in-img" src="/images/chevron-right.png" th:src="@{/images/chevron-right.png}"/>
+                <img class="div-in-img" src="/images/chevron-right.svg" th:src="@{/images/chevron-right.svg}"/>
             </button>
             </a>
         </div>
@@ -79,7 +79,7 @@
             <!--주소-->
             <div class="shop-detail-text shop-detail-text-address" data-th-text="${item.shop.shopAddress}"></div>
             <!--주소 위치보기 버튼-->
-            <button type="button" class="green-button">위치 보기</button>
+            <button type="button" class="green-button horizontal-div-right">위치 보기</button>
         </div>
 
     </div>
@@ -90,7 +90,7 @@
             <img class="vector-img" src="/images/clock.png" th:src="@{/images/clock.png}"/>
         </div>
         <!--영업시간-->
-        <div class="shop-detail-text shop-detail-text-time" th:utext="${#strings.replace(item.shop.shopTime, '\n', '&lt;br&gt;')}"></div>
+        <div class="shop-detail-text shop-detail-text-time" th:utext="${#strings.replace(item.shop.shopTime, '\n', '&lt;br/&gt;')}"></div>
     </div>
 
 </div>
@@ -121,7 +121,7 @@
             <div class="modal-content rounded-4 shadow">
                 <div class="modal-header">
                     <button type="button"  name="modal-close" class="btn-close" data-dismiss="modal" aria-label="Close">
-                        <img class="close-btn" src="/images/closebtn.png" th:src="@{/images/closebtn.png}"/>
+                        <img class="close-btn" src="/images/close.svg" th:src="@{/images/close.svg}"/>
                     </button>
                     <h5 class="modal-title">꽃집에 들어오는<br><span style="color: #4DA360; font-weight: 700">꽃의 종류</span>는 매일매일 달라요</h5>
                 </div>

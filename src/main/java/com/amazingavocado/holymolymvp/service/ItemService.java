@@ -70,4 +70,18 @@ public class ItemService {
 
         return item.get().getShop().getId();
     }
+
+    public String getShopName(Long itemId) {
+
+        Optional<Item> item = itemRepository.findById(itemId);
+
+        return item.get().getShop().getShopName();
+    }
+
+    public String getItemName(Long itemId) {
+
+        Optional<Item> item = itemRepository.findById(itemId);
+
+        return item.get().getItemName();
+    }
 }

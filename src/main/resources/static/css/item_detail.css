@@ -157,9 +157,12 @@
     margin-right: 20px;
 }
 
-.green-button {
+.horizontal-div-right {
     margin-left: auto;
     margin-right: 20px;
+}
+
+.green-button {
     align-items: center;
     padding: 7px;
     gap: 10px;
@@ -337,3 +340,9 @@
     margin: auto;
 }
 
+.clear-btn {
+    background-color: white;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+}

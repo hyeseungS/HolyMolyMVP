@@ -25,6 +25,7 @@ public class ReservationDto {
 
     private Long itemId;
 
+    //
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd" ,timezone = "Asia/Seoul")
 
     private String reservationPrice;
@@ -34,6 +35,7 @@ public class ReservationDto {
 
      private String reservationPickupTime;
 
+     //
      private String reservationAdding;
 
     private String reservationMsgCard;
@@ -42,9 +44,10 @@ public class ReservationDto {
 
      SimpleDateFormat simpledateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
 
+     //
      private String reservationOrdererName;
 
      private String reservationOrdererPhone;
 
-     private Integer reservationTerm;
+     private String reservationTerm;
 }
