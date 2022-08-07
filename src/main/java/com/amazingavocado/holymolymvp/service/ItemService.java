@@ -35,8 +35,6 @@ public class ItemService {
             endPrice = filter.getFilterEndPrice();
         }
 
-        if(region.equals("전체")) region = "";
-
         region = '%' + region + '%';
         color = '%' + color + '%';
 

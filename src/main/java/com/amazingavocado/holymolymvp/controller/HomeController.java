@@ -25,9 +25,9 @@ public class HomeController {
 
     // POST 지역 선택 페이지
     @PostMapping("/region")
-    public String region(UserDto userDto, Model model) {
-        model.addAttribute("age", userDto.getAge());
-        model.addAttribute("gender", userDto.getGender());
+    public String region(int age, int gender, Model model) {
+        model.addAttribute("age", age);
+        model.addAttribute("gender", gender);
         return "region";
     }
 
