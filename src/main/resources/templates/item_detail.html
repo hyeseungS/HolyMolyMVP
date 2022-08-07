@@ -36,9 +36,8 @@
 
 <!-- 상품 사진 받아오기 -->
 <div class="item-img">
-    <img id="item-detail-img" src="/images/testimg.png" th:src="@{/images/testimg.png}">
+    <img id="item-detail-img" th:src="${item.itemImage[0].imagePath}">
 </div>
-
 
 <!-- 상품이름 / 상품가격 받아오기 -->
 <div class="border_bottom" id="item-head">
@@ -47,28 +46,31 @@
         <span data-th-text="${#numbers.formatInteger(item.itemStartPrice, 3, 'COMMA') + '원'}"></span>
         <span th:if="${item.itemStartPrice == item.itemEndPrice}" data-th-text="${' &#126; ' + #numbers.formatInteger(item.itemEndPrice, 3, 'COMMA') + '원'}"></span>
     </div>
-</div>
 
+    <div class="item-warn">* 가격 범위 내에서 주문자의 선택 가격으로 꽃다발 제작이 이루어집니다. 꽃의 시세에 따라 꽃의 수, 종류에 차이가 있을 수 있습니다.</div>
+</div>
 
 <!-- 가게정보 받아오기 -->
 <div class="border_bottom" id="item-shop">
 
     <!-- 가게 소개 -->
-        <div class="shop_info horizontal-div horizontal-div-center">
-        <img class="feed-image" th:src="${#lists.size(item.itemImage) == 0? '' : item.itemImage[0].imagePath}"/>
+    <a class="shop-link"
+       th:href="@{/item/{userId}/{filterId}/{itemId}/{shopId}(userId=${userId}, filterId=${filterId}, itemId=${item.id}, shopId=${item.shop.id})}">
+
+    <div class="shop_info horizontal-div horizontal-div-center">
             <!--가게 이미지-->
             <div class="shop-img-box">
-                <img class="div-in-img" alt="가게이미지" src="/images/testimg.png" th:src="@{/images/testimg.png}"/>
+                <img class="div-in-img" alt="가게이미지" th:src="${item.shop.shopImage}"/>
             </div>
+
             <!--가게이름-->
             <div class="item-subtitle" data-th-text="${item.shop.shopName}"></div>
             <!--가게 바로가기 버튼-->
-            <a th:href="@{/item/{userId}/{filterId}/{itemId}/{shopId}(userId=${userId}, filterId=${filterId}, itemId=${item.id}, shopId=${item.shop.id})}">
             <button type="button" class="button-shop">
                 <img class="div-in-img" src="/images/chevron-right.png" th:src="@{/images/chevron-right.png}"/>
             </button>
-            </a>
         </div>
+    </a>
 
     <!-- 주소 -->
     <div class="shop_address">
@@ -79,7 +81,9 @@
             <!--주소-->
             <div class="shop-detail-text shop-detail-text-address" data-th-text="${item.shop.shopAddress}"></div>
             <!--주소 위치보기 버튼-->
-            <button type="button" class="green-button">위치 보기</button>
+            <a class="green-button" th:href="${item.shop.shopLink}">
+                <div style="top: 3px;">위치 보기</div>
+            </a>
         </div>
 
     </div>
@@ -98,11 +102,22 @@
 
 <!-- 상품정보 받아오기 -->
 <div class="border_bottom_none item-info" id="item-body">
-    <div class="item-subtitle">상품 정보</div>
+    <div class="item-subtitle">참고 사항</div>
     <!--상품 설명-->
     <div class="item-intro" data-th-text="${item.itemDesc}"></div>
 
 </div>
+<div class="warn-head">환불 및 취소 정보</div>
+<br>
+<div class="warn-content">결제 이후에는 환불 및 취소, 상품 변경이 불가하오니 신중한 결정 부탁드립니다. 픽업 일자 변경은 꽃집의 운영 일정을 고려하여 조율됩니다.</div>
+<br><br>
+<div class="warn-head">추가 사항</div>
+<br>
+<div class="warn-content">*상대적으로 여름에는 꽃들의 얼굴이 작아 같은 양의 꽃이더라도 부피가 다른 계절보다 작을 수 있습니다.</div>
+<br>
+<div class="warn-content">*특히나 겨울>봄인 성수기 시즌에는 꽃값이 저렴하지 않아 타 계절과의 가격&사이즈 차이가 날 수 있습니다.</div>
+<br>
+<div class="warn-content" style="margin-bottom: 100px;">*특정 꽃은 계절에 따라 나오지 않습니다.</div>
 
 
 <!--예약하기 버튼 -->
@@ -113,8 +128,9 @@
     <input id="shopId" type="text" name="shopId" th:value="${shopId}" hidden>
     <input id="itemId" type="text" name="itemId" th:value="${itemId}" hidden>
 
-    <button type="button" class="button-next" data-toggle="modal" data-target="#alert_modal" style="width: 100%">예약하기</button>
-
+    <div class="button-fix">
+    <button type="button" class="button-next" data-toggle="modal" data-target="#alert_modal">예약하기</button>
+    </div>
     <!-- 모달 -->
     <div class="modal fade modal-sheet position-static d-block bg-secondary py-5" id="alert_modal"  data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
