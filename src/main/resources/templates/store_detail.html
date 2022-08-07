@@ -14,7 +14,6 @@
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/store_detail.css" th:href="@{/css/store_detail.css}">
     <link rel="stylesheet" href="/css/item_detail.css" th:href="@{/css/item_detail.css}">
-    <link rel="stylesheet" href="/css/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -36,7 +35,7 @@
 
 <!-- 가게 배경 사진 받아오기 -->
 <div class="store-bg-imgs">
-    <img class="store-bg-imgs" th:src="${item.shop.shopBgImage}" />
+    <img id="store-bg-detail-imgs" th:src="${item.shop.shopBgImage}" />
 </div>
 
 <!-- 가게 프로필 사진 받아오기 -->
@@ -114,7 +113,7 @@ geocoder.addressSearch('[[${item.shop.shopAddress}]]', function(result, status) 
         <img class="vector-img" src="/images/clock.png" th:src="@{/images/clock.png}"/>
     </div>
     <!--영업시간-->
-    <div class="shop-detail-text shop-detail-text-time" th:utext="${#strings.replace(#strings.escapeXml(item.shop.shopTime),'&#10;','&lt;br&gt;')}"></div>
+    <div class="shop-detail-text shop-detail-text-time" th:utext="${#strings.replace(#strings.escapeXml(item.shop.shopTime),'&#10;', '&lt;br&gt;')}"></div>
 </div>
 
 <div class="border_bottom_1">
