@@ -11,7 +11,7 @@
     <meta property="og:description" content="피드 페이지입니다.">
     <!--    <meta property="og:image" content="title_thumbnail2.png">-->
 
-    <title>HolyMoly Feed</title>
+    <title>HolyMoly</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -240,7 +240,7 @@
                                 <span id="range1"
                                       th:text="${filter.filterStartPrice} == 0? '0원' : ${#numbers.formatInteger(filter.filterStartPrice, 3, 'COMMA')} + '원'">
                                 </span>
-                            <span> &backsim; </span>
+                            <span> &#126; </span>
                             <span id="range2"
                                   th:text="${filter.filterEndPrice} == 0? '500,000원' : ${#numbers.formatInteger(filter.filterEndPrice, 3, 'COMMA')} + '원'">
                                 </span>
