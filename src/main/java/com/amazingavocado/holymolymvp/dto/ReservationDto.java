@@ -1,5 +1,6 @@
 package com.amazingavocado.holymolymvp.dto;
 
+import com.amazingavocado.holymolymvp.model.Reservation;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.Getter;
@@ -38,9 +39,9 @@ public class ReservationDto {
      //
      private String reservationAdding;
 
-    private String reservationMsgCard;
-
     private String reservationSituation;
+
+    private String reservationMsgCard;
 
      SimpleDateFormat simpledateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
 
@@ -50,4 +51,14 @@ public class ReservationDto {
      private String reservationOrdererPhone;
 
      private String reservationTerm;
+
+     /*
+     public Reservation toEntity() {
+         return new Reservation(null,userId, filterId, shopId, itemId,
+                 reservationPrice, reservationPickupDate,reservationPickupTime,
+                 reservationAdding, reservationMsgCard, reservationSituation,
+                 reservationOrdererName, reservationOrdererPhone, reservationTerm, null);
+
+     }
+     */
 }

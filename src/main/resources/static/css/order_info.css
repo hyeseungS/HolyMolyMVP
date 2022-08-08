@@ -59,6 +59,20 @@
     line-height: 100%;
 }
 
+.button-next-pink {
+    background-color: #E8326D;
+    color: white;
+    display: block;
+    border: none;
+    border-radius: 4px;
+    padding: 6px;
+    height: 48px;
+
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+}
+
 .form-group {
     margin-top: 15px;
 
@@ -230,7 +244,7 @@ textarea::placeholder {
 
     font-weight: 400;
     font-size: 20px;
-    line-height: 29px;
+    line-height: 100%;
     text-align: center;
 
     color: #000000;
@@ -249,6 +263,49 @@ textarea::placeholder {
 
     color: #6A6A6A;
 
+}
+
+.term-modal-header {
+    margin: auto;
+    border-bottom: 0;
+
+    height: 50px;
+}
+
+.term-modal-title {
+    position: relative;
+    margin-top: 40px;
+    margin-left: 20px;
+
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 100%;
+
+    color: #000000;
+}
+
+.term-modal-body {
+    margin-left: 10px;
+    height: 345px;
+
+    position: relative;
+
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+
+    color: black;
+}
+
+.term-scroll {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .img-send {
@@ -326,16 +383,28 @@ textarea::placeholder {
 
 
 .horizontal-div {
-
     display: flex;
     justify-content: flex-start;
+    flex-basis: content;
     flex-direction: row;
     flex-wrap: wrap;
-
 }
 
-.horizontal-div .horizontal-div-center {
+.horizontal-div-flex-start {
+    display: flex;
+    justify-content: flex-start;
+    flex-basis: content;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
 
+.horizontal-div-center {
+    display: flex;
+    justify-content: flex-start;
+    flex-basis: content;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
 }
 
@@ -401,11 +470,8 @@ input[class="term-check"]:checked + label span {
 }
 
 .border_bottom_thin {
-    margin-top: 8px;
-    height: 1px;
     border-bottom: 1px solid #E2E2E2;
 }
-
 
 /*order sheet*/
 
@@ -427,16 +493,31 @@ input[class="term-check"]:checked + label span {
 
 .sheet-body-item {
     margin-top: 23px;
-    margin-bottom: 12px;
-
 }
 
 .sheet-body-item-text {
     margin-left: 20px;
+
+}
+
+.sheet-body-item-text-div {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+
+    color: #000000;
 }
 
 .mt-8 {
     margin-top: 8px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.h-auto {
+    height: auto;
 }
 
 .sheet-img-div {
@@ -447,6 +528,14 @@ input[class="term-check"]:checked + label span {
 }
 
 .order-div {
+
+    display: flex;
+    justify-content: flex-start;
+    flex-basis: content;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+
     margin-top: 15px;
 
 }
@@ -467,15 +556,39 @@ input[class="term-check"]:checked + label span {
     line-height: 100%;
 
     color: #000000;
+
+    margin-left: auto;
 }
 
 .item-img-div {
-    width: 82px;
-    height: 82px;
+    width: 100px;
+    height: 100px;
 
     border-radius: 4px;
+    flex-grow: 0;
 }
 
 .feed-image {
+
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+}
+
+.vertical-div {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column; /*수직 정렬*/
+    justify-content: flex-start;
+    flex-basis: content;
+}
+
+.cell-title {
+    border: 1px solid black;
+
+    flex: 1 1 30%;
+}
+.cell-value {
+    border: 1px solid black;
+
 }

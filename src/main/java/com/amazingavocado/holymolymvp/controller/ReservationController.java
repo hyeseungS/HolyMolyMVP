@@ -6,6 +6,7 @@ import com.amazingavocado.holymolymvp.dto.ReservationOrder2Vo;
 import com.amazingavocado.holymolymvp.dto.ReservationOrder1Vo;
 import com.amazingavocado.holymolymvp.model.Item;
 import com.amazingavocado.holymolymvp.model.Reservation;
+import com.amazingavocado.holymolymvp.repository.ReservationRepository;
 import com.amazingavocado.holymolymvp.service.ItemService;
 import com.amazingavocado.holymolymvp.service.ReservationService;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ReservationController {
 
     private final ItemService itemService;
+    private final ReservationService reservationService;
+    private final ReservationRepository reservationRepository;
 
     //예약 시작 페이지1
     @PostMapping("/order1")
@@ -85,8 +88,8 @@ public class ReservationController {
 
         //order2 정보 넘기기
         model.addAttribute("reservationAdding", reservationOrder2Vo.getReservationAdding());
-        model.addAttribute("reservationMsgCard", reservationOrder2Vo.getReservationMsgCard());
         model.addAttribute("reservationSituation", reservationOrder2Vo.getReservationSituation());
+        model.addAttribute("reservationMsgCard", reservationOrder2Vo.getReservationMsgCard());
 
 
         System.out.println("네번째");
@@ -100,8 +103,8 @@ public class ReservationController {
         System.out.println(reservationOrder2Vo.getReservationPickupTime());
 
         System.out.println(reservationOrder2Vo.getReservationAdding());
-        System.out.println(reservationOrder2Vo.getReservationMsgCard());
         System.out.println(reservationOrder2Vo.getReservationSituation());
+        System.out.println(reservationOrder2Vo.getReservationMsgCard());
 
         return "orderer_info";
     }
@@ -109,14 +112,16 @@ public class ReservationController {
     @PostMapping("/order-sheet")
     public String sendOrder (ReservationDto reservationDto, Model model) {
 
-        // id 정보 안념겯됨
-        String itemName = itemService.getItemName(reservationDto.getItemId());
-        String shopName = itemService.getShopName(reservationDto.getShopId());
+        // id 정보에서 추가
         Item item = itemService.getItem(reservationDto.getItemId());
 
-        model.addAttribute("reservationItemName", itemName);
-        model.addAttribute("reservationShopName", shopName);
         model.addAttribute("item", item);
+
+        // id 정보 넘기기
+        model.addAttribute("userId", reservationDto.getUserId());
+        model.addAttribute("filterId", reservationDto.getFilterId());
+        model.addAttribute("shopId", reservationDto.getShopId());
+        model.addAttribute("itemId", reservationDto.getItemId());
 
         //order1 정보 넘기기
         model.addAttribute("reservationPrice", reservationDto.getReservationPrice());
@@ -125,8 +130,8 @@ public class ReservationController {
 
         //order2 정보 넘기기
         model.addAttribute("reservationAdding", reservationDto.getReservationAdding());
-        model.addAttribute("reservationMsgCard", reservationDto.getReservationMsgCard());
         model.addAttribute("reservationSituation", reservationDto.getReservationSituation());
+        model.addAttribute("reservationMsgCard", reservationDto.getReservationMsgCard());
 
         //orderer 정보 넘기기
         model.addAttribute("reservationOrdererName", reservationDto.getReservationOrdererName());
@@ -135,26 +140,35 @@ public class ReservationController {
 
         System.out.println("다섯번째");
         System.out.println(reservationDto.getReservationAdding());
-        System.out.println(reservationDto.getReservationMsgCard());
         System.out.println(reservationDto.getReservationSituation());
+        System.out.println(reservationDto.getReservationMsgCard());
 
         System.out.println(reservationDto.getReservationOrdererName());
         System.out.println(reservationDto.getReservationOrdererPhone());
         System.out.println(reservationDto.getReservationTerm());
 
-
             return "order_sheet";
         }
 
-    //전송하기 페이지(modal) -> 저장
+    //주문내역서 페이지(modal) -> 저장
     @PostMapping("/order-complete")
-    public String complete() {
-        //주문내역 저장
+    public String complete(ReservationDto reservationDto) {
+
+        //위에랑 정보를 그대로 받아서 효율적으로 넘기는 방법(위에서 한번 저장시켜논다던지?) 생각해봐야
+
         Reservation reservation;
+        reservation = reservationService.saveReservation(reservationDto);
+        System.out.println(reservation.toString());
 
         /*
-        reservation = reservationService.saveReservation(reservationDto);
-         */
+        //1. 주문내역 저장 dto->entity
+        Reservation reservation = reservationDto.toEntity();
+        System.out.println(reservation.toString());
+
+        //2. Repository에게 Entity를 DB로 저장하게 함
+        Reservation savedReservation = reservationRepository.save(reservation);
+        System.out.println(savedReservation.toString());
+        */
 
         return "order_complete";
     }

@@ -37,9 +37,9 @@ public class ReservationOrder2Vo {
     //새정보
     private String reservationAdding;
 
-    private String reservationMsgCard;
-
     private String reservationSituation;
+
+    private String reservationMsgCard;
 
     SimpleDateFormat simpledateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
 }

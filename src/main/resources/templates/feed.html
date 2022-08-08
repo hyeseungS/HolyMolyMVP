@@ -240,7 +240,7 @@
                                 <span id="range1"
                                       th:text="${filter.filterStartPrice} == 0? '0원' : ${#numbers.formatInteger(filter.filterStartPrice, 3, 'COMMA')} + '원'">
                                 </span>
-                            <span> &backsim; </span>
+                            <span> &#126; </span>
                             <span id="range2"
                                   th:text="${filter.filterEndPrice} == 0? '500,000원' : ${#numbers.formatInteger(filter.filterEndPrice, 3, 'COMMA')} + '원'">
                                 </span>

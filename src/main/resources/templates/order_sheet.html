@@ -38,73 +38,91 @@
     <!-- 주문내역 출력 -->
 
     <!--head-->
-    <div class="sheet-head">예약서</div>
-    <div class="sheet-head-price" th:value="${reservationPrice}"></div>
+    <div class="sheet-head">예약확인서</div>
+    <div class="sheet-head-price" th:text="${reservationPrice}+'원'"></div>
 
     <!--상품 정보-->
-    <div class="sheet-body-item">
+    <div class="sheet-body-item horizontal-div-flex-start">
         <div class="item-img-div">
-            <img class="feed-image" th:src="${#lists.size(item.itemImage) == 0? '' : item.itemImage[0].imagePath}"/>
+            <img class="feed-image" th:src="${item.shop.shopImage}"/>
         </div>
 
         <div class="sheet-body-item-text">
-            <div class="mt-8" th:value="${reservationItemName}"></div>
-            <div class="mt-8" th:value="${reservationShopName}"></div>
+            <div class="sheet-body-item-text-div mt-8" th:text="${item.itemName}"></div>
+            <div class="sheet-body-item-text-div mt-8" th:text="${item.shop.shopName}"></div>
         </div>
 
     </div>
 
-    <div class="border_bottom_thin"></div>
+    <div class="border_bottom_thin" style="margin-top: 20px"></div>
 
     <!--필수 정보-->
     <div class="sheet-body-order" id="sheet-body-order1">
 
         <div class="order-div">
             <div class="order-key">주문자 이름</div>
-            <div class="order-value" th:value="${reservationOrdererName}"></div>
+            <div class="order-value" th:text="${reservationOrdererName}"></div>
         </div>
 
         <div class="order-div">
             <div class="order-key">전화번호</div>
-            <div class="order-value" th:value="${reservationOrdererPhone}"></div>
+            <div class="order-value" th:text="${reservationOrdererPhone}"></div>
         </div>
 
         <div class="order-div">
             <div class="order-key">픽업 일자</div>
-            <div class="order-value" th:value="${reservationPickupDate}"></div>
+            <div class="order-value" th:text="${reservationPickupDate}"></div>
         </div>
 
         <div class="order-div">
             <div class="order-key">픽업 시간</div>
-            <div class="order-value" th:value="${reservationPickupTime}"></div>
+            <div class="order-value" th:text="${reservationPickupTime}"></div>
         </div>
 
     </div>
 
-    <div class="border_bottom_thin"></div>
+    <div class="border_bottom_thin" style="margin-top: 20px"></div>
 
     <!--선택 정보-->
     <div class="sheet-body-order" id="sheet-body-order2">
         <div class="order-div">
             <div class="order-key">추가 입력 사항</div>
-            <div class="order-value" th:value="${reservationAdding}"></div>
+            <div class="order-value" th:text="${reservationAdding}"></div>
         </div>
 
         <div class="order-div">
             <div class="order-key">선물 상황</div>
-            <div class="order-value" th:value="${reservationSituation}"></div>
+            <div class="order-value" th:text="${reservationSituation}"></div>
         </div>
 
         <div class="order-div">
             <div class="order-key">메세지 카드</div>
-            <div class="order-value" th:value="${reservationMsgCard}"></div>
+            <div class="order-value" th:text="${reservationMsgCard}"></div>
         </div>
 
     </div>
 
-        <!-- 정보 넘길 필요없음-->
+    <!-- 정보 넘기기 hidden-->
+    <input id="userId" type="text" name="userId" th:value="${userId}" hidden>
+    <input id="filterId" type="text" name="filterId" th:value="${filterId}" hidden>
+    <input id="shopId" type="text" name="shopId" th:value="${shopId}" hidden>
+    <input id="itemId" type="text" name="itemId" th:value="${itemId}" hidden>
 
-        <div class="button-group">
+    <input id="reservationPrice" type="text" name="reservationPrice" th:value="${reservationPrice}" hidden>
+    <input id="reservationPickupDate" type="date" name="reservationPickupDate" th:value="${reservationPickupDate}" hidden>
+    <input id="reservationPickupTime" type="text" name="reservationPickupTime" th:value="${reservationPickupTime}" hidden>
+
+    <input id="reservationAdding" type="text" name="reservationAdding" th:value="${reservationAdding}" hidden>
+    <input id="reservationMsgCard" type="text" name="reservationMsgCard" th:value="${reservationMsgCard}" hidden>
+    <input id="reservationSituation" type="text" name="reservationSituation" th:value="${reservationSituation}" hidden>
+
+    <input id="reservationOrdererName" type="text" name="reservationOrdererName" th:value="${reservationOrdererName}" hidden>
+    <input id="reservationOrdererPhone" type="text" name="reservationOrdererPhone" th:value="${reservationOrdererPhone}" hidden>
+    <input id="reservationTerm" type="text" name="reservationTerm" th:value="${reservationTerm}" hidden>
+
+
+
+    <div class="button-group">
     <button type="button" class="button-back" style="width: 100%; margin-right: 10px" onclick="history.back()">이전</button>
     <button type="button" class="button-next" style="width: 100%" data-toggle="modal" data-target="#order_modal">다음</button>
     </div>

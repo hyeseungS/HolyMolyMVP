@@ -69,11 +69,21 @@ public class ItemService {
         return item.get().getShop().getId();
     }
 
+    //itemId로 shopName 찾기
     public String getShopName(Long itemId) {
 
         Optional<Item> item = itemRepository.findById(itemId);
 
         return item.get().getShop().getShopName();
+    }
+
+    //itemId로 shopImage 찾기
+    public String getShopImage(Long itemId) {
+
+        Optional<Item> item = itemRepository.findById(itemId);
+
+        return item.get().getShop().getShopImage();
+
     }
 
     public String getItemName(Long itemId) {

@@ -21,12 +21,14 @@ public class ReservationService {
                 .shopId(reservationDto.getShopId())
                 .itemId(reservationDto.getItemId())
                 .reservationPrice(reservationDto.getReservationPrice())
-                .reservationCreateDate(reservationDto.getReservationPickupDate())
+                .reservationPickupDate(reservationDto.getReservationPickupDate())
                 .reservationPickupTime(reservationDto.getReservationPickupTime())
                 .reservationAdding(reservationDto.getReservationAdding())
                 .reservationSituation(reservationDto.getReservationSituation())
+                .reservationMsgCard(reservationDto.getReservationMsgCard())
                 .reservationOrdererName(reservationDto.getReservationOrdererName())
                 .reservationOrdererPhone(reservationDto.getReservationOrdererPhone())
+                .reservationTerm(reservationDto.getReservationTerm())
                 .build();
 
         return reservationRepository.save(reservation);

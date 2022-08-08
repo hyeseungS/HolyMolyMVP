@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
 
 import javax.persistence.*;
 
@@ -95,5 +96,9 @@ public class Reservation extends Timestamped {
 
     // 생성 날짜
     @Column(name = "reservation_create_date", nullable = false)
-    private LocalDate reservationCreateDate;
+    private LocalDateTime reservationCreateDate;
+    @PrePersist
+    public void createDate() {
+        this.reservationCreateDate = LocalDateTime.now();
+    }
 }
