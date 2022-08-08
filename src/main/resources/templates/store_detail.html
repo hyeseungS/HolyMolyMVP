@@ -54,7 +54,7 @@
         <div>
             <img class="vector-img" src="/images/store_number_imgs.svg" th:src="@{/images/store_number_imgs.svg}"/>
         </div>
-        <div class="shop-detail-text shop-detail-text-address"> <a href="#"><span data-th-text="${item.shop.shopPhone}"></span></a> </div>
+        <div class="shop-detail-text shop-detail-text-address"> <a href="#" th:each="phone : ${#strings.arraySplit(#strings.escapeXml(item.shop.shopPhone),'&#10;')}"><span th:utext="${phone}"></span><br></a> </div>
     </div>
 </div>
 
@@ -116,7 +116,7 @@ geocoder.addressSearch('[[${item.shop.shopAddress}]]', function(result, status) 
         <img class="vector-img" src="/images/clock.png" th:src="@{/images/clock.png}"/>
     </div>
     <!--영업시간-->
-    <div class="shop-detail-text shop-detail-text-time" th:utext="${#strings.replace(#strings.escapeXml(item.shop.shopTime),'&#10;', '&lt;br&gt;')}"></div>
+    <div class="shop-detail-text shop-detail-text-time" th:utext="${#strings.replace(#strings.escapeXml(item.shop.shopTime),'&#10;','&lt;br&gt;')}"></div>
 </div>
 
 <div class="border_bottom_1">
