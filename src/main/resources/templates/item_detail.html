@@ -147,7 +147,7 @@
 <div class="border_bottom_none item-info" id="item-body">
     <div class="item-subtitle">참고 사항</div>
     <!--상품 설명-->
-    <div class="item-intro" data-th-text="${item.itemDesc}"></div>
+    <div class="item-intro" th:utext="${#strings.replace(#strings.escapeXml(item.itemDesc),'&#10;','&lt;br&gt;')}"></div>
 
 </div>
 <div class="warn-head">환불 및 취소 정보</div>
