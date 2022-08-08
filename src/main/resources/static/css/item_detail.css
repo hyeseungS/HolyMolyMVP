@@ -45,6 +45,7 @@
 .border_bottom_none {
     border-bottom: 1px solid #E2E2E2;
     height: auto;
+    padding-bottom: 20px;
     margin-bottom: 20px;
 }
 
