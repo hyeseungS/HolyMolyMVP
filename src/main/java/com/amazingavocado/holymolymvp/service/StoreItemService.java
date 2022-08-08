@@ -32,10 +32,8 @@ public class StoreItemService {
         return itemList;
     }
 
-    // 개별 상품 정보 받아오기 (상품 상세 페이지)
-    public Item getItem(Long itemId) {
-
-        return itemRepository.findById(itemId).get();
-
+    // 가게 정보 받아오기 (가게 페이지)
+    public Shop getShop(Long shopId) {
+        return shopRepository.findById(shopId).get();
     }
 }

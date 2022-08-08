@@ -102,6 +102,8 @@
     <script type="text/javascript" th:inline="javascript">
         /*<![CDATA[*/
         let shopData = [[${shopList}]];
+        let userData = [[${user.id}]];
+        let filterData = [[${filter.id}]]
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div
             mapOption = {
                 center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -140,8 +142,13 @@
 
                     // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
                     map.setCenter(coords);
+                    // 마커에 클릭이벤트를 등록합니다
+                    kakao.maps.event.addListener(marker, 'click', function() {
+                        location.href = "/shop/"+ userData + "/" + filterData + "/" + shopData[i].id;
+                    });
                 }
             });
+
         }
         /*]]>*/
     </script>
