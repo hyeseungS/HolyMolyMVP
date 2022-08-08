@@ -10,8 +10,11 @@
     <meta property="og:description" content="간편 꽃 예약, 홀리몰리에서 시작하세요">
 
     <title>HolyMoly</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/css/store_detail.css" th:href="@{/css/store_detail.css}">
     <link rel="stylesheet" href="/css/item_detail.css" th:href="@{/css/item_detail.css}">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -35,23 +38,26 @@
 
 <!-- 가게 배경 사진 받아오기 -->
 <div class="store-bg-imgs">
-    <img id="store-bg-detail-imgs" th:src="${item.shop.shopBgImage}" />
+    <img id="store-bg-detail-imgs" th:src="${shop.shopBgImage}"/>
 </div>
 
 <!-- 가게 프로필 사진 받아오기 -->
 <div class="store-profile-imgs">
-    <img class="store-profile-imgs" style="width: 67px; height: 67px; border-radius: 50%;" th:src="${item.shop.shopImage}" />
+    <img class="store-profile-imgs" style="width: 67px; height: 67px; border-radius: 50%;"
+         th:src="${shop.shopImage}"/>
 </div>
 
 <!-- 가게 이름 받아오기 -->
-<div class="store-profile-title" data-th-text="${item.shop.shopName}"></div>
+<div class="store-profile-title" data-th-text="${shop.shopName}"></div>
 
 <div class="store-number">
     <div class="horizontal-div horizontal-div-center">
         <div>
             <img class="vector-img" src="/images/store_number_imgs.svg" th:src="@{/images/store_number_imgs.svg}"/>
         </div>
-        <div class="shop-detail-text shop-detail-text-address"> <a href="#"><span data-th-text="${item.shop.shopPhone}"></span></a> </div>
+        <div class="shop-detail-text shop-detail-text-address"><a href="#"
+                                                                  th:each="phone : ${#strings.arraySplit(#strings.escapeXml(shop.shopPhone),'&#10;')}"><span
+                th:utext="${phone}"></span><br></a></div>
     </div>
 </div>
 
@@ -62,49 +68,56 @@
             <img class="vector-img" src="/images/map-pin.png" th:src="@{/images/map-pin.png}"/>
         </div>
         <!--주소-->
-        <div class="shop-detail-text shop-detail-text-address" data-th-text="${item.shop.shopAddress}"></div>
+        <div class="shop-detail-text shop-detail-text-address" data-th-text="${shop.shopAddress}"></div>
         <!--주소 위치보기 버튼-->
-        <a class="green-button horizontal-div-right" th:href="${item.shop.shopLink}">
-        <div style="top: 3px;">위치 보기</div>
+        <a class="green-button horizontal-div-right" th:href="${shop.shopLink}">
+            <div style="color: #4DA360">위치 보기</div>
         </a>
     </div>
 
     <div class="map" id="map" style="width:100%; height:128px;"></div>
 
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8193d9edbd0e8b1ee5251151b97149c3&libraries=services"></script>
+    <script type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8193d9edbd0e8b1ee5251151b97149c3&libraries=services"></script>
     <script type="text/javascript">
 
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-    mapOption = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+            mapOption = {
+                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                level: 3 // 지도의 확대 레벨
+            };
 
-// 지도를 생성합니다
-var map = new kakao.maps.Map(mapContainer, mapOption);
+        // 지도를 생성합니다
+        var map = new kakao.maps.Map(mapContainer, mapOption);
 
-// 주소-좌표 변환 객체를 생성합니다
-var geocoder = new kakao.maps.services.Geocoder();
+        // 주소-좌표 변환 객체를 생성합니다
+        var geocoder = new kakao.maps.services.Geocoder();
 
-// 주소로 좌표를 검색합니다
-geocoder.addressSearch('[[${item.shop.shopAddress}]]', function(result, status) {
+        // 주소로 좌표를 검색합니다
+        geocoder.addressSearch('[[${shop.shopAddress}]]', function (result, status) {
 
-    // 정상적으로 검색이 완료됐으면
-     if (status === kakao.maps.services.Status.OK) {
+            // 마커 이미지의 이미지 크기 입니다
+            var imageSize = new kakao.maps.Size(24, 35);
+            // 마커 이미지를 생성합니다
+            var markerImage = new kakao.maps.MarkerImage("/images/pin.svg", imageSize);
 
-        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+            // 정상적으로 검색이 완료됐으면
+            if (status === kakao.maps.services.Status.OK) {
 
-        // 결과값으로 받은 위치를 마커로 표시합니다
-        var marker = new kakao.maps.Marker({
-            map: map,
-            position: coords
+                var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                // 결과값으로 받은 위치를 마커로 표시합니다
+                var marker = new kakao.maps.Marker({
+                    map: map,
+                    position: coords,
+                    image: markerImage
+                });
+
+                // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                map.setCenter(coords);
+            }
         });
-
-        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-        map.setCenter(coords);
-    }
-});
-</script>
+    </script>
 </div>
 
 <!-- 영업시간 -->
@@ -113,7 +126,8 @@ geocoder.addressSearch('[[${item.shop.shopAddress}]]', function(result, status) 
         <img class="vector-img" src="/images/clock.png" th:src="@{/images/clock.png}"/>
     </div>
     <!--영업시간-->
-    <div class="shop-detail-text shop-detail-text-time" th:utext="${#strings.replace(#strings.escapeXml(item.shop.shopTime),'&#10;', '&lt;br&gt;')}"></div>
+    <div class="shop-detail-text shop-detail-text-time"
+         th:utext="${#strings.replace(#strings.escapeXml(shop.shopTime),'&#10;','&lt;br&gt;')}"></div>
 </div>
 
 <div class="border_bottom_1">
@@ -129,7 +143,8 @@ geocoder.addressSearch('[[${item.shop.shopAddress}]]', function(result, status) 
             <div class="feed-item" th:text="${item.itemName}"></div>
             <div class="feed-price">
                 <span data-th-text="${#numbers.formatInteger(item.itemStartPrice, 3, 'COMMA') + '원'}"></span>
-                <span th:unless="${item.itemStartPrice == item.itemEndPrice}" data-th-text="${' &#126; ' + #numbers.formatInteger(item.itemEndPrice, 3, 'COMMA') + '원'}"></span>
+                <span th:unless="${item.itemStartPrice == item.itemEndPrice}"
+                      data-th-text="${' &#126; ' + #numbers.formatInteger(item.itemEndPrice, 3, 'COMMA') + '원'}"></span>
             </div>
         </a>
     </div>

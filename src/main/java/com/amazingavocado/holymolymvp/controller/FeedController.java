@@ -3,6 +3,7 @@ package com.amazingavocado.holymolymvp.controller;
 import com.amazingavocado.holymolymvp.dto.UserDto;
 import com.amazingavocado.holymolymvp.model.Filter;
 import com.amazingavocado.holymolymvp.model.Item;
+import com.amazingavocado.holymolymvp.model.Shop;
 import com.amazingavocado.holymolymvp.model.User;
 import com.amazingavocado.holymolymvp.service.FilterService;
 import com.amazingavocado.holymolymvp.service.ItemService;
@@ -50,12 +51,16 @@ public class FeedController {
                     filter.getFilterStartPrice(), filter.getFilterEndPrice());
         }
 
-        //아이템 리스트 출력
+        // 아이템 리스트 출력
         List<Item> itemList = itemService.getItems(code, filter);
+
+        // 꽃집 리스트 출력
+        List<Shop> shopList = itemService.getShops(code, filter);
         model.addAttribute("user", userDto);
         model.addAttribute("code", code);
         model.addAttribute("filter", filter);
         model.addAttribute("itemList", itemList);
+        model.addAttribute("shopList", shopList);
         return "feed";
     }
 
@@ -66,7 +71,7 @@ public class FeedController {
                        @PathVariable("itemId") Long itemId,
                        Model model) {
         Item item = itemService.getItem(itemId);
-        Long shopId = itemService.getShopId(itemId);
+        Long shopId = item.getShop().getId();
 
         //아이템 출력
         model.addAttribute("userId", userId);
@@ -74,14 +79,6 @@ public class FeedController {
         model.addAttribute("item", item);
         model.addAttribute("shopId", shopId);
         model.addAttribute("itemId", itemId);
-
-
-        System.out.println("첫번째");
-        System.out.println(userId);
-        System.out.println(filterId);
-        System.out.println(shopId);
-        System.out.println(itemId);
-
         return "item_detail";
     }
 }

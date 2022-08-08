@@ -31,17 +31,10 @@
     font-size: 14px;
 }
 
-.item-img {
-    width: 100%;
-    height: 360px;
-    object-fit: cover;
+.carousel-inner{
+    width:100%;
+    height:360px; /* 이미지 높이 변경 */
     text-align: center;
-}
-
-#item-detail-img {
-    width: 100%;
-    height: 100%;
-
 }
 
 .border_bottom {
@@ -240,11 +233,12 @@
 
 .button-fix {
     width: 100%;
-    padding-top: 12px;
-    padding-bottom: 30px;
     background-color: white;
+    padding: 12px 12px 30px 12px;
     position: fixed;
     bottom: 0;
+    left: 50%;
+    transform: translateX( -50% );
     border-top: 1px solid #E2E2E2;
 }
 
@@ -252,7 +246,6 @@
     background-color: #4DA360;
     color: white;
     border: none;
-    position: relative;
     border-radius: 4px;
     width: 100%;
     padding: 6px;
