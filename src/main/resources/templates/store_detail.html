@@ -38,17 +38,17 @@
 
 <!-- 가게 배경 사진 받아오기 -->
 <div class="store-bg-imgs">
-    <img id="store-bg-detail-imgs" th:src="${item.shop.shopBgImage}"/>
+    <img id="store-bg-detail-imgs" th:src="${shop.shopBgImage}"/>
 </div>
 
 <!-- 가게 프로필 사진 받아오기 -->
 <div class="store-profile-imgs">
     <img class="store-profile-imgs" style="width: 67px; height: 67px; border-radius: 50%;"
-         th:src="${item.shop.shopImage}"/>
+         th:src="${shop.shopImage}"/>
 </div>
 
 <!-- 가게 이름 받아오기 -->
-<div class="store-profile-title" data-th-text="${item.shop.shopName}"></div>
+<div class="store-profile-title" data-th-text="${shop.shopName}"></div>
 
 <div class="store-number">
     <div class="horizontal-div horizontal-div-center">
@@ -56,7 +56,7 @@
             <img class="vector-img" src="/images/store_number_imgs.svg" th:src="@{/images/store_number_imgs.svg}"/>
         </div>
         <div class="shop-detail-text shop-detail-text-address"><a href="#"
-                                                                  th:each="phone : ${#strings.arraySplit(#strings.escapeXml(item.shop.shopPhone),'&#10;')}"><span
+                                                                  th:each="phone : ${#strings.arraySplit(#strings.escapeXml(shop.shopPhone),'&#10;')}"><span
                 th:utext="${phone}"></span><br></a></div>
     </div>
 </div>
@@ -68,9 +68,9 @@
             <img class="vector-img" src="/images/map-pin.png" th:src="@{/images/map-pin.png}"/>
         </div>
         <!--주소-->
-        <div class="shop-detail-text shop-detail-text-address" data-th-text="${item.shop.shopAddress}"></div>
+        <div class="shop-detail-text shop-detail-text-address" data-th-text="${shop.shopAddress}"></div>
         <!--주소 위치보기 버튼-->
-        <a class="green-button horizontal-div-right" th:href="${item.shop.shopLink}">
+        <a class="green-button horizontal-div-right" th:href="${shop.shopLink}">
             <div style="color: #4DA360">위치 보기</div>
         </a>
     </div>
@@ -87,9 +87,6 @@
                 level: 3 // 지도의 확대 레벨
             };
 
-        // 마커 이미지의 이미지 주소
-        var imageSrc = "images/pin.svg";
-
         // 지도를 생성합니다
         var map = new kakao.maps.Map(mapContainer, mapOption);
 
@@ -97,13 +94,13 @@
         var geocoder = new kakao.maps.services.Geocoder();
 
         // 주소로 좌표를 검색합니다
-        geocoder.addressSearch('[[${item.shop.shopAddress}]]', function (result, status) {
+        geocoder.addressSearch('[[${shop.shopAddress}]]', function (result, status) {
 
             // 마커 이미지의 이미지 크기 입니다
             var imageSize = new kakao.maps.Size(24, 35);
             // 마커 이미지를 생성합니다
-            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-            
+            var markerImage = new kakao.maps.MarkerImage("/images/pin.svg", imageSize);
+
             // 정상적으로 검색이 완료됐으면
             if (status === kakao.maps.services.Status.OK) {
 
@@ -130,7 +127,7 @@
     </div>
     <!--영업시간-->
     <div class="shop-detail-text shop-detail-text-time"
-         th:utext="${#strings.replace(#strings.escapeXml(item.shop.shopTime),'&#10;','&lt;br&gt;')}"></div>
+         th:utext="${#strings.replace(#strings.escapeXml(shop.shopTime),'&#10;','&lt;br&gt;')}"></div>
 </div>
 
 <div class="border_bottom_1">

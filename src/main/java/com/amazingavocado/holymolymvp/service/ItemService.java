@@ -5,6 +5,7 @@ import com.amazingavocado.holymolymvp.model.Item;
 import com.amazingavocado.holymolymvp.model.Shop;
 import com.amazingavocado.holymolymvp.model.User;
 import com.amazingavocado.holymolymvp.repository.ItemRepository;
+import com.amazingavocado.holymolymvp.repository.ShopRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,7 @@ import java.util.Optional;
 public class ItemService {
 
     private final ItemRepository itemRepository;
+    private final ShopRepository shopRepository;
     private final EntityManager em;
 
     // 피드 정보
@@ -95,7 +97,6 @@ public class ItemService {
         return itemRepository.findById(itemId).get();
 
     }
-
 
     public Long getShopId(Long itemId) {
 
