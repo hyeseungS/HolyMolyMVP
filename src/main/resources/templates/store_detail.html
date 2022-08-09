@@ -54,8 +54,7 @@
         <div>
             <img class="vector-img" src="/images/store_number_imgs.svg" th:src="@{/images/store_number_imgs.svg}"/>
         </div>
-        <div class="shop-detail-text shop-detail-text-address"><a href="tel:${phone}"
-                                                                  th:each="phone : ${#strings.arraySplit(#strings.escapeXml(shop.shopPhone),'&#10;')}"><span
+        <div class="shop-detail-text shop-detail-text-address"><a th:each="phone : ${#strings.arraySplit(#strings.escapeXml(shop.shopPhone),'&#10;')}" href="tel:${phone}"><span
                 th:utext="${phone}"></span><br></a></div>
     </div>
 </div>
