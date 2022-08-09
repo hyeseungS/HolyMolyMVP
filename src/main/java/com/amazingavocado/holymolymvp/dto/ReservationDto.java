@@ -9,8 +9,8 @@ import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 
 @Data
@@ -26,11 +26,10 @@ public class ReservationDto {
 
     private Long itemId;
 
-    //
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd" ,timezone = "Asia/Seoul")
 
     private String reservationPrice;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd" ,timezone = "Asia/Seoul")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate reservationPickupDate;
 
@@ -43,7 +42,6 @@ public class ReservationDto {
 
     private String reservationMsgCard;
 
-     SimpleDateFormat simpledateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
 
      //
      private String reservationOrdererName;

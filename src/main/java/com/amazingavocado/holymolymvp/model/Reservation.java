@@ -64,7 +64,7 @@ public class Reservation extends Timestamped {
 
     // 픽업 날짜
     @Column(name = "reservation_pickup_date", nullable = false)
-    private LocalDate reservationPickupDate;
+    private String reservationPickupDate;
 
     // 픽업 시간
     @Column(name = "reservation_pickup_time", nullable = false)
