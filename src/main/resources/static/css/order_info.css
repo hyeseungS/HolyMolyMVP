@@ -163,7 +163,7 @@ textarea::placeholder {
     font-weight: 400;
     font-size: 14px;
     line-height: 120%;
-
+    word-break: keep-all;
     margin-top: -10px;
 }
 
