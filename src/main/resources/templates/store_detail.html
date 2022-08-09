@@ -11,7 +11,6 @@
     <meta property="og:image" content="/images/HolyMoly.png">
 
     <title>holymoly</title>
-    <title>holymoly</title>
     <link rel="shortcut icon" href="images/holymoly_favicon.ico" type="image/x-icon">
     <link rel="icon" href="images/holymoly_favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -55,8 +54,7 @@
         <div>
             <img class="vector-img" src="/images/store_number_imgs.svg" th:src="@{/images/store_number_imgs.svg}"/>
         </div>
-        <div class="shop-detail-text shop-detail-text-address"><a href="#"
-                                                                  th:each="phone : ${#strings.arraySplit(#strings.escapeXml(shop.shopPhone),'&#10;')}"><span
+        <div class="shop-detail-text shop-detail-text-address"><a th:each="phone : ${#strings.arraySplit(#strings.escapeXml(shop.shopPhone),'&#10;')}" href="tel:${phone}"><span
                 th:utext="${phone}"></span><br></a></div>
     </div>
 </div>
