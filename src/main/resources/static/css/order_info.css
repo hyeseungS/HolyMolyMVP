@@ -160,8 +160,8 @@ textarea::placeholder {
 
 .form-alert {
     font-weight: 400;
-    font-size: 12px;
-    line-height: 100%;
+    font-size: 14px;
+    line-height: 120%;
 
     margin-top: -10px;
 }
@@ -407,7 +407,6 @@ textarea::placeholder {
     flex-wrap: wrap;
     align-items: center;
 }
-
 
 .term-group {
     margin-bottom: 15px;

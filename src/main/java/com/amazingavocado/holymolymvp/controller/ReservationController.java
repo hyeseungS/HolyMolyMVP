@@ -15,6 +15,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.lang.reflect.Array;
+import java.util.*;
+
 @Controller
 @RequiredArgsConstructor
 public class ReservationController {
@@ -32,6 +35,11 @@ public class ReservationController {
         model.addAttribute("filterId", reservationIdVo.getFilterId());
         model.addAttribute("shopId", reservationIdVo.getShopId());
         model.addAttribute("itemId", reservationIdVo.getItemId());
+
+        //가격 정보 넘기기
+        Item item = itemService.getItem(reservationIdVo.getItemId());
+        model.addAttribute("item", item);
+
 
         System.out.println("두번째");
         System.out.println(reservationIdVo.getUserId());
@@ -171,5 +179,22 @@ public class ReservationController {
         */
 
         return "order_complete";
+    }
+
+    public List<Integer> makePriceList(Integer start_price, Integer end_price) {
+
+        ArrayList<Integer> priceList = new ArrayList<>();
+
+        if(start_price == end_price) {
+            //리스트에 가격 하나만 넣기
+        }
+        else if(end_price - start_price <=15000) {
+            //리스트에 오천원 단위로 가격 넣기
+        }
+        else {
+            //리스트에 start_price, 중간값, end_price 넣기
+        }
+
+        return priceList;
     }
 }

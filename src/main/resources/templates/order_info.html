@@ -51,8 +51,9 @@
     <!--새 정보-->
     <div class="form-title">가격<span style="color: #FF0000"> *</span></div>
     <div class="form-group">
-        <input type="text" name="reservationPrice" id="reservationPrice" class="form-control" placeholder="000000원" required>
+        <input type="text" name="reservationPrice" id="reservationPrice" class="form-control" placeholder="0000원" required>
     </div>
+
     <div class="form-alert">✓ 5,000원 단위로 설정이 가능해요.</div>
 
 
@@ -101,9 +102,11 @@
 
     //가격 원 붙이기
 
-    //날짜
-    //document.getElementById("reservationPickupDate").value = new Date().toISOString().slice(0,10); //기본 value 없애야 유효성 검사 가능ㅠ
-    document.getElementById("reservationPickupDate").min = new Date().toISOString().slice(0,10);
+    //날짜 -이틀 후로
+    let today = new Date();
+    today.setHours(today.getHours()+6);
+    today.setDate(today.getDate()+2);
+    document.getElementById("reservationPickupDate").min = today.toISOString().slice(0,10);
 
     //시간 입력
     function getTime() {
