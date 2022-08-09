@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.joda.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 @Data
@@ -24,10 +25,9 @@ public class ReservationOrder2Vo {
     private Long itemId;
 
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd" ,timezone = "Asia/Seoul")
-
     private String reservationPrice;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd" ,timezone = "Asia/Seoul")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate reservationPickupDate;
 
@@ -41,5 +41,5 @@ public class ReservationOrder2Vo {
 
     private String reservationMsgCard;
 
-    SimpleDateFormat simpledateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
+    //SimpleDateFormat simpledateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
 }

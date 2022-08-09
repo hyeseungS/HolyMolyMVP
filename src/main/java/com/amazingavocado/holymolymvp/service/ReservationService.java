@@ -21,7 +21,7 @@ public class ReservationService {
                 .shopId(reservationDto.getShopId())
                 .itemId(reservationDto.getItemId())
                 .reservationPrice(reservationDto.getReservationPrice())
-                .reservationPickupDate(reservationDto.getReservationPickupDate())
+                .reservationPickupDate(reservationDto.getReservationPickupDate().toString())
                 .reservationPickupTime(reservationDto.getReservationPickupTime())
                 .reservationAdding(reservationDto.getReservationAdding())
                 .reservationSituation(reservationDto.getReservationSituation())
