@@ -184,15 +184,22 @@ public class ReservationController {
     public List<Integer> makePriceList(Integer start_price, Integer end_price) {
 
         ArrayList<Integer> priceList = new ArrayList<>();
+        int gap = end_price - start_price;
+        priceList.add(start_price);
 
-        if(start_price == end_price) {
-            //리스트에 가격 하나만 넣기
-        }
-        else if(end_price - start_price <=15000) {
+        if(gap <=15000) {
             //리스트에 오천원 단위로 가격 넣기
+            int price = start_price + 5000;
+            while(price < end_price) {
+                priceList.add(price);
+                price += 5000;
+            }
+            priceList.add(end_price);
         }
         else {
             //리스트에 start_price, 중간값, end_price 넣기
+            priceList.add((start_price + end_price)/2);
+            priceList.add(end_price);
         }
 
         return priceList;

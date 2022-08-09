@@ -3,7 +3,7 @@ name: holymolymvp
 on:
   push:
     branches:
-      - main
+      - develop
   workflow_dispatch:
 
 jobs:
