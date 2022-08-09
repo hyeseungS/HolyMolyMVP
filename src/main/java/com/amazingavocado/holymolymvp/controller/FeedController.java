@@ -9,8 +9,6 @@ import com.amazingavocado.holymolymvp.service.FilterService;
 import com.amazingavocado.holymolymvp.service.ItemService;
 import com.amazingavocado.holymolymvp.service.UserService;
 import lombok.RequiredArgsConstructor;
-import lombok.val;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

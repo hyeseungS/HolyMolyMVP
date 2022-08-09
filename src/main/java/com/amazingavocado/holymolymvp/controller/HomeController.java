@@ -11,11 +11,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequiredArgsConstructor
 public class HomeController {
 
-    // 랜딩 페이지
+    // 첫번째 소개 페이지
     @GetMapping("/")
-    public String home() {
-        return "index";
-    }
+    public String main1() { return "index"; }
+
+    // 두번째 소개 페이지
+    @GetMapping("/page2")
+    public String main2() { return "page2"; }
+
+    // 세번째 소개 페이지
+    @GetMapping("/page3")
+    public String main3() { return "page3"; }
+
+    // 네번째 소개 페이지
+    @GetMapping("/page4")
+    public String main4() { return "page4"; }
+
+    // 다섯번째 소개 페이지
+    @GetMapping("/page5")
+    public String main5() { return "page5"; }
+
+    // 랜딩 페이지
+    @GetMapping("/gender")
+    public String home() { return "gender"; }
 
     // GET 지역 선택 페이지
     @GetMapping("/region")
