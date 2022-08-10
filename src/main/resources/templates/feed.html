@@ -161,8 +161,10 @@
     <div class="feed-list-container" th:each="item : ${itemList}">
         <a class="feed-container link"
            th:href="@{/item/{userId}/{filterId}/{itemId}(userId=${user.id}, filterId=${filter.id}, itemId=${item.id})}">
-            <img class="feed-image"
-                 th:src="${#lists.size(item.itemImage) == 0? '' : item.itemImage[0].imagePath}"/>
+            <img th:if="${itemStat.index &lt; 4}" class="feed-image"
+                 th:src="${item.itemImage[0].imagePath}"/>
+            <img th:if="${itemStat.index &gt; 3}" class="lazy" style="width: 150px; height: 150px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;"
+                 th:data-src="${item.itemImage[0].imagePath}"/>
             <div class="feed-shop" th:text="${item.shop.shopName}"></div>
             <div class="feed-item" style="font-size: 16px" th:text="${item.itemName}"></div>
             <div class="feed-price">
@@ -173,6 +175,37 @@
         </a>
     </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var lazyloadImages = document.querySelectorAll("img.lazy");
+        var lazyloadThrottleTimeout;
+
+        function lazyload () {
+            if(lazyloadThrottleTimeout) {
+                clearTimeout(lazyloadThrottleTimeout);
+            }
+
+            lazyloadThrottleTimeout = setTimeout(function() {
+                var scrollTop = window.pageYOffset;
+                lazyloadImages.forEach(function(img) {
+                    if(img.offsetTop < (window.innerHeight + scrollTop)) {
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                    }
+                });
+                if(lazyloadImages.length == 0) {
+                    document.removeEventListener("scroll", lazyload);
+                    window.removeEventListener("resize", lazyload);
+                    window.removeEventListener("orientationChange", lazyload);
+                }
+            }, 20);
+        }
+
+        document.addEventListener("scroll", lazyload);
+        window.addEventListener("resize", lazyload);
+        window.addEventListener("orientationChange", lazyload);
+    });
+</script>
 
 <!-- 필터링 -->
 <div class="modal fade" id="popup_filter">
