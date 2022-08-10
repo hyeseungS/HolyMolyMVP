@@ -85,7 +85,7 @@
         /*<![CDATA[*/
         let regionData = $('input[name=code]:checked+.code-div').text();
         let regionCodeData = $('input[name=code]:checked').val();
-        regionData = regionData == null ? '전체' : regionData;
+        regionData = regionData == '' ? '서울' : regionData;
         regionCodeData = regionCodeData == null ? '' : regionCodeData;
 
         let regionInput = document.getElementById("region");

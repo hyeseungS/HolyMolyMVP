@@ -159,14 +159,12 @@
 <br>
 <div class="warn-content">* 상대적으로 여름에는 꽃들의 얼굴이 작아 같은 양의 꽃이더라도 부피가 다른 계절보다 작을 수 있습니다.</div>
 <br>
-<div class="warn-content">* 특히나 겨울>봄인 성수기 시즌에는 꽃값이 저렴하지 않아 타 계절과의 가격&사이즈 차이가 날 수 있습니다.</div>
-<br>
 <div class="warn-content">* 특정 꽃은 계절에 따라 나오지 않습니다. </div>
 <br><br>
 <div th:if="${not #strings.isEmpty(item.itemDesc)}" class="warn-head">⚪ 상품 설명</div>
 <br>
 <!--상품 설명-->
-<div class="warn-content" style="margin-bottom: 120px;" th:utext="${#strings.replace(#strings.escapeXml(item.itemDesc),'&#10;','&lt;br&gt;')}"></div>
+<div class="warn-content" th:utext="${#strings.replace(#strings.escapeXml(item.itemDesc),'&#10;','&lt;br&gt;')}"></div>
 
 <!--예약하기 버튼 -->
 <form action="/order1" method="post">
