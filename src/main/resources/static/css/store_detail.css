@@ -24,6 +24,7 @@
 .store-profile-imgs {
     margin-top: -15px;
     text-align: center;
+    object-fit: cover;
 }
 
 .store-profile-title {
