@@ -62,7 +62,7 @@
         <div class="code-div">중랑 / 강동 / 광진</div>
     </label>
     <label style="width: 100%;">
-        <input class="code" hidden type="radio" name="code" value="7"/>
+        <input class="code" hidden type="radio" name="code" value="8"/>
         <div class="code-div">강남 / 서초 / 송파</div>
     </label>
 </div>
@@ -85,7 +85,7 @@
         /*<![CDATA[*/
         let regionData = $('input[name=code]:checked+.code-div').text();
         let regionCodeData = $('input[name=code]:checked').val();
-        regionData = regionData == null ? '전체' : regionData;
+        regionData = regionData == '' ? '서울' : regionData;
         regionCodeData = regionCodeData == null ? '' : regionCodeData;
 
         let regionInput = document.getElementById("region");

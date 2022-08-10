@@ -9,6 +9,7 @@
 }
 .container {
     margin-top: 90px;
+    margin-bottom: 90px;
 }
 
 .head {
@@ -176,7 +177,6 @@ button:focus {
 .feed-item {
     width: 150px;
     font-weight: normal;
-    font-size: 12px;
     margin-bottom: 5px;
 }
 

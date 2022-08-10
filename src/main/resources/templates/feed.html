@@ -164,7 +164,7 @@
             <img class="feed-image"
                  th:src="${#lists.size(item.itemImage) == 0? '' : item.itemImage[0].imagePath}"/>
             <div class="feed-shop" th:text="${item.shop.shopName}"></div>
-            <div class="feed-item" th:text="${item.itemName}"></div>
+            <div class="feed-item" style="font-size: 16px" th:text="${item.itemName}"></div>
             <div class="feed-price">
                 <span data-th-text="${#numbers.formatInteger(item.itemStartPrice, 3, 'COMMA') + '원'}"></span>
                 <span th:unless="${item.itemStartPrice == item.itemEndPrice}"
