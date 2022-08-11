@@ -24,7 +24,7 @@ public class StoreItemService {
     @Transactional(readOnly = true)
     public List<Item> getItems(Long shopId) {
 
-        Sort sort = Sort.by(Sort.Direction.DESC, "itemStartPage");
+        Sort sort = Sort.by(Sort.Direction.ASC, "itemStartPrice");
         Optional<Shop> shop = shopRepository.findById(shopId);
         List<Item> itemList = itemRepository.findByShop(shop.get(), sort);
 
