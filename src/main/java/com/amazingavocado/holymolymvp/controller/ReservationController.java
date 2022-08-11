@@ -187,6 +187,7 @@ public class ReservationController {
         //1. 주문내역 저장 dto->entity
         Reservation reservation = reservationDto.toEntity();
         System.out.println(reservation.toString());
+
         //2. Repository에게 Entity를 DB로 저장하게 함
         Reservation savedReservation = reservationRepository.save(reservation);
         System.out.println(savedReservation.toString());
