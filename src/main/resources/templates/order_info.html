@@ -176,7 +176,7 @@
         let priceInput = document.getElementById("priceInput");
         let price = pricelist + ' 원';
 
-        priceInput.setAttribute('text', price);
+        priceInput.innerHTML = price;
         priceInput.setAttribute('value', price);
 
         priceInput.style.color = "black";
@@ -192,11 +192,11 @@
         priceInput = document.getElementById("priceInput").value;
         }*/
 
-        let price = document.getElementById("priceInput").getAttribute('text');
+        let price = document.getElementById("priceInput");
 
         let reservationPrice = document.getElementById("reservationPrice");
-
-        reservationPrice.setAttribute('value', price);
+        console.log(price.innerHTML);
+        reservationPrice.setAttribute('value', price.innerHTML);
     }
 
 
