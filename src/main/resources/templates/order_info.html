@@ -38,9 +38,7 @@
     <input id="filterId" type="text" name="filterId" th:value="${filterId}" hidden>
     <input id="shopId" type="text" name="shopId" th:value="${shopId}" hidden>
     <input id="itemId" type="text" name="itemId" th:value="${itemId}" hidden>
-<!--
     <input id="reservationPrice" type="text" name="reservationPrice" hidden>
--->
 
     <!--새 정보-->
     <div class="form-title">가격<span style="color: #FF0000"> *</span></div>
@@ -122,7 +120,7 @@
         <button class="button-back" type="button" style="width: 100%; margin-right: 10px"
                 onclick="history.back()">이전
         </button>
-        <button class="button-next" type="submit" style="width: 100%;" onclick="getTime();">다음</button>
+        <button class="button-next" type="submit" style="width: 100%;" onclick="getTime(); priceSubmit();">다음</button>
     </div>
 
 </form>
@@ -177,12 +175,11 @@
     function priceButtonInput(pricelist) {
         let priceInput = document.getElementById("priceInput");
         let price = pricelist + ' 원';
-        priceInput.innerHTML = price;
-        priceInput.value = price;
-        priceInput.style.color = "black";
-/*
+
+        priceInput.setAttribute('text', price);
         priceInput.setAttribute('value', price);
-        reservationPrice.setAttribute('value', price);*/
+
+        priceInput.style.color = "black";
     }
 
     // 가격 저장
@@ -195,12 +192,11 @@
         priceInput = document.getElementById("priceInput").value;
         }*/
 
-        let price = document.getElementById("priceInput").value;
+        let price = document.getElementById("priceInput").getAttribute('text');
 
         let reservationPrice = document.getElementById("reservationPrice");
 
         reservationPrice.setAttribute('value', price);
-
     }
 
 

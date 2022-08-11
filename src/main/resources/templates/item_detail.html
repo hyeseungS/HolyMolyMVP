@@ -90,7 +90,10 @@
               data-th-text="${' &#126; ' + #numbers.formatInteger(item.itemEndPrice, 3, 'COMMA') + '원'}"></span>
     </div>
 
-    <div class="item-warn">* 가격 범위 내에서 주문자의 선택 가격으로 꽃다발 제작이 이루어집니다. 꽃의 시세에 따라 꽃의 수, 종류에 차이가 있을 수 있습니다.</div>
+    <div th:unless="${ItemStartPrice} == ${ItemEndPrice}" class="item-warn">* 가격 범위 내에서 주문자의 선택 가격으로 꽃다발 제작이 이루어집니다. 꽃의
+        시세에 따라 꽃의 수, 종류에 차이가 있을 수 있습니다.
+    </div>
+
 </div>
 
 
@@ -123,7 +126,8 @@
                 <img class="vector-img" src="/images/map-pin.png" th:src="@{/images/map-pin.png}"/>
             </div>
             <!--주소-->
-            <div class="shop-detail-text shop-detail-text-address" data-th-text="${item.shop.shopAddress}" style="margin-right: 10px"></div>
+            <div class="shop-detail-text shop-detail-text-address" data-th-text="${item.shop.shopAddress}"
+                 style="margin-right: 10px"></div>
             <!--주소 위치보기 버튼-->
             <a class="green-button horizontal-div-right" th:href="${item.shop.shopLink}">
                 <div style="color: #4DA360">위치 보기</div>
@@ -151,7 +155,7 @@
 </div>
 <div class="warn-head">⚪ 환불 및 취소 정보</div>
 <br>
-<div class="warn-content">결제 이후에는 환불 및 취소, 상품 변경이 불가하오니 신중한 결정 부탁드립니다. 픽업 일자 변경은 꽃집의 운영 일정을 고려하여 조율됩니다. </div>
+<div class="warn-content">결제 이후에는 환불 및 취소, 상품 변경이 불가하오니 신중한 결정 부탁드립니다. 픽업 일자 변경은 꽃집의 운영 일정을 고려하여 조율됩니다.</div>
 <br><br>
 <div class="warn-head">⚪ 추가 사항</div>
 <br>
@@ -159,12 +163,13 @@
 <br>
 <div class="warn-content">* 상대적으로 여름에는 꽃들의 얼굴이 작아 같은 양의 꽃이더라도 부피가 다른 계절보다 작을 수 있습니다.</div>
 <br>
-<div class="warn-content">* 특정 꽃은 계절에 따라 나오지 않습니다. </div>
+<div class="warn-content">* 특정 꽃은 계절에 따라 나오지 않습니다.</div>
 <br><br>
 <div th:if="${not #strings.isEmpty(item.itemDesc)}" class="warn-head">⚪ 상품 설명</div>
 <br>
 <!--상품 설명-->
-<div class="warn-content" style="margin-bottom: 20px" th:utext="${#strings.replace(#strings.escapeXml(item.itemDesc),'&#10;','&lt;br&gt;')}"></div>
+<div class="warn-content" style="margin-bottom: 20px"
+     th:utext="${#strings.replace(#strings.escapeXml(item.itemDesc),'&#10;','&lt;br&gt;')}"></div>
 
 <!--예약하기 버튼 -->
 <form action="/order1" method="post">
@@ -184,7 +189,8 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content rounded-4 shadow">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><img src="/images/ico-cancel.svg"/></button>
+                    <button type="button" class="close" data-dismiss="modal"><img src="/images/ico-cancel.svg"/>
+                    </button>
                     <h5 class="modal-title">꽃집에 들어오는<br><span style="color: #4DA360; font-weight: 700">꽃의 종류</span>는
                         매일매일 달라요</h5>
                 </div>
