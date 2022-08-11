@@ -377,6 +377,15 @@ textarea::placeholder {
     margin: auto;
 }
 
+.img-page {
+    width: auto;
+    height: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+    display: block;
+}
+
 .btn-send {
     display: inline-block;
     padding: 14px 24px;
