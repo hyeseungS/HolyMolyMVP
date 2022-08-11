@@ -61,7 +61,7 @@ public class ReservationController {
 
     //예약 시작 페이지2
     @PostMapping("/order2")
-    public String createOrder2(ReservationOrder1Vo reservationOrder1Vo, String priceInput, Model model) {
+    public String createOrder2(ReservationOrder1Vo reservationOrder1Vo, String reservationPrice, Model model) {
 
         // id 정보 넘기기
         model.addAttribute("userId", reservationOrder1Vo.getUserId());
@@ -70,7 +70,7 @@ public class ReservationController {
         model.addAttribute("itemId", reservationOrder1Vo.getItemId());
 
         //order1 정보 넘기기
-        model.addAttribute("reservationPrice", priceInput);
+        model.addAttribute("reservationPrice", reservationPrice);
         model.addAttribute("reservationPickupDate", reservationOrder1Vo.getReservationPickupDate());
         model.addAttribute("reservationPickupTime", reservationOrder1Vo.getReservationPickupTime());
 
@@ -80,7 +80,7 @@ public class ReservationController {
         System.out.println(reservationOrder1Vo.getFilterId());
         System.out.println(reservationOrder1Vo.getShopId());
         System.out.println(reservationOrder1Vo.getItemId());
-        System.out.println(priceInput);
+        System.out.println(reservationPrice);
         System.out.println(reservationOrder1Vo.getReservationPickupDate());
         System.out.println(reservationOrder1Vo.getReservationPickupTime());
 
@@ -170,8 +170,8 @@ public class ReservationController {
         System.out.println(reservationDto.getReservationOrdererPhone());
         System.out.println(reservationDto.getReservationTerm());
 
-            return "order_sheet";
-        }
+        return "order_sheet";
+    }
 
     //주문내역서 페이지(modal) -> 저장
     @PostMapping("/order-complete")
@@ -187,7 +187,6 @@ public class ReservationController {
         //1. 주문내역 저장 dto->entity
         Reservation reservation = reservationDto.toEntity();
         System.out.println(reservation.toString());
-
         //2. Repository에게 Entity를 DB로 저장하게 함
         Reservation savedReservation = reservationRepository.save(reservation);
         System.out.println(savedReservation.toString());

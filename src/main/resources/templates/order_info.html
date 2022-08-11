@@ -43,10 +43,10 @@
     <!--새 정보-->
     <div class="form-title">가격<span style="color: #FF0000"> *</span></div>
 
-<!--    <div class="form-group" th:if="${ItemStartPrice} == ${ItemEndPrice}">
-        <p name="reservationPrice" id="priceInput2" class="form-control2"
-           th:value="${ItemStartPrice} + ' 원'" th:text="${ItemStartPrice}+' 원'" style="color: black"></p>
-    </div>-->
+    <!--    <div class="form-group" th:if="${ItemStartPrice} == ${ItemEndPrice}">
+            <p name="reservationPrice" id="priceInput2" class="form-control2"
+               th:value="${ItemStartPrice} + ' 원'" th:text="${ItemStartPrice}+' 원'" style="color: black"></p>
+        </div>-->
 
     <div class="form-group"> <!--th:unless="${ItemStartPrice} == ${ItemEndPrice}"-->
         <!--        <input type="text" name="reservationPrice" id="reservationPrice2" class="form-control"
@@ -57,15 +57,15 @@
            th:value="${ItemStartPrice == ItemEndPrice ? ItemStartPrice + ' 원' :_}"></p>
 
         <div th:unless="${ItemStartPrice} == ${ItemEndPrice}">
-        <div class="button-horizontal-group" th:each="priceList : ${priceList}">
-            <button type="button" id="priceButton" name="priceButton" class="price-button pl-10 pr-10"
-                    th:text="${priceList}+' 원'" th:value="${priceList}+' 원'"
-                    th:onclick="|javascript:priceButtonInput(${priceList})|"></button>
-        </div>
+            <div class="button-horizontal-group" th:each="priceList : ${priceList}">
+                <button type="button" id="priceButton" name="priceButton" class="price-button pl-10 pr-10"
+                        th:text="${priceList}+' 원'" th:value="${priceList}+' 원'"
+                        th:onclick="|javascript:priceButtonInput(${priceList})|"></button>
+            </div>
 
-        <div class="form-alert-green mt-10">
-            <span data-toggle="modal" data-target="#order_modal">&#x24d8; 왜 가격을 설정해야하나요?</span>
-        </div>
+            <div class="form-alert-green mt-10">
+                <span data-toggle="modal" data-target="#order_modal">&#x24d8; 왜 가격을 설정해야하나요?</span>
+            </div>
         </div>
     </div>
 
@@ -176,7 +176,7 @@
         let priceInput = document.getElementById("priceInput");
         let price = pricelist + ' 원';
 
-        priceInput.setAttribute('text', price);
+        priceInput.innerHTML = price;
         priceInput.setAttribute('value', price);
 
         priceInput.style.color = "black";
@@ -184,19 +184,19 @@
 
     // 가격 저장
     function priceSubmit() {
-/*        var priceInput;
-        if ( [[${ItemStartPrice}]]===[[${ItemEndPrice}]] ) {
-        priceInput = document.getElementById("priceInput2").value;
-        }
-        else {
-        priceInput = document.getElementById("priceInput").value;
-        }*/
+        /*        var priceInput;
+                if ( [[${ItemStartPrice}]]===[[${ItemEndPrice}]] ) {
+                priceInput = document.getElementById("priceInput2").value;
+                }
+                else {
+                priceInput = document.getElementById("priceInput").value;
+                }*/
 
-        let price = document.getElementById("priceInput").getAttribute('text');
+        let price = document.getElementById("priceInput");
 
         let reservationPrice = document.getElementById("reservationPrice");
-
-        reservationPrice.setAttribute('value', price);
+        console.log(price.innerHTML);
+        reservationPrice.setAttribute('value', price.innerHTML);
     }
 
 
