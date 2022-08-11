@@ -44,7 +44,7 @@ public class FeedController {
         }
 
         //필터 저장
-        if(filter != null) {
+        if(filter.getFilterColor() != null) {
             filter = filterService.saveFilter(user, filter.getFilterColor(),
                     filter.getFilterStartPrice(), filter.getFilterEndPrice());
         }

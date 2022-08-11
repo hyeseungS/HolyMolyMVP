@@ -161,9 +161,9 @@
     <div class="feed-list-container" th:each="item : ${itemList}">
         <a class="feed-container link"
            th:href="@{/item/{userId}/{filterId}/{itemId}(userId=${user.id}, filterId=${filter.id}, itemId=${item.id})}">
-            <img th:if="${itemStat.index &lt; 6}" class="feed-image"
+            <img th:if="${itemStat.index &lt; 7}" class="feed-image"
                  th:src="${item.itemImage[0].imagePath}"/>
-            <img th:if="${itemStat.index &gt; 5}" class="feed-lazy-image" style="width: 150px; height: 150px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;"
+            <img th:if="${itemStat.index &gt; 6}" class="feed-lazy-image" style="width: 150px; height: 150px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;"
                  th:data-src="${item.itemImage[0].imagePath}"/>
             <div class="feed-shop" th:text="${item.shop.shopName}"></div>
             <div class="feed-item" style="font-size: 16px" th:text="${item.itemName}"></div>
