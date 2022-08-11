@@ -1,9 +1,6 @@
 package com.amazingavocado.holymolymvp.service;
 
-import com.amazingavocado.holymolymvp.model.Filter;
-import com.amazingavocado.holymolymvp.model.Item;
-import com.amazingavocado.holymolymvp.model.Shop;
-import com.amazingavocado.holymolymvp.model.User;
+import com.amazingavocado.holymolymvp.model.*;
 import com.amazingavocado.holymolymvp.repository.ItemRepository;
 import com.amazingavocado.holymolymvp.repository.ShopRepository;
 import lombok.RequiredArgsConstructor;
@@ -36,4 +33,5 @@ public class StoreItemService {
     public Shop getShop(Long shopId) {
         return shopRepository.findById(shopId).get();
     }
+
 }
