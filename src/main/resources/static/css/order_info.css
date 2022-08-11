@@ -258,7 +258,6 @@ textarea::placeholder {
 .modal-sheet .modal-dialog .modal-content {
     position: relative;
     width: 320px;
-    height: 436px;
     border-radius: 10px;
     margin : auto;
 
@@ -326,6 +325,8 @@ textarea::placeholder {
 
 }
 
+
+
 .term-modal-header {
     margin: auto;
     border-bottom: 0;
@@ -370,12 +371,10 @@ textarea::placeholder {
 }
 
 .img-send {
-    width: auto;
-    height: auto;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    text-align: center;
-    display: block;
+    position: relative;
+    width: 180px;
+    height: 174px;
+    margin: auto;
 }
 
 .btn-send {
