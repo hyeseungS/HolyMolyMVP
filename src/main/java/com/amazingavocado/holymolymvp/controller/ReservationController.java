@@ -40,6 +40,14 @@ public class ReservationController {
         Item item = itemService.getItem(reservationIdVo.getItemId());
         model.addAttribute("item", item);
 
+        //가격 정보
+        int startPrice = item.getItemStartPrice();
+        int endPrice = item.getItemEndPrice();
+        model.addAttribute("priceList", makePriceList(startPrice, endPrice));
+
+        model.addAttribute("ItemStartPrice", startPrice);
+        model.addAttribute("ItemEndPrice", endPrice);
+
 
         System.out.println("두번째");
         System.out.println(reservationIdVo.getUserId());
@@ -53,7 +61,7 @@ public class ReservationController {
 
     //예약 시작 페이지2
     @PostMapping("/order2")
-    public String createOrder2(ReservationOrder1Vo reservationOrder1Vo, Model model) {
+    public String createOrder2(ReservationOrder1Vo reservationOrder1Vo, String priceInput, Model model) {
 
         // id 정보 넘기기
         model.addAttribute("userId", reservationOrder1Vo.getUserId());
@@ -62,7 +70,7 @@ public class ReservationController {
         model.addAttribute("itemId", reservationOrder1Vo.getItemId());
 
         //order1 정보 넘기기
-        model.addAttribute("reservationPrice", reservationOrder1Vo.getReservationPrice());
+        model.addAttribute("reservationPrice", priceInput);
         model.addAttribute("reservationPickupDate", reservationOrder1Vo.getReservationPickupDate());
         model.addAttribute("reservationPickupTime", reservationOrder1Vo.getReservationPickupTime());
 
@@ -72,7 +80,7 @@ public class ReservationController {
         System.out.println(reservationOrder1Vo.getFilterId());
         System.out.println(reservationOrder1Vo.getShopId());
         System.out.println(reservationOrder1Vo.getItemId());
-        System.out.println(reservationOrder1Vo.getReservationPrice());
+        System.out.println(priceInput);
         System.out.println(reservationOrder1Vo.getReservationPickupDate());
         System.out.println(reservationOrder1Vo.getReservationPickupTime());
 
@@ -124,6 +132,13 @@ public class ReservationController {
         Item item = itemService.getItem(reservationDto.getItemId());
 
         model.addAttribute("item", item);
+
+        //가격 정보
+        int startPrice = item.getItemStartPrice();
+        int endPrice = item.getItemEndPrice();
+
+        model.addAttribute("ItemStartPrice", startPrice);
+        model.addAttribute("ItemEndPrice", endPrice);
 
         // id 정보 넘기기
         model.addAttribute("userId", reservationDto.getUserId());

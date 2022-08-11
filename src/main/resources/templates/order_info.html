@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -13,27 +13,18 @@
     <title>holymoly</title>
     <link rel="shortcut icon" href="images/holymoly_favicon.ico" type="image/x-icon">
     <link rel="icon" href="images/holymoly_favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="/css/order_info.css" th:href="@{/css/order_info.css}">
-
-    <!--jqery-->
-    <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
-    <script src="../static/jquery-3.6.0.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap"
           rel="stylesheet">
-<!--
-    <script type="text/javascript" defer src="order_valid.js"></script>
--->
+
+
+    <link rel="stylesheet" href="/css/order_info.css" th:href="@{/css/order_info.css}">
 
 </head>
 
@@ -47,25 +38,51 @@
     <input id="filterId" type="text" name="filterId" th:value="${filterId}" hidden>
     <input id="shopId" type="text" name="shopId" th:value="${shopId}" hidden>
     <input id="itemId" type="text" name="itemId" th:value="${itemId}" hidden>
+<!--
+    <input id="reservationPrice" type="text" name="reservationPrice" hidden>
+-->
 
     <!--새 정보-->
     <div class="form-title">가격<span style="color: #FF0000"> *</span></div>
-    <div class="form-group">
-        <input type="text" name="reservationPrice" id="reservationPrice" class="form-control" placeholder="0000원" required>
+
+<!--    <div class="form-group" th:if="${ItemStartPrice} == ${ItemEndPrice}">
+        <p name="reservationPrice" id="priceInput2" class="form-control2"
+           th:value="${ItemStartPrice} + ' 원'" th:text="${ItemStartPrice}+' 원'" style="color: black"></p>
+    </div>-->
+
+    <div class="form-group"> <!--th:unless="${ItemStartPrice} == ${ItemEndPrice}"-->
+        <!--        <input type="text" name="reservationPrice" id="reservationPrice2" class="form-control"
+                       th:placeholder="${ItemStartPrice} + ' 원 &#126; ' + ${ItemEndPrice} + ' 원'">
+                       인풋 대신 인풋처럼 뵈는 칸 만듦-->
+        <p name="reservationPrice" id="priceInput" class="form-control2 pl-10"
+           th:text="${ItemStartPrice == ItemEndPrice ? ItemStartPrice + ' 원' : ItemStartPrice + ' 원 &#126; ' + ItemEndPrice + ' 원'}"
+           th:value="${ItemStartPrice == ItemEndPrice ? ItemStartPrice + ' 원' :_}"></p>
+
+        <div th:unless="${ItemStartPrice} == ${ItemEndPrice}">
+        <div class="button-horizontal-group" th:each="priceList : ${priceList}">
+            <button type="button" id="priceButton" name="priceButton" class="price-button pl-10 pr-10"
+                    th:text="${priceList}+' 원'" th:value="${priceList}+' 원'"
+                    th:onclick="|javascript:priceButtonInput(${priceList})|"></button>
+        </div>
+
+        <div class="form-alert-green mt-10">
+            <span data-toggle="modal" data-target="#order_modal">&#x24d8; 왜 가격을 설정해야하나요?</span>
+        </div>
+        </div>
     </div>
-
-    <div class="form-alert">✓ 5,000원 단위로 설정이 가능해요.</div>
-
 
     <div class="form-title">픽업 날짜<span style="color: #FF0000"> *</span></div>
     <div class="form-group">
-        <input type="date" name="reservationPickupDate" id="reservationPickupDate" class="form-control" max="2022-08-31" required>
+        <input type="date" name="reservationPickupDate" id="reservationPickupDate" class="form-control"
+               max="2022-08-31" required>
     </div>
 
     <div class="form-title">픽업 시간<span style="color: #FF0000"> *</span></div>
-    <input type="text" name="reservationPickupTime" id="reservationPickupTime" class="form-control" value="null" hidden>
 
     <div class="form-group time-select-group">
+
+        <input type="text" name="reservationPickupTime" id="reservationPickupTime" hidden>
+
         <select name="reservationPickupP" id="reservationPickupP" size="1" class="time-select" required>
             <option value="">오전/오후</option>
             <option value="오전">오전</option>
@@ -74,50 +91,135 @@
 
         <select name="reservationPickupHH" id="reservationPickupHH" size="1" class="time-select" required>
             <option value="">&nbsp;&nbsp;시</option>
-            <option value="01">01</option> <option value="02">02</option> <option value="03">03</option>
-            <option value="04">04</option> <option value="05">05</option> <option value="06">06</option>
-            <option value="07">07</option> <option value="08">08</option> <option value="09">09</option>
-            <option value="10">10</option> <option value="11">11</option> <option value="12">12</option>
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
         </select>
 
         <select name="reservationPickupMM" id="reservationPickupMM" size="1" class="time-select" required>
             <option value="">&nbsp;&nbsp;분</option>
-            <option value="00">00</option> <option value="15">15</option>
-            <option value="30">30</option> <option value="45">45</option>
+            <option value="00">00</option>
+            <option value="15">15</option>
+            <option value="30">30</option>
+            <option value="45">45</option>
         </select>
 
     </div>
-    <div class="form-alert">✓  가게 운영시간이 아닌 시간을 기입하실 경우,<br>픽업시간에 조정이 있을 수 있습니다</div>
+
+    <div class="form-alert">&check; 가게 운영시간이 아닌 시간을 기입하실 경우,<br>픽업시간에 조정이 있을 수 있습니다</div>
+
 
     <div class="button-group">
-        <button class="button-back" type="button" style="width: 100%; margin-right: 10px" onclick="history.back()">이전</button>
-        <button class="button-next" type="submit" style="width: 100%;" onclick="getTime()">다음</button>
+        <button class="button-back" type="button" style="width: 100%; margin-right: 10px"
+                onclick="history.back()">이전
+        </button>
+        <button class="button-next" type="submit" style="width: 100%;" onclick="getTime();">다음</button>
     </div>
 
 </form>
 
+
+<!-- 모달 -->
+<div class="modal fade modal-sheet position-static d-block bg-secondary py-5" id="order_modal"
+     data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+     aria-hidden="true" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content rounded-4 shadow">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M4.33474 4.33474C4.78105 3.88842 5.50467 3.88842 5.95098 4.33474L19.6653 18.049C20.1116 18.4953 20.1116 19.219 19.6653 19.6653C19.219 20.1116 18.4953 20.1116 18.049 19.6653L4.33474 5.95098C3.88842 5.50467 3.88842 4.78105 4.33474 4.33474Z"
+                              fill="#615E69"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M19.6653 4.33474C20.1116 4.78105 20.1116 5.50467 19.6653 5.95098L5.95098 19.6653C5.50467 20.1116 4.78105 20.1116 4.33474 19.6653C3.88842 19.219 3.88842 18.4953 4.33474 18.049L18.049 4.33474C18.4953 3.88842 19.219 3.88842 19.6653 4.33474Z"
+                              fill="#615E69"/>
+                    </svg>
+                </button>
+                <h5 class="modal-title">꽃은 시세 변동이 잦아<br><span
+                        style="color: #4DA360; font-weight: 700">가격이 매일매일 바뀌어요!</span>
+                </h5>
+            </div>
+
+            <div class="modal-body" style="margin: auto">
+                <p>꽃다발은 시세 변동이 잦아<br>
+                    매일매일 가격이 조금씩 바뀌어요.<br><br>
+                    꽃은 정해진 가격으로 판매하기가 어려워서<br>
+                    홀리몰리는 가격 범위를 정하고,<br>
+                    그 안에서 주문자가 가격을 선택할 수 있도록<br>
+                    만들었어요 !<br><br>
+                    <strong>5,000원 단위</strong>로 가격을 선택할 수 있고,<br>
+                    <strong>가격별로 꽃상품에 들어가는 꽃의 개수와<br>
+                        꽃의 종류가 달라질 수 있어요.</strong></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-send" data-dismiss="modal">이해했어요!</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 
-<script type="text/javascript">
+<script th:inline="javascript">
 
-    //가격 원 붙이기
+    //가격 버튼 눌렀을 때 입력창에 뜨기, 저장
+    function priceButtonInput(pricelist) {
+        let priceInput = document.getElementById("priceInput");
+        let price = pricelist + ' 원';
+        priceInput.innerHTML = price;
+        priceInput.value = price;
+        priceInput.style.color = "black";
+/*
+        priceInput.setAttribute('value', price);
+        reservationPrice.setAttribute('value', price);*/
+    }
+
+    // 가격 저장
+    function priceSubmit() {
+/*        var priceInput;
+        if ( [[${ItemStartPrice}]]===[[${ItemEndPrice}]] ) {
+        priceInput = document.getElementById("priceInput2").value;
+        }
+        else {
+        priceInput = document.getElementById("priceInput").value;
+        }*/
+
+        let price = document.getElementById("priceInput").value;
+
+        let reservationPrice = document.getElementById("reservationPrice");
+
+        reservationPrice.setAttribute('value', price);
+
+    }
+
 
     //날짜 -이틀 후로
     let today = new Date();
-    today.setHours(today.getHours()+6);
-    today.setDate(today.getDate()+2);
-    document.getElementById("reservationPickupDate").min = today.toISOString().slice(0,10);
+    today.setHours(today.getHours() + 6);
+    today.setDate(today.getDate() + 2);
+    document.getElementById("reservationPickupDate").min = today.toISOString().slice(0, 10);
 
     //시간 입력
     function getTime() {
-    var p = document.getElementById("reservationPickupP");
-    var hh = document.getElementById("reservationPickupHH");
-    var mm = document.getElementById("reservationPickupMM");
+        let p = document.getElementById("reservationPickupP");
+        let hh = document.getElementById("reservationPickupHH");
+        let mm = document.getElementById("reservationPickupMM");
 
-    let timeData = p.options[p.selectedIndex].value +" " + hh.options[hh.selectedIndex].value +'시 ' + mm.options[mm.selectedIndex].value + '분';
+        let timeData = p.options[p.selectedIndex].value + " " + hh.options[hh.selectedIndex].value + '시 ' + mm.options[mm.selectedIndex].value + '분';
 
-    let timeInput = document.getElementById("reservationPickupTime");
-    timeInput.setAttribute("value", timeData);
+        let timeInput = document.getElementById("reservationPickupTime");
+        timeInput.setAttribute("value", timeData);
     }
 
 </script>
