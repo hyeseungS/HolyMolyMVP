@@ -4,6 +4,7 @@ import com.amazingavocado.holymolymvp.model.*;
 import com.amazingavocado.holymolymvp.repository.ItemRepository;
 import com.amazingavocado.holymolymvp.repository.ShopRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,8 +24,9 @@ public class StoreItemService {
     @Transactional(readOnly = true)
     public List<Item> getItems(Long shopId) {
 
+        Sort sort = Sort.by(Sort.Direction.DESC, "itemStartPage");
         Optional<Shop> shop = shopRepository.findById(shopId);
-        List<Item> itemList = itemRepository.findByShop(shop.get());
+        List<Item> itemList = itemRepository.findByShop(shop.get(), sort);
 
         return itemList;
     }
