@@ -311,10 +311,12 @@ textarea::placeholder {
 }
 
 .img-send {
-    position: relative;
-    width: 180px;
-    height: 174px;
-    margin: auto;
+    width: auto;
+    height: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+    display: block;
 }
 
 .btn-send {
