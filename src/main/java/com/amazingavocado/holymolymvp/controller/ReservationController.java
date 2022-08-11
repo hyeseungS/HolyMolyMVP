@@ -170,8 +170,8 @@ public class ReservationController {
         System.out.println(reservationDto.getReservationOrdererPhone());
         System.out.println(reservationDto.getReservationTerm());
 
-            return "order_sheet";
-        }
+        return "order_sheet";
+    }
 
     //주문내역서 페이지(modal) -> 저장
     @PostMapping("/order-complete")

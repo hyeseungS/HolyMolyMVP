@@ -126,29 +126,29 @@
 
 
     <div class="button-group">
-    <button type="button" class="button-back" style="width: 100%; margin-right: 10px" onclick="history.back()">이전</button>
-    <button type="button" class="button-next" style="width: 100%" data-toggle="modal" data-target="#order_modal">다음</button>
+        <button type="button" class="button-back" style="width: 100%; margin-right: 10px" onclick="history.back()">이전</button>
+        <button type="button" class="button-next" style="width: 100%" data-toggle="modal" data-target="#order_modal">다음</button>
     </div>
 
-<!-- 모달 -->
-<div class="modal fade modal-sheet position-static d-block bg-secondary py-5" id="order_modal"  data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" role="dialog">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content rounded-4 shadow">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><img src="/images/ico-cancel.svg"/></button>
-                <h5 class="modal-title">플로리스트님께 실제로<br><span style="color: #4DA360; font-weight: 700">예약이 전송</span>됩니다.</h5>
-            </div>
+    <!-- 모달 -->
+    <div class="modal fade modal-sheet position-static d-block bg-secondary py-5" id="order_modal"  data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content rounded-4 shadow">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><img src="/images/ico-cancel.svg"/></button>
+                    <h5 class="modal-title">플로리스트님께 실제로<br><span style="color: #4DA360; font-weight: 700">예약이 전송</span>됩니다.</h5>
+                </div>
 
-            <div class="modal-body"  style="margin: auto">
-                <p>확인 후 전송하기를 눌러주세요!</p>
-                <img class="img-send" src="/images/sendimg.png" th:src="@{/images/sendimg.png}"/>
+                <div class="modal-body"  style="margin: auto">
+                    <p>확인 후 전송하기를 눌러주세요!</p>
+                    <img class="img-send" src="/images/sendimg.png" th:src="@{/images/sendimg.png}"/>
+                </div>
+                <div class="modal-footer" style="padding-bottom: 20px">
+                    <button type="submit" class="btn-send">전송하기</button>
+                </div>
             </div>
-            <div class="modal-footer" style="padding-bottom: 20px">
-                <button type="submit" class="btn-send">전송하기</button>
-            </div>
+        </div>
     </div>
-    </div>
-</div>
 
 </form>
 
