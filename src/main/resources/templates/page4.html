@@ -3,6 +3,15 @@
       xmlns:nl2br="http://www.w3.org/1999/xhtml">
 
 <head>
+    <!— Google tag (gtag.js) —>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HG3BDSNDG7"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-HG3BDSNDG7');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:type" content="website">
@@ -33,6 +42,9 @@
 <div class="head text-left" style="font-size: 34px">잠깐!&#128400;</div>
 <div class="complete-body">
     <p style="font-size: 18px">주의사항을 확인하며<br>주문 정보를 입력해주세요!</p>
+</div>
+<div class="complete-body" style="text-decoration: underline;">
+    <p style="font-size: 18px" onclick="location.href='/gender'">건너뛰기</p>
 </div>
 <div style="display: flex; justify-content: center">
     <img class="img-page" src="/images/page4.svg" th:src="@{/images/page4.svg}"/>
