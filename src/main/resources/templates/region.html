@@ -48,43 +48,54 @@
 <div class="head text-left"><span style="color: #4DA360">픽업지역</span><span>을 입력해주세요.</span></div>
 <div class="region-group">
     <label style="width: 100%; margin-right: 12px">
+        <input class="code" hidden type="radio" name="code" value="0"/>
+        <div class="code-div">서울 전체</div>
+    </label>
+    <label style="width: 100%">
         <input class="code" hidden type="radio" name="code" value="1"/>
         <div class="code-div">강서 / 영등포</div>
     </label>
-    <label style="width: 100%">
+</div>
+
+<div class = "region-group">
+    <label style="width: 100%; margin-right: 12px">
         <input class="code" hidden type="radio" name="code" value="2"/>
         <div class="code-div">마포 / 서대문</div>
     </label>
-</div>
-<div class = "region-group">
-    <label style="width: 100%; margin-right: 12px">
+    <label style="width: 100%">
         <input class="code" hidden type="radio" name="code" value="3"/>
         <div class="code-div">종로 / 중구</div>
     </label>
-    <label style="width: 100%">
+</div>
+
+<div class = "region-group">
+    <label style="width: 100%; margin-right: 12px">
         <input class="code" hidden type="radio" name="code" value="4"/>
         <div class="code-div">용산 / 성동</div>
     </label>
-</div>
-<div class = "region-group">
-    <label style="width: 100%; margin-right: 12px">
+    <label style="width: 100%">
         <input class="code" hidden type="radio" name="code" value="5"/>
         <div class="code-div">관악 / 동작</div>
     </label>
-    <label style="width: 100%">
+</div>
+
+<div class = "region-group">
+    <label style="width: 100%; margin-right: 12px">
         <input class="code" hidden type="radio" name="code" value="6"/>
         <div class="code-div">도봉 / 노원 / 강북</div>
     </label>
-</div>
-<div class = "region-group">
-    <label style="width: 100%; margin-right: 12px">
+    <label style="width: 100%">
         <input class="code" hidden type="radio" name="code" value="7"/>
         <div class="code-div">중랑 / 강동 / 광진</div>
     </label>
-    <label style="width: 100%;">
+</div>
+
+<div class="region-group">
+    <label style="width: 100%; margin-right: 12px">
         <input class="code" hidden type="radio" name="code" value="8"/>
         <div class="code-div">강남 / 서초 / 송파</div>
     </label>
+    <div style="width: 100%"></div>
 </div>
 
 <form action="/feed" method="post">
@@ -105,7 +116,7 @@
         /*<![CDATA[*/
         let regionData = $('input[name=code]:checked+.code-div').text();
         let regionCodeData = $('input[name=code]:checked').val();
-        regionData = regionData == '' ? '서울' : regionData;
+        regionData = regionData == '' ? '전체' : regionData;
         regionCodeData = regionCodeData == null ? '' : regionCodeData;
 
         let regionInput = document.getElementById("region");
