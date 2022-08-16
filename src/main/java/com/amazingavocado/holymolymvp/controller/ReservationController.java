@@ -89,7 +89,7 @@ public class ReservationController {
 
     //주문자정보 페이지
     @PostMapping("/orderer")
-    public String orderer(ReservationOrder2Vo reservationOrder2Vo, Model model) {
+    public String orderer(String coupon, ReservationOrder2Vo reservationOrder2Vo, Model model) {
 
         // id 정보 넘기기
         model.addAttribute("userId", reservationOrder2Vo.getUserId());
@@ -102,8 +102,11 @@ public class ReservationController {
         model.addAttribute("reservationPickupDate", reservationOrder2Vo.getReservationPickupDate());
         model.addAttribute("reservationPickupTime", reservationOrder2Vo.getReservationPickupTime());
 
+        //coupon adding 앞에 붙이기
+        String couponNadding = "[쿠폰번호: "+coupon+" ] / "+reservationOrder2Vo.getReservationAdding();
+
         //order2 정보 넘기기
-        model.addAttribute("reservationAdding", reservationOrder2Vo.getReservationAdding());
+        model.addAttribute("reservationAdding", couponNadding);
         model.addAttribute("reservationSituation", reservationOrder2Vo.getReservationSituation());
         model.addAttribute("reservationMsgCard", reservationOrder2Vo.getReservationMsgCard());
 
@@ -118,7 +121,7 @@ public class ReservationController {
         System.out.println(reservationOrder2Vo.getReservationPickupDate());
         System.out.println(reservationOrder2Vo.getReservationPickupTime());
 
-        System.out.println(reservationOrder2Vo.getReservationAdding());
+        System.out.println(couponNadding);
         System.out.println(reservationOrder2Vo.getReservationSituation());
         System.out.println(reservationOrder2Vo.getReservationMsgCard());
 
