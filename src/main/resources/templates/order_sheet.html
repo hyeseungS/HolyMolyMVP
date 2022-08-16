@@ -49,10 +49,7 @@
 </head>
 
 <body class="container">
-<!— Google Tag Manager (noscript) —>
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TP7GVLC"
-                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!— End Google Tag Manager (noscript) —>
+
 
 <form action="/order-complete" method="post">
 
@@ -60,14 +57,13 @@
 
     <!--head-->
     <div class="sheet-head">예약확인서</div>
-    <div class="sheet-head-price" th:text="${reservationPrice}"></div>
+    <div class="sheet-head-price" th:text="${reservationPrice}+'원'"></div>
 
     <!--상품 정보-->
     <div class="sheet-body-item horizontal-div-flex-start">
         <div class="item-img-div">
             <img class="feed-image" th:src="${item.itemImage[0].imagePath}"/>
         </div>
-
 
         <div class="sheet-body-item-text">
             <div class="sheet-body-item-text-div mt-8" th:text="${item.itemName}"></div>

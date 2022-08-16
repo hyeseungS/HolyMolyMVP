@@ -6,17 +6,29 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HG3BDSNDG7"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'G-HG3BDSNDG7');
     </script>
     <!— Google Tag Manager —>
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-TP7GVLC');</script>
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-TP7GVLC');</script>
     <!— End Google Tag Manager —>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,8 +55,10 @@
 
 <body class="container">
 <!— Google Tag Manager (noscript) —>
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TP7GVLC"
-                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TP7GVLC"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
 <!— End Google Tag Manager (noscript) —>
 <div class="head text-left"><span style="color: #4DA360">주문 정보</span><span>를 입력해주세요.</span></div>
 
@@ -57,8 +71,10 @@
     <input id="itemId" type="text" name="itemId" th:value="${itemId}" hidden>
 
     <input id="reservationPrice" type="text" name="reservationPrice" th:value="${reservationPrice}" hidden>
-    <input id="reservationPickupDate" type="date" name="reservationPickupDate" th:value="${reservationPickupDate}" hidden>
-    <input id="reservationPickupTime" type="text" name="reservationPickupTime" th:value="${reservationPickupTime}" hidden>
+    <input id="reservationPickupDate" type="date" name="reservationPickupDate" th:value="${reservationPickupDate}"
+           hidden>
+    <input id="reservationPickupTime" type="text" name="reservationPickupTime" th:value="${reservationPickupTime}"
+           hidden>
 
 
     <!--새 정보-->
@@ -66,65 +82,66 @@
     <!-- adding -->
     <div class="form-title">추가 입력 사항<span style="color: #FF0000"> (선택)</span></div>
     <div class="form-group">
-        <textarea type="text" name="reservationAdding" id="reservationAdding" class="form-control-large" placeholder="포장지를 옅은 회색으로 바꿔주세요."></textarea>
+        <textarea type="text" name="reservationAdding" id="reservationAdding" class="form-control-large"
+                  placeholder="포장지를 옅은 회색으로 바꿔주세요."></textarea>
     </div>
 
     <!-- Situation -->
     <div class="form-title">선물 상황<span style="color: #FF0000"> (선택)</span></div>
     <div class="form-group">
-            <div class="filter-group">
+        <div class="filter-group">
 
-                <label class="situationRadio">
-                    <input type="radio" name="reservationSituation" value="&#x1F491; 연인 선물"/>
-                    <span class="filter-div">&#x1F491; 연인 선물</span>
-                </label>
+            <label class="situationRadio">
+                <input type="radio" name="reservationSituation" value="&#x1F491; 연인 선물"/>
+                <span class="filter-div">&#x1F491; 연인 선물</span>
+            </label>
 
-                <label class="situationRadio">
-                    <input type="radio" name="reservationSituation" value="&#x1F973; 생일"/>
-                    <span class="filter-div">&#x1F973; 생일</span>
-                </label>
+            <label class="situationRadio">
+                <input type="radio" name="reservationSituation" value="&#x1F973; 생일"/>
+                <span class="filter-div">&#x1F973; 생일</span>
+            </label>
 
-                <label class="situationRadio">
-                    <input type="radio" name="reservationSituation" value="&#x1F377; 기념일"/>
-                    <span class="filter-div">&#x1F377; 기념일</span>
-                </label>
+            <label class="situationRadio">
+                <input type="radio" name="reservationSituation" value="&#x1F377; 기념일"/>
+                <span class="filter-div">&#x1F377; 기념일</span>
+            </label>
 
-                <label class="situationRadio">
-                    <input type="radio" name="reservationSituation" value="&#x1F3AB; 공연"/>
-                    <span class="filter-div">&#x1F3AB; 공연</span>
-                </label>
+            <label class="situationRadio">
+                <input type="radio" name="reservationSituation" value="&#x1F3AB; 공연"/>
+                <span class="filter-div">&#x1F3AB; 공연</span>
+            </label>
 
-                <label class="situationRadio">
-                    <input type="radio" name="reservationSituation" value="&#x1F474; 부모님 선물"/>
-                    <span class="filter-div">&#x1F474; 부모님 선물</span>
-                </label>
+            <label class="situationRadio">
+                <input type="radio" name="reservationSituation" value="&#x1F474; 부모님 선물"/>
+                <span class="filter-div">&#x1F474; 부모님 선물</span>
+            </label>
 
-                <label class="situationRadio">
-                    <input type="radio" name="reservationSituation" value="&#x1F389; 개업축하"/>
-                    <span class="filter-div">&#x1F389; 개업축하</span>
-                </label>
+            <label class="situationRadio">
+                <input type="radio" name="reservationSituation" value="&#x1F389; 개업축하"/>
+                <span class="filter-div">&#x1F389; 개업축하</span>
+            </label>
 
-                <label class="situationRadio">
-                    <input type="radio" name="reservationSituation" value="&#x1F935; 공식적 상황"/>
-                    <span class="filter-div">&#x1F935; 공식적 상황</span>
-                </label>
+            <label class="situationRadio">
+                <input type="radio" name="reservationSituation" value="&#x1F935; 공식적 상황"/>
+                <span class="filter-div">&#x1F935; 공식적 상황</span>
+            </label>
 
-                <label class="situationRadio">
-                    <input type="radio" name="reservationSituation" value="&#x1F3C6; 시상식"/>
-                    <span class="filter-div">&#x1F3C6; 시상식</span>
-                </label>
+            <label class="situationRadio">
+                <input type="radio" name="reservationSituation" value="&#x1F3C6; 시상식"/>
+                <span class="filter-div">&#x1F3C6; 시상식</span>
+            </label>
 
-                <label class="situationRadio">
-                    <input type="radio" name="reservationSituation" value="&#x1F48D; 결혼식"/>
-                    <span class="filter-div">&#x1F48D; 결혼식</span>
-                </label>
+            <label class="situationRadio">
+                <input type="radio" name="reservationSituation" value="&#x1F48D; 결혼식"/>
+                <span class="filter-div">&#x1F48D; 결혼식</span>
+            </label>
 
-                <label class="situationRadio">
-                    <input type="radio" name="reservationSituation" value="&#x1F64B; 나를 위한 선물"/>
-                    <span class="filter-div">&#x1F64B; 나를 위한 선물</span>
-                </label>
-            </div>
+            <label class="situationRadio">
+                <input type="radio" name="reservationSituation" value="&#x1F64B; 나를 위한 선물"/>
+                <span class="filter-div">&#x1F64B; 나를 위한 선물</span>
+            </label>
         </div>
+    </div>
 
     <!--messageCard-->
     <div class="form-title">[&#x2b50;EVENT&#x2b50;]메세지 카드 신청<span style="color: #FF0000"> (선택)</span></div>
@@ -149,9 +166,17 @@
         </div>
     </div>
 
+    <!-- 쿠폰번호 입력-->
+    <div class="form-title">쿠폰 번호 입력<span style="color: #FF0000"> (선택)</span></div>
+    <div class="form-group">
+        <input class="form-control" type="number" id="coupon" name="coupon" maxlength="11" minlength="11"
+               style="appearance: none; -moz-appearance: none; -webkit-appearance: none;">
+    </div>
+
 
     <div class="button-group">
-        <button class="button-back" type="button" style="width: 100%; margin-right: 10px" onclick="history.back()">이전</button>
+        <button class="button-back" type="button" style="width: 100%; margin-right: 10px" onclick="history.back()">이전
+        </button>
         <button class="button-next" type="submit" style="width: 100%;">다음</button>
     </div>
 
