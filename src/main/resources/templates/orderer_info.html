@@ -2,6 +2,22 @@
 <html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
 
 <head>
+    <!— Google tag (gtag.js) —>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HG3BDSNDG7"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-HG3BDSNDG7');
+    </script>
+    <!— Google Tag Manager —>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TP7GVLC');</script>
+    <!— End Google Tag Manager —>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:type" content="website">
@@ -33,7 +49,10 @@
 </head>
 
 <body class="container">
-
+<!— Google Tag Manager (noscript) —>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TP7GVLC"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!— End Google Tag Manager (noscript) —>
 <form action="/order-sheet" method="post">
 
     <!-- 정보 넘기기 hidden-->
@@ -132,7 +151,10 @@
         <div class="modal-content rounded-4 shadow" style="margin-left: 20px;">
             <div class="term-modal-header">
                 <button type="button" name="modal-close" class="btn-close" data-dismiss="modal" aria-label="Close">
-                    <img class="close-btn" src="/images/close.svg" th:src="@{/images/close.svg}"/>
+                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M4.33474 4.83474C4.78105 4.38842 5.50467 4.38842 5.95098 4.83474L19.6653 18.549C20.1116 18.9953 20.1116 19.719 19.6653 20.1653C19.219 20.6116 18.4953 20.6116 18.049 20.1653L4.33474 6.45098C3.88842 6.00467 3.88842 5.28105 4.33474 4.83474Z" fill="#615E69"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M19.6653 4.83474C20.1116 5.28105 20.1116 6.00467 19.6653 6.45098L5.95098 20.1653C5.50467 20.6116 4.78105 20.6116 4.33474 20.1653C3.88842 19.719 3.88842 18.9953 4.33474 18.549L18.049 4.83474C18.4953 4.38842 19.219 4.38842 19.6653 4.83474Z" fill="#615E69"/>
+                    </svg>
                 </button>
                 <h5 class="term-modal-title">홀리몰리 이용약관</h5>
             </div>
@@ -326,7 +348,10 @@
         <div class="modal-content rounded-4 shadow" style="margin-left: 20px;">
             <div class="term-modal-header">
                 <button type="button" name="modal-close" class="btn-close" data-dismiss="modal" aria-label="Close">
-                    <img class="close-btn" src="/images/close.svg" th:src="@{/images/close.svg}"/>
+                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M4.33474 4.83474C4.78105 4.38842 5.50467 4.38842 5.95098 4.83474L19.6653 18.549C20.1116 18.9953 20.1116 19.719 19.6653 20.1653C19.219 20.6116 18.4953 20.6116 18.049 20.1653L4.33474 6.45098C3.88842 6.00467 3.88842 5.28105 4.33474 4.83474Z" fill="#615E69"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M19.6653 4.83474C20.1116 5.28105 20.1116 6.00467 19.6653 6.45098L5.95098 20.1653C5.50467 20.6116 4.78105 20.6116 4.33474 20.1653C3.88842 19.719 3.88842 18.9953 4.33474 18.549L18.049 4.83474C18.4953 4.38842 19.219 4.38842 19.6653 4.83474Z" fill="#615E69"/>
+                    </svg>
                 </button>
                 <h5 class="term-modal-title">홀리몰리 개인정보 처리방침</h5>
             </div>
@@ -426,7 +451,10 @@
         <div class="modal-content rounded-4 shadow" style="margin-left: 20px;">
             <div class="term-modal-header">
                 <button type="button" name="modal-close" class="btn-close" data-dismiss="modal" aria-label="Close">
-                    <img class="close-btn" src="/images/close.svg" th:src="@{/images/close.svg}"/>
+                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M4.33474 4.83474C4.78105 4.38842 5.50467 4.38842 5.95098 4.83474L19.6653 18.549C20.1116 18.9953 20.1116 19.719 19.6653 20.1653C19.219 20.6116 18.4953 20.6116 18.049 20.1653L4.33474 6.45098C3.88842 6.00467 3.88842 5.28105 4.33474 4.83474Z" fill="#615E69"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M19.6653 4.83474C20.1116 5.28105 20.1116 6.00467 19.6653 6.45098L5.95098 20.1653C5.50467 20.6116 4.78105 20.6116 4.33474 20.1653C3.88842 19.719 3.88842 18.9953 4.33474 18.549L18.049 4.83474C18.4953 4.38842 19.219 4.38842 19.6653 4.83474Z" fill="#615E69"/>
+                    </svg>
                 </button>
                 <h5 class="term-modal-title">광고성 정보 수신</h5>
             </div>

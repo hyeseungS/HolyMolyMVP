@@ -71,6 +71,14 @@ public class FeedController {
         Item item = itemService.getItem(itemId);
         Long shopId = item.getShop().getId();
 
+
+        //가격 정보
+        int startPrice = item.getItemStartPrice();
+        int endPrice = item.getItemEndPrice();
+
+        model.addAttribute("ItemStartPrice", startPrice);
+        model.addAttribute("ItemEndPrice", endPrice);
+
         //아이템 출력
         model.addAttribute("userId", userId);
         model.addAttribute("filterId", filterId);

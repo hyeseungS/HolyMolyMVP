@@ -129,12 +129,13 @@ button:focus {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    width: 160px;
+    margin-bottom: 15px;
 }
 
 .feed-container {
     display: inline-block;
     background: #FFFFFF;
-    padding: 10px;
     color: black;
     text-decoration: none;
 }
@@ -170,7 +171,7 @@ button:focus {
 .feed-shop {
     width: 150px;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 14px;
     margin-bottom: 5px;
 }
 

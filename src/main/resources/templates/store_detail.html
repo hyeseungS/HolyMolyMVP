@@ -2,6 +2,22 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
+    <!— Google tag (gtag.js) —>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HG3BDSNDG7"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-HG3BDSNDG7');
+    </script>
+    <!— Google Tag Manager —>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TP7GVLC');</script>
+    <!— End Google Tag Manager —>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:type" content="website">
@@ -11,8 +27,8 @@
     <meta property="og:image" content="/images/HolyMoly.png">
 
     <title>holymoly</title>
-    <link rel="shortcut icon" href="images/holymoly_favicon.ico" type="image/x-icon">
-    <link rel="icon" href="images/holymoly_favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/images/holymoly_favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/holymoly_favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -28,7 +44,10 @@
 </head>
 
 <body class="container">
-
+<!— Google Tag Manager (noscript) —>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TP7GVLC"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!— End Google Tag Manager (noscript) —>
 <div class="header">
     <button type="button" class="left-button" onclick="history.back()">
         <img src="/images/backbtn.svg" th:src="@{/images/backbtn.svg}" class="back-btn"/>
@@ -136,7 +155,10 @@
     <div class="feed-list-container" th:each="item : ${itemList}">
         <a class="feed-container link"
            th:href="@{/item/{userId}/{filterId}/{itemId}(userId=${userId}, filterId=${filterId}, itemId=${item.id})}">
-            <img class="feed-image" th:src="${#lists.size(item.itemImage) == 0? '' : item.itemImage[0].imagePath}"/>
+            <img th:if="${itemStat.index &lt; 7}" class="feed-image"
+                 th:src="${item.itemImage[0].imagePath}"/>
+            <img th:if="${itemStat.index &gt; 6}" class="feed-lazy-image" style="width: 150px; height: 150px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;"
+                 th:data-src="${item.itemImage[0].imagePath}"/>
             <div class="feed-shop" th:text="${item.shop.shopName}"></div>
             <div class="feed-item" th:text="${item.itemName}"></div>
             <div class="feed-price">
@@ -147,6 +169,38 @@
         </a>
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var lazyloadImages = document.querySelectorAll("img.feed-lazy-image");
+        var lazyloadThrottleTimeout;
+
+        function lazyload () {
+            if(lazyloadThrottleTimeout) {
+                clearTimeout(lazyloadThrottleTimeout);
+            }
+
+            lazyloadThrottleTimeout = setTimeout(function() {
+                var scrollTop = window.pageYOffset;
+                lazyloadImages.forEach(function(img) {
+                    if(img.offsetTop < (window.innerHeight + scrollTop)) {
+                        img.src = img.dataset.src;
+                        img.classList.remove('feed-lazy-image');
+                    }
+                });
+                if(lazyloadImages.length == 0) {
+                    document.removeEventListener("scroll", lazyload);
+                    window.removeEventListener("resize", lazyload);
+                    window.removeEventListener("orientationChange", lazyload);
+                }
+            }, 20);
+        }
+
+        document.addEventListener("scroll", lazyload);
+        window.addEventListener("resize", lazyload);
+        window.addEventListener("orientationChange", lazyload);
+    });
+</script>
 
 </body>
 </html>
