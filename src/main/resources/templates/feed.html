@@ -7,17 +7,29 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HG3BDSNDG7"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'G-HG3BDSNDG7');
     </script>
     <!— Google Tag Manager —>
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-TP7GVLC');</script>
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-TP7GVLC');</script>
     <!— End Google Tag Manager —>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,8 +58,10 @@
 
 <body class="container">
 <!— Google Tag Manager (noscript) —>
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TP7GVLC"
-                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TP7GVLC"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
 <!— End Google Tag Manager (noscript) —>
 <div class="head text-left"><span style="color: #4DA360" th:text="${user.region}"></span><span> 꽃집 검색 결과입니다.</span>
 </div>
@@ -165,8 +179,8 @@
                     // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
                     map.setCenter(coords);
                     // 마커에 클릭이벤트를 등록합니다
-                    kakao.maps.event.addListener(marker, 'click', function() {
-                        location.href = "/shop/"+ userData + "/" + filterData + "/" + shopData[i].id;
+                    kakao.maps.event.addListener(marker, 'click', function () {
+                        location.href = "/shop/" + userData + "/" + filterData + "/" + shopData[i].id;
                     });
                 }
             });
@@ -183,7 +197,8 @@
            th:href="@{/item/{userId}/{filterId}/{itemId}(userId=${user.id}, filterId=${filter.id}, itemId=${item.id})}">
             <img th:if="${itemStat.index &lt; 7}" class="feed-image"
                  th:src="${item.itemImage[0].imagePath}"/>
-            <img th:if="${itemStat.index &gt; 6}" class="feed-lazy-image" style="width: 150px; height: 150px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;"
+            <img th:if="${itemStat.index &gt; 6}" class="feed-lazy-image"
+                 style="width: 150px; height: 150px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;"
                  th:data-src="${item.itemImage[0].imagePath}"/>
             <div class="feed-shop" th:text="${item.shop.shopName}"></div>
             <div class="feed-item" style="font-size: 16px" th:text="${item.itemName}"></div>
@@ -196,24 +211,24 @@
     </div>
 </div>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         var lazyloadImages = document.querySelectorAll("img.feed-lazy-image");
         var lazyloadThrottleTimeout;
 
-        function lazyload () {
-            if(lazyloadThrottleTimeout) {
+        function lazyload() {
+            if (lazyloadThrottleTimeout) {
                 clearTimeout(lazyloadThrottleTimeout);
             }
 
-            lazyloadThrottleTimeout = setTimeout(function() {
+            lazyloadThrottleTimeout = setTimeout(function () {
                 var scrollTop = window.pageYOffset;
-                lazyloadImages.forEach(function(img) {
-                    if(img.offsetTop < (window.innerHeight + scrollTop)) {
+                lazyloadImages.forEach(function (img) {
+                    if (img.offsetTop < (window.innerHeight + scrollTop)) {
                         img.src = img.dataset.src;
                         img.classList.remove('feed-lazy-image');
                     }
                 });
-                if(lazyloadImages.length == 0) {
+                if (lazyloadImages.length == 0) {
                     document.removeEventListener("scroll", lazyload);
                     window.removeEventListener("resize", lazyload);
                     window.removeEventListener("orientationChange", lazyload);
@@ -365,12 +380,34 @@
                     </div>
                     <div class="price-group">
                         <div class="slider-track"></div>
-                        <input type="range" min="0" max="500000"
-                               th:value="${filter.filterStartPrice} == 0? 0 : ${filter.filterStartPrice}" id="slider-1"
+                        <input type="range" min="0" max="500000" step="1000" list="steplist1"
+                               th:value="${filter.filterStartPrice} == 0? 0 : ${filter.filterStartPrice}"
+                               id="slider-1"
                                oninput="slideOne()">
-                        <input type="range" min="0" max="500000"
-                               th:value="${filter.filterEndPrice} == 0? 500000 : ${filter.filterEndPrice}" id="slider-2"
+                        <br/>
+                        <datalist id="steplist1">
+                            <script>
+                                for (let size = 0; size <= 500000; size += 10000) {
+                                    document.write("<option ");
+                                    document.write("value=\"" + size + "\">");
+                                    document.write("</option>");
+                                }
+                            </script>
+                        </datalist>
+                        <input type="range" min="0" max="500000" step="1000" list="steplist2"
+                               th:value="${filter.filterEndPrice} == 0? 500000 : ${filter.filterEndPrice}"
+                               id="slider-2"
                                oninput="slideTwo()">
+                        <br/>
+                        <datalist id="steplist2">
+                            <script>
+                                for (let size = 0; size <= 500000; size += 10000) {
+                                    document.write("<option ");
+                                    document.write("value=\"" + size + "\">");
+                                    document.write("</option>");
+                                }
+                            </script>
+                        </datalist>
                     </div>
                 </div>
                 <!-- 초기화 & 선택완료 Button -->
