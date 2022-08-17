@@ -330,6 +330,31 @@ input[type="range"]:active::-webkit-slider-thumb {
     height: 22px;
 }
 
+.price-group datalist {
+    position:relative;
+    display: flex;
+    justify-content: space-between;
+    height: auto;
+    bottom: 16px;
+    /* disable text selection */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+    /* disable click events */
+    pointer-events:none;
+}
+.price-group datalist option {
+    width: 22px;
+    height: 22px;
+    min-height: 22px;
+    border-radius: 100px;
+    /* hide text */
+    white-space: nowrap;
+    padding:0;
+    line-height: 40px;
+}
+
 .values {
     display: inline-block;
     text-align: center;
