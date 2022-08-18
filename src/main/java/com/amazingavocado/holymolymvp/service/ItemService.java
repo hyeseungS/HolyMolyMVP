@@ -73,6 +73,10 @@ public class ItemService {
             endPrice = filter.getFilterEndPrice();
         }
 
+        if(region.equals("0")) {
+            region = "";
+        }
+
         region = '%' + region + '%';
         color = '%' + color + '%';
 
