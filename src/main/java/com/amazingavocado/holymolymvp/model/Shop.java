@@ -50,5 +50,13 @@ public class Shop {
     // 꽃집 주소 링크
     @Column(name = "shop_link")
     private String shopLink;
+
+    // 꽃집 가까운 역
+    @Column(name = "shop_station")
+    private String shopStation;
+
+    // 꽃집 가까운 역 거리
+    @Column(name = "shop_distance")
+    private String shopDistance;
 }
 
