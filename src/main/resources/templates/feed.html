@@ -137,6 +137,10 @@
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8193d9edbd0e8b1ee5251151b97149c3&libraries=services"></script>
     <script type="text/javascript" th:inline="javascript">
         /*<![CDATA[*/
+
+        // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
+        var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+
         let shopData = [[${shopList}]];
         let userData = [[${user.id}]];
         let filterData = [[${filter.id}]]
@@ -180,12 +184,21 @@
                     map.setCenter(coords);
                     // 마커에 클릭이벤트를 등록합니다
                     kakao.maps.event.addListener(marker, 'click', function () {
-                        location.href = "/shop/" + userData + "/" + filterData + "/" + shopData[i].id;
-                    });
+                        // location.href = "/shop/" + userData + "/" + filterData + "/" + shopData[i].id;
+                        infowindow.setContent('<div style="padding:5px;font-size:12px;text-align: left;">[' + shopData[i].shopName + ']</div>'
+                        + '<br>' + '<div style="padding:5px;font-size:12px;text-align: left;margin-top:-25px;"> ' + shopData[i].shopStation + '역에서 도보 ' + shopData[i].shopDistance + '분 </div>'
+                        + '<br>' + '<div style="padding:5px;font-size:12px;text-align: left;margin-top:-25px;" ><a th:href="${shop.shopLink}" target="_self" class="link">가게 보기</a></div>');
+                        infowindow.open(map, marker);
+                        });
+
+                    kakao.maps.event.addListener(map, 'click', function () {
+                        infowindow.close();(map, marker);
+                        });
                 }
             });
 
         }
+
         /*]]>*/
     </script>
 </div>
