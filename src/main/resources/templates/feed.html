@@ -187,7 +187,7 @@
                         // location.href = "/shop/" + userData + "/" + filterData + "/" + shopData[i].id;
                         infowindow.setContent('<div style="padding:5px;font-size:12px;text-align: left;">[' + shopData[i].shopName + ']</div>'
                         + '<br>' + '<div style="padding:5px;font-size:12px;text-align: left;margin-top:-25px;"> ' + shopData[i].shopStation + '역에서 도보 ' + shopData[i].shopDistance + '분 </div>'
-                        + '<br>' + '<div style="padding:5px;font-size:12px;text-align: left;margin-top:-25px;" ><a th:href="${shop.shopLink}" target="_self" class="link">가게 보기</a></div>');
+                        + '<br>' + '<div style="padding:5px;font-size:12px;text-align: left;margin-top:-25px;" ><a class="link">가게 보기</a></div>');
                         infowindow.open(map, marker);
                         });
 
@@ -264,7 +264,7 @@
                 <button type="button" class="close" data-dismiss="modal"><img src="/images/ico-cancel.svg"/></button>
                 <div style="font-size: 22px; font-weight: bold; margin-bottom: 36px">필터검색</div>
                 <div class="color-filter">
-                    <div style="font-size: 15px; font-weight: bold; margin-bottom: 16px">컬러</div>
+                    <div style="font-size: 15px; font-weight: bold; margin-bottom: 16px">꽃 컬러</div>
                     <div class="filter-group">
                         <label>
                             <input class="hidden filter" type="radio" name="color" value="red"
