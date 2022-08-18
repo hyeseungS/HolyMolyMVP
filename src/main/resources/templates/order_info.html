@@ -61,7 +61,7 @@
     <input id="reservationPrice" type="text" name="reservationPrice" hidden>
 
     <!--새 정보-->
-    <div class="form-title">가격<span style="color: #FF0000"> *</span></div>
+    <div class="form-title">가격<span class="color-red"> *</span></div>
 
     <!--    <div class="form-group" th:if="${ItemStartPrice} == ${ItemEndPrice}">
             <p name="reservationPrice" id="priceInput2" class="form-control2"
@@ -89,6 +89,21 @@
         </div>
     </div>
 
+
+    <!-- 수령 방식 -->
+
+    <div>
+        <div class="form-title">수령 방식<span class="color-red"> *</span></div>
+        <div class="button-group">
+            <button type="button" class="basic-button" th:value="꽃집 픽업">꽃집 픽업</button>
+            <button type="button" class="basic-button" th:value="배달 서비스">배달 서비스</button>
+        </div>
+        <div class="form-alert color-red">홀리몰리에서 서울 내 무료 배송 서비스 진행중!</div>
+    </div>
+
+
+    <!--날짜 입력-->
+    <div>
     <div class="form-title">픽업 날짜<span style="color: #FF0000"> *</span></div>
     <div class="form-group">
         <input type="date" name="reservationPickupDate" id="reservationPickupDate" class="form-control"
@@ -96,8 +111,10 @@
     </div>
 
     <div class="form-alert">&check; 최소 2일 전에 예약해야 플로리스트분께서 여유롭게 꽃다발을 제작해드릴 수 있어요 !<br>당일 또는 내일 예약을 원하시는 분은 다음 페이지의 추가 입력 사항에 기재해주세요.</div>
+    </div>
 
-
+    <!-- 시간 입력-->
+    <div>
 
     <div class="form-title">픽업 시간<span style="color: #FF0000"> *</span></div>
 
@@ -139,7 +156,11 @@
 
     <div class="form-alert">&check; 가게 운영시간이 아닌 시간을 기입하실 경우,<br>픽업시간에 조정이 있을 수 있습니다</div>
 
+    </div>
 
+    <!-- 배송지 입력(배달일 때만) -->
+
+    <!--이전/다음 버튼-->
     <div class="button-group">
         <button class="button-back" type="button" style="width: 100%; margin-right: 10px"
                 onclick="history.back()">이전
