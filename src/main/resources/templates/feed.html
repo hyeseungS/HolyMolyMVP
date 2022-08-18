@@ -144,9 +144,13 @@
         let shopData = [[${shopList}]];
         let userData = [[${user.id}]];
         let filterData = [[${filter.id}]]
+
+        function show_shop(shop_id) {
+            location.href = "/shop/" + userData + "/" + filterData + "/" + shop_id;
+        }
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div
             mapOption = {
-                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                center: new kakao.maps.LatLng(37.5642135, 127.0016985), // 지도의 중심좌표
                 level: 9 // 지도의 확대 레벨
             };
 
@@ -162,6 +166,7 @@
 
         // 주소로 좌표를 검색합니다
         for (let i = 0; i < shopData.length; i++) {
+
             geocoder.addressSearch(shopData[i].shopAddress, function (result, status) {
 
                 // 마커 이미지의 이미지 크기 입니다
@@ -184,10 +189,9 @@
                     map.setCenter(coords);
                     // 마커에 클릭이벤트를 등록합니다
                     kakao.maps.event.addListener(marker, 'click', function () {
-                        // location.href = "/shop/" + userData + "/" + filterData + "/" + shopData[i].id;
                         infowindow.setContent('<div style="padding:5px;font-size:12px;text-align: left;">[' + shopData[i].shopName + ']</div>'
                         + '<br>' + '<div style="padding:5px;font-size:12px;text-align: left;margin-top:-25px;"> ' + shopData[i].shopStation + '역에서 도보 ' + shopData[i].shopDistance + '분 </div>'
-                        + '<br>' + '<div style="padding:5px;font-size:12px;text-align: left;margin-top:-25px;" ><a th:href="${shop.shopLink}" target="_self" class="link">가게 보기</a></div>');
+                        + '<br>' + '<div style="padding:5px;font-size:12px;text-align: left;margin-top:-25px;" >' + '<a href="#" onclick="show_shop(' + shopData[i].id + '); return false;" target="_self" class="link">가게 보기</a></div>');
                         infowindow.open(map, marker);
                         });
 
@@ -393,34 +397,14 @@
                     </div>
                     <div class="price-group">
                         <div class="slider-track"></div>
-                        <input type="range" min="0" max="500000" step="1000" list="steplist1"
+                        <input type="range" min="0" max="500000" step="1000"
                                th:value="${filter.filterStartPrice} == 0? 0 : ${filter.filterStartPrice}"
                                id="slider-1"
                                oninput="slideOne()">
-                        <br/>
-                        <datalist id="steplist1">
-                            <script>
-                                for (let size = 0; size <= 500000; size += 10000) {
-                                    document.write("<option ");
-                                    document.write("value=\"" + size + "\">");
-                                    document.write("</option>");
-                                }
-                            </script>
-                        </datalist>
-                        <input type="range" min="0" max="500000" step="1000" list="steplist2"
+                        <input type="range" min="0" max="500000" step="1000"
                                th:value="${filter.filterEndPrice} == 0? 500000 : ${filter.filterEndPrice}"
                                id="slider-2"
                                oninput="slideTwo()">
-                        <br/>
-                        <datalist id="steplist2">
-                            <script>
-                                for (let size = 0; size <= 500000; size += 10000) {
-                                    document.write("<option ");
-                                    document.write("value=\"" + size + "\">");
-                                    document.write("</option>");
-                                }
-                            </script>
-                        </datalist>
                     </div>
                 </div>
                 <!-- 초기화 & 선택완료 Button -->
