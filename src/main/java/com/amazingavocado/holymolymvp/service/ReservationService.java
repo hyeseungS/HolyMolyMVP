@@ -21,8 +21,6 @@ public class ReservationService {
                 .shopId(reservationDto.getShopId())
                 .itemId(reservationDto.getItemId())
                 .reservationPrice(reservationDto.getReservationPrice())
-                .reservationWay("에러방지")
-                .reservationDeliveryAddress(reservationDto.getReservationDeliveryAddress())
                 .reservationPickupDate(reservationDto.getReservationPickupDate().toString())
                 .reservationPickupTime(reservationDto.getReservationPickupTime())
                 .reservationAdding(reservationDto.getReservationAdding())
