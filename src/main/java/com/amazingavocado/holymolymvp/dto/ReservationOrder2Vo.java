@@ -27,6 +27,13 @@ public class ReservationOrder2Vo {
 
     private String reservationPrice;
 
+
+    //배송 추가
+    private String reservationWay;
+
+    private String reservationDeliveryAddress;
+
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd" ,timezone = "Asia/Seoul")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate reservationPickupDate;
