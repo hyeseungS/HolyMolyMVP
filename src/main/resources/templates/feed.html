@@ -211,7 +211,7 @@
                         infowindow.close();(map, marker);
                         });
 
-                    // 마지막 점이면 중심 설정
+                    // 마지막 지역이면 중심 설정
                     if(i == shopData.length - 1 && regionData != '0') {
                         let points_center = getPolygonCentroid(point);
                         let coords_center = new kakao.maps.LatLng(points_center.y, points_center.x);
