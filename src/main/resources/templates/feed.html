@@ -140,7 +140,7 @@
 
         // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
         var infowindow = new kakao.maps.InfoWindow({zIndex:1});
-
+        let regionData = [[${code}]]
         let shopData = [[${shopList}]];
         let userData = [[${user.id}]];
         let filterData = [[${filter.id}]]
@@ -212,7 +212,7 @@
                         });
 
                     // 마지막 점이면 중심 설정
-                    if(i == shopData.length - 1) {
+                    if(i == shopData.length - 1 && regionData != '0') {
                         let points_center = getPolygonCentroid(point);
                         let coords_center = new kakao.maps.LatLng(points_center.y, points_center.x);
                         // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
