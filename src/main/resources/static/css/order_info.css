@@ -587,6 +587,8 @@ input[class="term-check"]:checked + label span {
     font-weight: 500;
     font-size: 22px;
     line-height: 100%;
+
+    color: #4DA360;
 }
 
 .sheet-head-price {
