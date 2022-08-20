@@ -450,6 +450,42 @@ textarea::placeholder {
     font-weight: bold;
 }
 
+/*수령방식 라디오 버튼*/
+
+
+.way-group {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.reservationWay-radio input[type="radio"]{
+    display:none;
+}
+
+.reservationWay-radio input[type="radio"] + span{
+    display:inline-block;
+    background:none;
+    cursor:pointer;
+
+    border: 1px solid #E2E2E2;
+    border-radius: 4px;
+    height: 43px;
+    padding: 14px 24px;
+    gap: 24px;
+    margin-right: 12px;
+
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 100%;
+    color: #E2E2E2;
+}
+
+.reservationWay-radio input[type="radio"]:checked + span{
+    border: 1px solid #000000;
+    color: #000000;
+    font-weight: bold;
+}
+
 /*이용약관 부분*/
 
 

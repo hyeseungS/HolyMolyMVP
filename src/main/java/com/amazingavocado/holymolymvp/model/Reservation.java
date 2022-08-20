@@ -63,8 +63,8 @@ public class Reservation extends Timestamped {
     private String reservationPrice;
 
 
-    //수령 방식 (나중엔 not null해줘야)
-    @Column (name = "reservation_way")
+    //수령 방식
+    @Column (name = "reservation_way", nullable = false)
     private String reservationWay;
 
     //배달일 경우- 수령주소

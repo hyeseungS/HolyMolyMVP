@@ -76,6 +76,8 @@
     <input id="itemId" type="text" name="itemId" th:value="${itemId}" hidden>
 
     <input id="reservationPrice" type="text" name="reservationPrice" th:value="${reservationPrice}" hidden>
+    <input id="reservationWay" type="text" name="reservationWay" th:value="${reservationWay}" hidden>
+    <input id="reservationDeliveryAddress" type="text" name="reservationDeliveryAddress" th:value="${reservationDeliveryAddress}" hidden>
     <input id="reservationPickupDate" type="date" name="reservationPickupDate" th:value="${reservationPickupDate}"
            hidden>
     <input id="reservationPickupTime" type="text" name="reservationPickupTime" th:value="${reservationPickupTime}"
@@ -84,15 +86,19 @@
     <input id="reservationAdding" type="text" name="reservationAdding" th:value="${reservationAdding}" hidden>
     <input id="reservationMsgCard" type="text" name="reservationMsgCard" th:value="${reservationMsgCard}" hidden>
     <input id="reservationSituation" type="text" name="reservationSituation" th:value="${reservationSituation}" hidden>
+    <input id="reservationCoupon" type="text" name="reservationCoupon" th:value="${reservationCoupon}" hidden>
 
     <!-- 새정보 -->
 
     <div class="head text-left"><span style="color: #4DA360">주문자 정보</span><span>를 입력해주세요.</span></div>
+
+    <!-- 이름 -->
     <div class="form-title">이름<span style="color: #FF0000"> *</span></div>
     <div class="form-group">
         <input type="text" name="reservationOrdererName" class="form-control" placeholder="홍길동" required>
     </div>
 
+    <!-- 전화번호 -->
     <div class="form-title">전화번호<span style="color: #FF0000"> *</span></div>
     <div class="form-group">
         <input type="tel" name="reservationOrdererPhone" class="form-control" pattern="[0-9]{2,3}[0-9]{3,4}[0-9]{3,4}"
