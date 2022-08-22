@@ -131,7 +131,7 @@
 </div>
 <div>
 
-    <div class="map" id="map" style="width:100%; height:164px; border-radius: 9px;"></div>
+    <div class="map" id="map" style="width:100%; height:128px;"></div>
 
     <script type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8193d9edbd0e8b1ee5251151b97149c3&libraries=services"></script>
@@ -140,7 +140,7 @@
 
         // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
         var infowindow = new kakao.maps.InfoWindow({zIndex:1});
-        let regionData = [[${code}]]
+
         let shopData = [[${shopList}]];
         let userData = [[${user.id}]];
         let filterData = [[${filter.id}]]
@@ -148,19 +148,6 @@
         function show_shop(shop_id) {
             location.href = "/shop/" + userData + "/" + filterData + "/" + shop_id;
         }
-
-        function getPolygonCentroid(points){
-            let centroid = {x: 0, y: 0};
-            for(let i = 0; i < points.length; i++) {
-                let point = points[i];
-                centroid.x += parseFloat(point.x);
-                centroid.y += parseFloat(point.y);
-            }
-            centroid.x /= points.length;
-            centroid.y /= points.length;
-            return centroid;
-        }
-
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div
             mapOption = {
                 center: new kakao.maps.LatLng(37.5642135, 127.0016985), // 지도의 중심좌표
@@ -176,7 +163,7 @@
         // 주소-좌표 변환 객체를 생성합니다
         var geocoder = new kakao.maps.services.Geocoder();
 
-        var point = [];
+
         // 주소로 좌표를 검색합니다
         for (let i = 0; i < shopData.length; i++) {
 
@@ -190,7 +177,7 @@
                 if (status === kakao.maps.services.Status.OK) {
 
                     var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-                    point.push({x : parseFloat(result[0].x), y : parseFloat(result[0].y)});
+
                     // 결과값으로 받은 위치를 마커로 표시합니다
                     var marker = new kakao.maps.Marker({
                         map: map,
@@ -198,8 +185,11 @@
                         image: markerImage
                     });
 
+                    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                    map.setCenter(coords);
                     // 마커에 클릭이벤트를 등록합니다
                     kakao.maps.event.addListener(marker, 'click', function () {
+
                         infowindow.setContent('<div style="padding: 5px; display: flex; flex-direction: column; align-content: center; "><div style="font-size:12px; font-weight:bolder; text-align: left;">[' + shopData[i].shopName + ']</div>'
                         + '<div style="font-size:10px; text-align: left;"> ' + shopData[i].shopStation + '역에서 도보 ' + shopData[i].shopDistance + '분 </div>'
                         + '<div style="font-size:12px; text-align: left;" >' + '<a href="#" onclick="show_shop(' + shopData[i].id + '); return false;" target="_self" class="link">가게 보기</a></div></div>');
@@ -218,10 +208,12 @@
                         // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
                         map.setCenter(coords_center);
                     }
+
                 }
             });
 
         }
+
         /*]]>*/
     </script>
 </div>

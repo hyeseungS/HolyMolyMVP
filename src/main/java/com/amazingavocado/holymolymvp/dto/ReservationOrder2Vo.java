@@ -28,7 +28,6 @@ public class ReservationOrder2Vo {
 
     private String reservationPrice;
 
-
     //배송 추가
     private String reservationWay;
 

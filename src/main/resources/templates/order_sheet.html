@@ -57,7 +57,7 @@
 
     <!--head-->
     <div class="sheet-head">예약확인서</div>
-    <div class="sheet-head-price" th:text="${reservationPrice}"></div>
+    <div class="sheet-head-price" th:text="${reservationPrice}+'원'"></div>
 
     <!--상품 정보-->
     <div class="sheet-body-item horizontal-div-flex-start">
@@ -88,12 +88,17 @@
         </div>
 
         <div class="order-div">
-            <div class="order-key">픽업 일자</div>
+            <div class="order-key">수령 방식</div>
+            <div class="order-value" th:text="${reservationWay}"></div>
+        </div>
+
+        <div class="order-div">
+            <div class="order-key">수령 일자</div>
             <div class="order-value" th:text="${reservationPickupDate}"></div>
         </div>
 
         <div class="order-div">
-            <div class="order-key">픽업 시간</div>
+            <div class="order-key">수령 시간</div>
             <div class="order-value" th:text="${reservationPickupTime}"></div>
         </div>
 
@@ -108,10 +113,10 @@
             <div class="order-value" th:text="${reservationAdding}"></div>
         </div>
 
-        <div class="order-div">
+<!--        <div class="order-div">
             <div class="order-key">선물 상황</div>
             <div class="order-value" th:text="${reservationSituation}"></div>
-        </div>
+        </div>-->
 
         <div class="order-div">
             <div class="order-key">메세지 카드</div>
