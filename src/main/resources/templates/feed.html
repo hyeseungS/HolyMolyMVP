@@ -143,11 +143,25 @@
 
         let shopData = [[${shopList}]];
         let userData = [[${user.id}]];
-        let filterData = [[${filter.id}]]
+        let filterData = [[${filter.id}]];
+        let regionData = [[${code}]];
 
         function show_shop(shop_id) {
             location.href = "/shop/" + userData + "/" + filterData + "/" + shop_id;
         }
+
+        function getPolygonCentroid(points){
+            let centroid = {x: 0, y: 0};
+            for(let i = 0; i < points.length; i++) {
+                let point = points[i];
+                centroid.x += parseFloat(point.x);
+                centroid.y += parseFloat(point.y);
+            }
+            centroid.x /= points.length;
+            centroid.y /= points.length;
+            return centroid;
+        }
+
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div
             mapOption = {
                 center: new kakao.maps.LatLng(37.5642135, 127.0016985), // 지도의 중심좌표
@@ -163,7 +177,7 @@
         // 주소-좌표 변환 객체를 생성합니다
         var geocoder = new kakao.maps.services.Geocoder();
 
-
+        var point = [];
         // 주소로 좌표를 검색합니다
         for (let i = 0; i < shopData.length; i++) {
 
@@ -177,7 +191,7 @@
                 if (status === kakao.maps.services.Status.OK) {
 
                     var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
+                    point.push({x : parseFloat(result[0].x), y : parseFloat(result[0].y)});
                     // 결과값으로 받은 위치를 마커로 표시합니다
                     var marker = new kakao.maps.Marker({
                         map: map,
@@ -200,7 +214,7 @@
                         });
 
                     // 마지막 지역이면 중심 설정
-                    if(i == shopData.length - 1 && regionData != '0') {
+                    if(regionData != '0' && i == shopData.length - 1) {
                         let points_center = getPolygonCentroid(point);
                         let coords_center = new kakao.maps.LatLng(points_center.y, points_center.x);
                         // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
