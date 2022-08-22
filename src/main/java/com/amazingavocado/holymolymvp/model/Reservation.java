@@ -58,6 +58,7 @@ public class Reservation extends Timestamped {
     private Long itemId;
 
 
+
     // 가격
     @Column(name = "reservation_price", nullable = false)
     private String reservationPrice;
