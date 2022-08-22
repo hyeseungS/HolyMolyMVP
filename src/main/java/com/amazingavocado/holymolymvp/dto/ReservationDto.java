@@ -42,6 +42,7 @@ public class ReservationDto {
 
     private String reservationMsgCard;
 
+    private String reservationCoupon;
 
      //
      private String reservationOrdererName;

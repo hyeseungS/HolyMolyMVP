@@ -6,17 +6,29 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HG3BDSNDG7"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'G-HG3BDSNDG7');
     </script>
     <!— Google Tag Manager —>
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-TP7GVLC');</script>
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-TP7GVLC');</script>
     <!— End Google Tag Manager —>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,8 +58,10 @@
 
 <body class="container">
 <!— Google Tag Manager (noscript) —>
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TP7GVLC"
-                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TP7GVLC"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
 <!— End Google Tag Manager (noscript) —>
 <div class="head text-left"><span style="color: #4DA360">주문 정보</span><span>를 입력해주세요.</span></div>
 
@@ -59,108 +73,129 @@
     <input id="shopId" type="text" name="shopId" th:value="${shopId}" hidden>
     <input id="itemId" type="text" name="itemId" th:value="${itemId}" hidden>
     <input id="reservationPrice" type="text" name="reservationPrice" hidden>
+    <input id="reservationWay" type="text" name="reservationWay" hidden>
 
-    <!--새 정보-->
-    <div class="form-title">가격<span class="color-red"> *</span></div>
+    <!--가격-->
+    <div>
+        <div class="form-title">가격<span style="color: #FF0000"> *</span></div>
 
-    <!--    <div class="form-group" th:if="${ItemStartPrice} == ${ItemEndPrice}">
-            <p name="reservationPrice" id="priceInput2" class="form-control2"
-               th:value="${ItemStartPrice} + ' 원'" th:text="${ItemStartPrice}+' 원'" style="color: black"></p>
-        </div>-->
+        <!--    <div class="form-group" th:if="${ItemStartPrice} == ${ItemEndPrice}">
+                <p name="reservationPrice" id="priceInput2" class="form-control2"
+                   th:value="${ItemStartPrice} + ' 원'" th:text="${ItemStartPrice}+' 원'" style="color: black"></p>
+            </div>-->
 
-    <div class="form-group"> <!--th:unless="${ItemStartPrice} == ${ItemEndPrice}"-->
-        <!--        <input type="text" name="reservationPrice" id="reservationPrice2" class="form-control"
-                       th:placeholder="${ItemStartPrice} + ' 원 &#126; ' + ${ItemEndPrice} + ' 원'">
-                       인풋 대신 인풋처럼 뵈는 칸 만듦-->
-        <p name="reservationPrice" id="priceInput" class="form-control2 pl-10"
-           th:text="${ItemStartPrice == ItemEndPrice ? ItemStartPrice + ' 원' : ItemStartPrice + ' 원 &#126; ' + ItemEndPrice + ' 원'}"
-           th:value="${ItemStartPrice == ItemEndPrice ? ItemStartPrice + ' 원' :_}"></p>
+        <div class="form-group"> <!--th:unless="${ItemStartPrice} == ${ItemEndPrice}"-->
+            <!--        <input type="text" name="reservationPrice" id="reservationPrice2" class="form-control"
+                           th:placeholder="${ItemStartPrice} + ' 원 &#126; ' + ${ItemEndPrice} + ' 원'">
+                           인풋 대신 인풋처럼 뵈는 칸 만듦-->
+            <p name="reservationPrice" id="priceInput" class="form-control2 pl-10"
+               th:text="${ItemStartPrice == ItemEndPrice ? ItemStartPrice + ' 원' : ItemStartPrice + ' 원 &#126; ' + ItemEndPrice + ' 원'}"
+               th:value="${ItemStartPrice == ItemEndPrice ? ItemStartPrice + ' 원' :_}"></p>
 
-        <div th:unless="${ItemStartPrice} == ${ItemEndPrice}">
-            <div class="button-horizontal-group" th:each="priceList : ${priceList}">
-                <button type="button" id="priceButton" name="priceButton" class="price-button pl-10 pr-10"
-                        th:text="${priceList}+' 원'" th:value="${priceList}+' 원'"
-                        th:onclick="|javascript:priceButtonInput(${priceList})|"></button>
-            </div>
+            <div th:unless="${ItemStartPrice} == ${ItemEndPrice}">
+                <div class="button-horizontal-group" th:each="priceList : ${priceList}">
+                    <button type="button" id="priceButton" name="priceButton" class="price-button pl-10 pr-10"
+                            th:text="${priceList}+' 원'" th:value="${priceList}+' 원'"
+                            th:onclick="|javascript:priceButtonInput(${priceList})|"></button>
+                </div>
 
-            <div class="form-alert-green mt-10">
-                <span data-toggle="modal" data-target="#order_modal">&#x24d8; 왜 가격을 설정해야하나요?</span>
+                <div class="form-alert-green mt-10">
+                    <span data-toggle="modal" data-target="#order_modal">&#x24d8; 왜 가격을 설정해야하나요?</span>
+                </div>
             </div>
         </div>
     </div>
 
 
     <!-- 수령 방식 -->
-
     <div>
-        <div class="form-title">수령 방식<span class="color-red"> *</span></div>
-        <div class="button-group">
-            <button type="button" class="basic-button" th:value="꽃집 픽업">꽃집 픽업</button>
-            <button type="button" class="basic-button" th:value="배달 서비스">배달 서비스</button>
+        <div class="form-title">수령 방식<span style="color: #FF0000"> *</span></div>
+        <div class="form-group">
+            <div class="way-group">
+                <label class="reservationWay-radio">
+                    <input type="radio" name="reservationWay" value="꽃집 픽업" id="1" onchange="setDisplay()"
+                           style="width: 100%" required>
+                    <span>꽃집 픽업</span>
+                </label>
+                <label class="reservationWay-radio">
+                    <input type="radio" name="reservationWay" value="무료 배달 서비스" id="2" onchange="setDisplay()"
+                           style="width: 100%" required>
+                    <span>무료 배달 서비스</span>
+                </label>
+            </div>
         </div>
-        <div class="form-alert color-red">홀리몰리에서 서울 내 무료 배송 서비스 진행중!</div>
     </div>
 
 
-    <!--날짜 입력-->
-    <div>
-    <div class="form-title">픽업 날짜<span style="color: #FF0000"> *</span></div>
-    <div class="form-group">
-        <input type="date" name="reservationPickupDate" id="reservationPickupDate" class="form-control"
-               max="2022-08-31" required>
+    <!-- 날짜 -->
+    <div id="date">
+        <div class="form-title" id="date_title"></div>
+        <div class="form-group">
+            <input type="date" name="reservationPickupDate" id="reservationPickupDate" class="form-control"
+                   max="2022-08-31" required>
+        </div>
+
+        <div class="form-alert">&check; 최소 2일 전에 예약해야 플로리스트분께서 여유롭게 꽃다발을 제작해드릴 수 있어요 !<br>당일 또는 내일 예약을 원하시는 분은 다음 페이지의
+            추가 입력 사항에 기재해주세요.
+        </div>
     </div>
 
-    <div class="form-alert">&check; 최소 2일 전에 예약해야 플로리스트분께서 여유롭게 꽃다발을 제작해드릴 수 있어요 !<br>당일 또는 내일 예약을 원하시는 분은 다음 페이지의 추가 입력 사항에 기재해주세요.</div>
+    <!-- 시간 -->
+    <div id="time">
+        <div class="form-title" id="time_title"></div>
+
+        <div class="form-group time-select-group">
+
+            <input type="text" name="reservationPickupTime" id="reservationPickupTime" hidden>
+
+            <select name="reservationPickupP" id="reservationPickupP" size="1" class="time-select" required>
+                <option value="">오전/오후</option>
+                <option value="오전">오전</option>
+                <option value="오후">오후</option>
+            </select>
+
+            <select name="reservationPickupHH" id="reservationPickupHH" size="1" class="time-select" required>
+                <option value="">&nbsp;&nbsp;시</option>
+                <option value="01">1시</option>
+                <option value="02">2시</option>
+                <option value="03">3시</option>
+                <option value="04">4시</option>
+                <option value="05">5시</option>
+                <option value="06">6시</option>
+                <option value="07">7시</option>
+                <option value="08">8시</option>
+                <option value="09">9시</option>
+                <option value="10">10시</option>
+                <option value="11">11시</option>
+                <option value="12">12시</option>
+            </select>
+
+            <select name="reservationPickupMM" id="reservationPickupMM" size="1" class="time-select" required>
+                <option value="">&nbsp;&nbsp;분</option>
+                <option value="00">00분</option>
+                <option value="15">15분</option>
+                <option value="30">30분</option>
+                <option value="45">45분</option>
+            </select>
+
+        </div>
+
+        <div class="form-alert" id="time_alert">&check; 가게 운영시간이 아닌 시간을 기입하실 경우,<br>픽업시간에 조정이 있을 수 있습니다</div>
     </div>
 
-    <!-- 시간 입력-->
-    <div>
 
-    <div class="form-title">픽업 시간<span style="color: #FF0000"> *</span></div>
-
-    <div class="form-group time-select-group">
-
-        <input type="text" name="reservationPickupTime" id="reservationPickupTime" hidden>
-
-        <select name="reservationPickupP" id="reservationPickupP" size="1" class="time-select" required>
-            <option value="">오전/오후</option>
-            <option value="오전">오전</option>
-            <option value="오후">오후</option>
-        </select>
-
-        <select name="reservationPickupHH" id="reservationPickupHH" size="1" class="time-select" required>
-            <option value="">&nbsp;&nbsp;시</option>
-            <option value="01">1시</option>
-            <option value="02">2시</option>
-            <option value="03">3시</option>
-            <option value="04">4시</option>
-            <option value="05">5시</option>
-            <option value="06">6시</option>
-            <option value="07">7시</option>
-            <option value="08">8시</option>
-            <option value="09">9시</option>
-            <option value="10">10시</option>
-            <option value="11">11시</option>
-            <option value="12">12시</option>
-        </select>
-
-        <select name="reservationPickupMM" id="reservationPickupMM" size="1" class="time-select" required>
-            <option value="">&nbsp;&nbsp;분</option>
-            <option value="00">00분</option>
-            <option value="15">15분</option>
-            <option value="30">30분</option>
-            <option value="45">45분</option>
-        </select>
-
+    <!-- 배달 주소 / 배송 서비스 일때 나타남 -->
+    <div id="address">
+        <div class="form-title">배송 주소<span style="color: #FF0000"> *</span></div>
+        <div class="form-group">
+            <input type="text" name="reservationDeliveryAddress" class="form-control"
+                   placeholder="서울시 송파구 테라타워 966 702호">
+        </div>
+        <div class="form-alert">&check; 카페, 식당 등 보관이 어려운 장소는 배달이 제한됩니다.</div>
     </div>
 
-    <div class="form-alert">&check; 가게 운영시간이 아닌 시간을 기입하실 경우,<br>픽업시간에 조정이 있을 수 있습니다</div>
+    <!-- 버튼 -->
 
-    </div>
-
-    <!-- 배송지 입력(배달일 때만) -->
-
-    <!--이전/다음 버튼-->
     <div class="button-group">
         <button class="button-back" type="button" style="width: 100%; margin-right: 10px"
                 onclick="history.back()">이전
@@ -262,6 +297,32 @@
         let timeInput = document.getElementById("reservationPickupTime");
         timeInput.setAttribute("value", timeData);
     }
+
+    // way 라디오 버튼에 따라 주소입력 창 보이기
+    function setDisplay() {
+        if ($('input:radio[id=1]').is(':checked')) {
+            $('#date').show();
+            document.getElementById('date_title').innerHTML = "픽업 날짜<span style=\"color: #FF0000\"> *</span>";
+            $('#time').show();
+            document.getElementById('time_title').innerHTML = "픽업 시간<span style=\"color: #FF0000\"> *</span>";
+            document.getElementById('time_alert').innerHTML = "&check; 가게 운영시간이 아닌 시간을 기입하실 경우,<br>픽업시간에 조정이 있을 수 있습니다.";
+            $('#address').hide();
+        } else if ($('input:radio[id=2]').is(':checked')) {
+            $('#date').show();
+            document.getElementById('date_title').innerHTML = "도착 날짜<span style=\"color: #FF0000\"> *</span>";
+            $('#time').show();
+            document.getElementById('time_title').innerHTML = "도착 시간 설정<span style=\"color: #FF0000\"> *</span>";
+            document.getElementById('time_alert').innerHTML = "&check; 무료 배송 서비스는 <span style=\"color: #4DA360\">AM 11:00 - PM 7:00 동안</span> 운영됩니다.";
+            $('#address').show();
+        }
+    }
+
+    //로드 시 전부 숨기기
+    document.addEventListener("DOMContentLoaded", function () {
+        $('#date').hide();
+        $('#time').hide();
+        $('#address').hide();
+    });
 
 </script>
 

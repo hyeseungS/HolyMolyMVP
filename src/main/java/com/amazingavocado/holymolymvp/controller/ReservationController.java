@@ -71,6 +71,8 @@ public class ReservationController {
 
         //order1 정보 넘기기
         model.addAttribute("reservationPrice", reservationPrice);
+        model.addAttribute("reservationWay", reservationOrder1Vo.getReservationWay());
+        model.addAttribute("reservationDeliveryAddress", reservationOrder1Vo.getReservationDeliveryAddress());
         model.addAttribute("reservationPickupDate", reservationOrder1Vo.getReservationPickupDate());
         model.addAttribute("reservationPickupTime", reservationOrder1Vo.getReservationPickupTime());
 
@@ -81,6 +83,8 @@ public class ReservationController {
         System.out.println(reservationOrder1Vo.getShopId());
         System.out.println(reservationOrder1Vo.getItemId());
         System.out.println(reservationPrice);
+        System.out.println(reservationOrder1Vo.getReservationWay());
+        System.out.println(reservationOrder1Vo.getReservationDeliveryAddress());
         System.out.println(reservationOrder1Vo.getReservationPickupDate());
         System.out.println(reservationOrder1Vo.getReservationPickupTime());
 
@@ -89,7 +93,7 @@ public class ReservationController {
 
     //주문자정보 페이지
     @PostMapping("/orderer")
-    public String orderer(String coupon, ReservationOrder2Vo reservationOrder2Vo, Model model) {
+    public String orderer(ReservationOrder2Vo reservationOrder2Vo, Model model) {
 
         // id 정보 넘기기
         model.addAttribute("userId", reservationOrder2Vo.getUserId());
@@ -99,17 +103,19 @@ public class ReservationController {
 
         //order1 정보 넘기기
         model.addAttribute("reservationPrice", reservationOrder2Vo.getReservationPrice());
+        model.addAttribute("reservationWay", reservationOrder2Vo.getReservationWay());
+        model.addAttribute("reservationDeliveryAddress", reservationOrder2Vo.getReservationDeliveryAddress());
         model.addAttribute("reservationPickupDate", reservationOrder2Vo.getReservationPickupDate());
         model.addAttribute("reservationPickupTime", reservationOrder2Vo.getReservationPickupTime());
 
         //coupon adding 앞에 붙이기
-        String couponNadding = "[쿠폰번호: "+coupon+" ] / "+reservationOrder2Vo.getReservationAdding();
+        //String couponNadding = "[쿠폰번호: " + coupon + " ] / " + reservationOrder2Vo.getReservationAdding();
 
         //order2 정보 넘기기
-        model.addAttribute("reservationAdding", couponNadding);
+        model.addAttribute("reservationAdding", reservationOrder2Vo.getReservationAdding());
         model.addAttribute("reservationSituation", reservationOrder2Vo.getReservationSituation());
         model.addAttribute("reservationMsgCard", reservationOrder2Vo.getReservationMsgCard());
-
+        model.addAttribute("reservationCoupon", reservationOrder2Vo.getReservationCoupon());
 
         System.out.println("네번째");
         System.out.println(reservationOrder2Vo.getUserId());
@@ -118,18 +124,21 @@ public class ReservationController {
         System.out.println(reservationOrder2Vo.getItemId());
 
         System.out.println(reservationOrder2Vo.getReservationPrice());
+        System.out.println(reservationOrder2Vo.getReservationWay());
+        System.out.println(reservationOrder2Vo.getReservationDeliveryAddress());
         System.out.println(reservationOrder2Vo.getReservationPickupDate());
         System.out.println(reservationOrder2Vo.getReservationPickupTime());
 
-        System.out.println(couponNadding);
+        System.out.println(reservationOrder2Vo.getReservationAdding());
         System.out.println(reservationOrder2Vo.getReservationSituation());
         System.out.println(reservationOrder2Vo.getReservationMsgCard());
+        System.out.println(reservationOrder2Vo.getReservationCoupon());
 
         return "orderer_info";
     }
 
     @PostMapping("/order-sheet")
-    public String sendOrder (ReservationDto reservationDto, Model model) {
+    public String sendOrder(ReservationDto reservationDto, Model model) {
 
         // id 정보에서 추가
         Item item = itemService.getItem(reservationDto.getItemId());
@@ -151,6 +160,8 @@ public class ReservationController {
 
         //order1 정보 넘기기
         model.addAttribute("reservationPrice", reservationDto.getReservationPrice());
+        model.addAttribute("reservationWay", reservationDto.getReservationWay());
+        model.addAttribute("reservationDeliveryAddress", reservationDto.getReservationDeliveryAddress());
         model.addAttribute("reservationPickupDate", reservationDto.getReservationPickupDate());
         model.addAttribute("reservationPickupTime", reservationDto.getReservationPickupTime());
 
@@ -158,6 +169,7 @@ public class ReservationController {
         model.addAttribute("reservationAdding", reservationDto.getReservationAdding());
         model.addAttribute("reservationSituation", reservationDto.getReservationSituation());
         model.addAttribute("reservationMsgCard", reservationDto.getReservationMsgCard());
+        model.addAttribute("reservationCoupon", reservationDto.getReservationCoupon());
 
         //orderer 정보 넘기기
         model.addAttribute("reservationOrdererName", reservationDto.getReservationOrdererName());
@@ -165,9 +177,13 @@ public class ReservationController {
         model.addAttribute("reservationTerm", reservationDto.getReservationTerm());
 
         System.out.println("다섯번째");
+        System.out.println(reservationDto.getReservationWay());
+        System.out.println(reservationDto.getReservationDeliveryAddress());
+
         System.out.println(reservationDto.getReservationAdding());
         System.out.println(reservationDto.getReservationSituation());
         System.out.println(reservationDto.getReservationMsgCard());
+        System.out.println(reservationDto.getReservationCoupon());
 
         System.out.println(reservationDto.getReservationOrdererName());
         System.out.println(reservationDto.getReservationOrdererPhone());
@@ -205,18 +221,17 @@ public class ReservationController {
         int gap = end_price - start_price;
         priceList.add(start_price);
 
-        if(gap <=15000) {
+        if (gap <= 15000) {
             //리스트에 오천원 단위로 가격 넣기
             int price = start_price + 5000;
-            while(price < end_price) {
+            while (price < end_price) {
                 priceList.add(price);
                 price += 5000;
             }
             priceList.add(end_price);
-        }
-        else {
+        } else {
             //리스트에 start_price, 중간값, end_price 넣기
-            priceList.add((start_price + end_price)/2);
+            priceList.add((start_price + end_price) / 2);
             priceList.add(end_price);
         }
 

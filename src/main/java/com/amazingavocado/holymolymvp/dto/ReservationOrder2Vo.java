@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.joda.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Column;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
@@ -40,6 +41,8 @@ public class ReservationOrder2Vo {
     private String reservationSituation;
 
     private String reservationMsgCard;
+
+    private String reservationCoupon;
 
     //SimpleDateFormat simpledateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
 }

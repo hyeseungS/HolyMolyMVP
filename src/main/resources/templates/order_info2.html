@@ -71,6 +71,8 @@
     <input id="itemId" type="text" name="itemId" th:value="${itemId}" hidden>
 
     <input id="reservationPrice" type="text" name="reservationPrice" th:value="${reservationPrice}" hidden>
+    <input id="reservationWay" type="text" name="reservationWay" th:value="${reservationWay}" hidden>
+    <input id="reservationDeliveryAddress" type="text" name="reservationDeliveryAddress" th:value="${reservationDeliveryAddress}" hidden>
     <input id="reservationPickupDate" type="date" name="reservationPickupDate" th:value="${reservationPickupDate}"
            hidden>
     <input id="reservationPickupTime" type="text" name="reservationPickupTime" th:value="${reservationPickupTime}"
@@ -172,7 +174,7 @@
     <!-- 쿠폰번호 입력-->
     <div class="form-title">쿠폰 번호 입력<span style="color: #FF0000"> (선택)</span></div>
     <div class="form-group">
-        <input class="form-control" type="number" id="coupon" name="coupon" maxlength="11" minlength="11"
+        <input class="form-control" type="number" id="reservationCoupon" name="reservationCoupon"
                style="appearance: none; -moz-appearance: none; -webkit-appearance: none;">
     </div>
 

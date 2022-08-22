@@ -62,9 +62,8 @@ public class Reservation extends Timestamped {
     @Column(name = "reservation_price", nullable = false)
     private String reservationPrice;
 
-/*
-    //수령 방식 (나중엔 not null해줘야)
-    @Column (name = "reservation_way")
+    //수령 방식
+    @Column (name = "reservation_way", nullable = false)
     private String reservationWay;
 
     //배달일 경우- 수령주소
@@ -80,6 +79,8 @@ public class Reservation extends Timestamped {
     @Column(name = "reservation_pickup_time", nullable = false)
     private String reservationPickupTime;
 
+
+
     // 추가 입력 사항 null
     @Column(name = "reservation_adding")
     private String reservationAdding;
@@ -91,6 +92,10 @@ public class Reservation extends Timestamped {
     // 선물 상황 null
     @Column(name = "reservation_situation")
     private String reservationSituation;
+
+    // 쿠폰 번호
+    @Column (name = "reservation_coupon")
+    private String reservationCoupon;
 
     // 이름
     @Column(name = "reservation_orderer_name", nullable = false)

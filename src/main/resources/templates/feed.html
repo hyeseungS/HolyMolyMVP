@@ -189,10 +189,10 @@
                     map.setCenter(coords);
                     // 마커에 클릭이벤트를 등록합니다
                     kakao.maps.event.addListener(marker, 'click', function () {
-                        infowindow.setContent('<div style="padding:5px;font-size:12px;text-align: left;">[' + shopData[i].shopName + ']</div>'
-                        + '<br>' + '<div style="padding:5px;font-size:12px;text-align: left;margin-top:-25px;"> ' + shopData[i].shopStation + '역에서 도보 ' + shopData[i].shopDistance + '분 </div>'
-                        + '<br>' + '<div style="padding:5px;font-size:12px;text-align: left;margin-top:-25px;" >' + '<a href="#" onclick="show_shop(' + shopData[i].id + '); return false;" target="_self" class="link">가게 보기</a></div>');
 
+                        infowindow.setContent('<div style="padding: 5px; display: flex; flex-direction: column; align-content: center; "><div style="font-size:12px; font-weight:bolder; text-align: left;">[' + shopData[i].shopName + ']</div>'
+                        + '<div style="font-size:10px; text-align: left;"> ' + shopData[i].shopStation + '역에서 도보 ' + shopData[i].shopDistance + '분 </div>'
+                        + '<div style="font-size:12px; text-align: left;" >' + '<a href="#" onclick="show_shop(' + shopData[i].id + '); return false;" target="_self" class="link">가게 보기</a></div></div>');
 
                         infowindow.open(map, marker);
                         });
@@ -200,6 +200,15 @@
                     kakao.maps.event.addListener(map, 'click', function () {
                         infowindow.close();(map, marker);
                         });
+
+                    // 마지막 지역이면 중심 설정
+                    if(i == shopData.length - 1 && regionData != '0') {
+                        let points_center = getPolygonCentroid(point);
+                        let coords_center = new kakao.maps.LatLng(points_center.y, points_center.x);
+                        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                        map.setCenter(coords_center);
+                    }
+
                 }
             });
 
