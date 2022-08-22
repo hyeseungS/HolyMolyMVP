@@ -58,6 +58,7 @@ public class Reservation extends Timestamped {
     private Long itemId;
 
 
+
     // 가격
     @Column(name = "reservation_price", nullable = false)
     private String reservationPrice;
@@ -69,7 +70,6 @@ public class Reservation extends Timestamped {
     //배달일 경우- 수령주소
     @Column (name = "reseration_delivery_address")
     private String reservationDeliveryAddress;
-*/
 
     // 픽업 날짜
     @Column(name = "reservation_pickup_date", nullable = false)
