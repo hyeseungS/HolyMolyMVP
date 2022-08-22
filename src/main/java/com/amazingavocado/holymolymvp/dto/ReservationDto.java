@@ -34,6 +34,7 @@ public class ReservationDto {
 
     private String reservationDeliveryAddress;
 
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd" ,timezone = "Asia/Seoul")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate reservationPickupDate;
@@ -56,4 +57,13 @@ public class ReservationDto {
 
      private String reservationTerm;
 
+     /*
+     public Reservation toEntity() {
+         return new Reservation(null,userId, filterId, shopId, itemId,
+                 reservationPrice, reservationPickupDate,reservationPickupTime,
+                 reservationAdding, reservationMsgCard, reservationSituation,
+                 reservationOrdererName, reservationOrdererPhone, reservationTerm, null);
+
+     }
+     */
 }
