@@ -55,6 +55,10 @@ public class Shop {
     @Column(name = "shop_station")
     private String shopStation;
 
+    // 꽃집 도보 또는 자동차
+    @Column(name = "shop_route")
+    private String shopRoute;
+
     // 꽃집 가까운 역 거리
     @Column(name = "shop_distance")
     private String shopDistance;
