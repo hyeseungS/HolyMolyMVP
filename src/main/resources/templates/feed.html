@@ -131,7 +131,7 @@
 </div>
 <div>
 
-    <div class="map" id="map" style="width:100%; height:128px;"></div>
+    <div class="map" id="map" style="width:100%; height:164px; border-radius: 9px;"></div>
 
     <script type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8193d9edbd0e8b1ee5251151b97149c3&libraries=services"></script>
@@ -214,7 +214,7 @@
                         });
 
                     // 마지막 지역이면 중심 설정
-                    if(regionData != '0' && i == shopData.length - 1) {
+                    if(i == shopData.length - 1 && regionData != '0') {
                         let points_center = getPolygonCentroid(point);
                         let coords_center = new kakao.maps.LatLng(points_center.y, points_center.x);
                         // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
